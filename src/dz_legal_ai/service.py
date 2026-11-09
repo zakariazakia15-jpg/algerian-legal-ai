@@ -34,6 +34,8 @@ def answer_query(query: str, documents: list[dict[str, Any]]) -> dict[str, Any]:
             "title": item.title,
             "issuer": item.issuer,
             "url": item.source_url,
+            "source_language": item.source_language,
+            "source_locator": item.source_locator,
             "source_checked_on": item.source_checked_on,
             "content_sha256": item.content_sha256,
             "segment": item.segment,
@@ -43,7 +45,8 @@ def answer_query(query: str, documents: list[dict[str, Any]]) -> dict[str, Any]:
     ]
     answer_text = "\n\n".join(
         f"«{item.excerpt}»\n"
-        f"المصدر: {item.title}، المقطع المستورد رقم {item.segment} "
+        f"المصدر: {item.title} — {item.source_locator}، "
+        f"المقطع المستورد رقم {item.segment} "
         f"({item.source_url})"
         for item in evidence
     )

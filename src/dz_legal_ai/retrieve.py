@@ -37,6 +37,8 @@ class Evidence:
     title: str
     issuer: str
     source_url: str
+    source_language: str
+    source_locator: str
     source_checked_on: str
     content_sha256: str
     excerpt: str
@@ -75,6 +77,8 @@ def retrieve(
                     title=document["title"],
                     issuer=document["issuer"],
                     source_url=document["source_url"],
+                    source_language=document["source_language"],
+                    source_locator=document["source_locator"],
                     source_checked_on=document["source_checked_on"],
                     content_sha256=document["content_sha256"],
                     excerpt=segment,

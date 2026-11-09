@@ -1,5 +1,6 @@
 import hashlib
 import json
+from pathlib import Path
 
 import pytest
 
@@ -16,13 +17,15 @@ def metadata(**updates):
         "issuer": "Test fixture",
         "jurisdiction": "DZ",
         "source_url": "https://www.joradp.dz/test-fixture",
+        "source_language": "fr",
+        "source_locator": "Synthetic test fixture, page 1",
         "official_source_checked": True,
         "source_checked_on": "2026-11-09",
         "verification_note": "Synthetic fixture only; not an actual legal source.",
-        "license": "CC0-1.0",
-        "license_evidence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-        "license_checked_on": "2026-11-09",
-        "license_verification_note": "Synthetic fixture only; not actual rights evidence.",
+        "reuse_basis": "CC0-1.0",
+        "reuse_evidence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "rights_checked_on": "2026-11-09",
+        "rights_verification_note": "Synthetic fixture only; not actual rights evidence.",
     }
     values.update(updates)
     return values
@@ -45,6 +48,8 @@ def test_answer_quotes_only_cited_source_text():
     assert "unrelated opening material" not in response["answer"]
     assert "unrelated final material" not in response["answer"]
     assert response["citations"][0]["url"] == record["source_url"]
+    assert response["citations"][0]["source_language"] == record["source_language"]
+    assert response["citations"][0]["source_locator"] == record["source_locator"]
     assert response["citations"][0]["content_sha256"] == hashlib.sha256(
         text.encode("utf-8")
     ).hexdigest()
@@ -79,9 +84,21 @@ def test_rejects_non_algerian_and_unapproved_sources():
         validate_source_url(None)
 
 
+@pytest.mark.parametrize(
+    "updates",
+    [
+        {"source_language": "en"},
+        {"source_locator": "  "},
+    ],
+)
+def test_rejects_invalid_source_language_or_locator(updates):
+    with pytest.raises(ValueError):
+        build_record("test", metadata(**updates))
+
+
 def test_rejects_unlicensed_content():
-    with pytest.raises(ValueError, match="unknown or unsupported"):
-        build_record("test", metadata(license="unknown"))
+    with pytest.raises(ValueError, match="Reuse basis is unknown or unsupported"):
+        build_record("test", metadata(reuse_basis="unknown"))
 
 
 def test_requires_canonical_review_dates():
@@ -108,8 +125,63 @@ def test_detects_tampered_source_metadata(tmp_path):
 
 
 def test_requires_canonical_cc_license_evidence():
-    with pytest.raises(ValueError, match="canonical Creative Commons"):
-        build_record("test", metadata(license="CC-BY-4.0"))
+    with pytest.raises(ValueError, match="canonical rights evidence URL"):
+        build_record("test", metadata(reuse_basis="CC-BY-4.0"))
+
+
+def test_accepts_statutory_basis_for_classified_official_legal_text():
+    record = build_record(
+        "synthetic legal text",
+        metadata(
+            reuse_basis="DZ-ORD-03-05-ART-11",
+            reuse_evidence_url=(
+                "https://www.joradp.dz/FTP/jo-francais/2003/F2003044.pdf"
+            ),
+            legal_text_type="law",
+            rights_verification_note=(
+                "Human reviewed; extracted legal text only, not the Gazette issue."
+            ),
+        ),
+    )
+    assert record["reuse_basis"] == "DZ-ORD-03-05-ART-11"
+    assert record["legal_text_type"] == "law"
+
+
+def test_official_seed_is_french_and_bounded_to_ordinance_03_05():
+    seed = Path(__file__).parent.parent / "data" / "seed"
+    text = (seed / "ordinance-03-05-fr.txt").read_text(encoding="utf-8")
+    source_metadata = json.loads(
+        (seed / "ordinance-03-05-fr.metadata.json").read_text(encoding="utf-8")
+    )
+    record = build_record(text, source_metadata)
+    assert record["source_language"] == "fr"
+    assert "Art. 11." in record["text"]
+    assert "Art. 164." in record["text"]
+    assert "Ordonnance n° 03-06" not in record["text"]
+    assert "\ufffd" not in record["text"]
+
+
+@pytest.mark.parametrize(
+    "updates",
+    [
+        {"legal_text_type": "portal_page"},
+        {
+            "legal_text_type": "law",
+            "reuse_evidence_url": "https://www.joradp.dz/HAR/Accueil.htm",
+        },
+    ],
+)
+def test_rejects_invalid_scope_or_evidence_for_statutory_basis(updates):
+    values = {
+        "reuse_basis": "DZ-ORD-03-05-ART-11",
+        "reuse_evidence_url": (
+            "https://www.joradp.dz/FTP/jo-francais/2003/F2003044.pdf"
+        ),
+        "legal_text_type": "law",
+    }
+    values.update(updates)
+    with pytest.raises(ValueError):
+        build_record("synthetic legal text", metadata(**values))
 
 
 def test_evaluation_checks_expected_abstention_and_citation():
