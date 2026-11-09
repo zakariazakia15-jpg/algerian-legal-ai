@@ -27,6 +27,10 @@ def tokenize(text: str) -> list[str]:
     return _TOKEN.findall(normalized)
 
 
+def split_segments(text: str) -> list[str]:
+    return [segment.strip() for segment in re.split(r"(?:\r?\n)+", text) if segment.strip()]
+
+
 @dataclass(frozen=True)
 class Evidence:
     document_id: str
@@ -36,7 +40,7 @@ class Evidence:
     source_checked_on: str
     content_sha256: str
     excerpt: str
-    paragraph: int
+    segment: int
     score: float
 
 
@@ -59,15 +63,9 @@ def retrieve(
             continue
         if not document.get("content_sha256"):
             continue
-        paragraphs = [
-            part.strip()
-            for part in re.split(r"(?:\r?\n){2,}", document.get("text", ""))
-            if part.strip()
-        ]
-        if not paragraphs and document.get("text", "").strip():
-            paragraphs = [document["text"].strip()]
-        for index, paragraph in enumerate(paragraphs, start=1):
-            paragraph_terms = set(tokenize(paragraph))
+        segments = split_segments(document.get("text", ""))
+        for index, segment in enumerate(segments, start=1):
+            paragraph_terms = set(tokenize(segment))
             coverage = len(query_terms & paragraph_terms) / len(query_terms)
             if coverage < minimum_coverage:
                 continue
@@ -79,10 +77,10 @@ def retrieve(
                     source_url=document["source_url"],
                     source_checked_on=document["source_checked_on"],
                     content_sha256=document["content_sha256"],
-                    excerpt=paragraph,
-                    paragraph=index,
+                    excerpt=segment,
+                    segment=index,
                     score=coverage,
                 )
             )
-    candidates.sort(key=lambda item: (-item.score, item.document_id, item.paragraph))
+    candidates.sort(key=lambda item: (-item.score, item.document_id, item.segment))
     return candidates[:limit]

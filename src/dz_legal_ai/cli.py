@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Sequence
 
@@ -33,10 +34,17 @@ def _parser() -> argparse.ArgumentParser:
     evaluate = commands.add_parser("evaluate", help="Check locally supplied expected outcomes")
     evaluate.add_argument("--cases", type=Path, required=True)
     evaluate.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+
+    check = commands.add_parser("corpus-check", help="Validate local corpus records and hashes")
+    check.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
     return parser
 
 
 def main(argv: Sequence[str] | None = None) -> int:
+    encoding = (getattr(sys.stdout, "encoding", None) or "").lower().replace("-", "")
+    if encoding != "utf8":
+        if hasattr(sys.stdout, "reconfigure"):
+            sys.stdout.reconfigure(encoding="utf-8")
     args = _parser().parse_args(argv)
     if args.command == "ingest":
         record = ingest_files(args.text, args.metadata, args.corpus)
@@ -67,6 +75,20 @@ def main(argv: Sequence[str] | None = None) -> int:
         result = evaluate_cases(cases, read_corpus(args.corpus))
         print(json.dumps(result, ensure_ascii=False))
         return int(result["failed"] > 0)
+
+    if args.command == "corpus-check":
+        documents = read_corpus(args.corpus)
+        print(
+            json.dumps(
+                {
+                    "valid": True,
+                    "documents": len(documents),
+                    "document_ids": [document["document_id"] for document in documents],
+                },
+                ensure_ascii=False,
+            )
+        )
+        return 0
 
     result = answer_query(args.query, read_corpus(args.corpus))
     print(json.dumps(result, ensure_ascii=False, indent=2))

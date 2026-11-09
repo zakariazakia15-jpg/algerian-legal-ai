@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+import logging
 import os
 from pathlib import Path
 
 from .ingest import read_corpus
 from .service import answer_query
+
+logger = logging.getLogger(__name__)
 
 try:
     from fastapi import FastAPI, HTTPException
@@ -19,7 +22,7 @@ except ImportError as exc:
 app = FastAPI(
     title="Algerian Legal AI",
     description="Local citation-first retrieval. Informational only, not legal advice.",
-    version="0.1.0",
+    version="0.1.1",
 )
 
 
@@ -40,6 +43,7 @@ def ask(request: AskRequest) -> dict[str, object]:
     try:
         return answer_query(request.query, read_corpus(corpus_path))
     except (OSError, ValueError) as exc:
+        logger.exception("Could not read the configured local corpus")
         raise HTTPException(status_code=500, detail="Local corpus could not be read") from exc
 
 

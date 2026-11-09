@@ -10,6 +10,8 @@ from .service import answer_query
 def evaluate_cases(
     cases: list[dict[str, Any]], documents: list[dict[str, Any]]
 ) -> dict[str, int]:
+    if not cases:
+        raise ValueError("Evaluation set must contain at least one case")
     passed = 0
     for index, case in enumerate(cases, start=1):
         query = case.get("query")

@@ -13,6 +13,8 @@ ALLOWED_EVIDENCE_HOSTS = (*ALLOWED_SOURCE_HOSTS, "creativecommons.org")
 
 
 def _is_https_url_for_allowed_host(url: str, hosts: tuple[str, ...]) -> bool:
+    if not isinstance(url, str):
+        return False
     try:
         parsed = urlparse(url)
         hostname = (parsed.hostname or "").lower().rstrip(".")
@@ -23,7 +25,7 @@ def _is_https_url_for_allowed_host(url: str, hosts: tuple[str, ...]) -> bool:
             and parsed.password is None
             and any(hostname == host or hostname.endswith(f".{host}") for host in hosts)
         )
-    except ValueError:
+    except (TypeError, ValueError):
         return False
 
 

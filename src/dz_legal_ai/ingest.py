@@ -56,9 +56,11 @@ def build_record(text: str, metadata: dict[str, Any]) -> dict[str, Any]:
         raise ValueError("license_verification_note must be a non-empty string")
     for field in ("source_checked_on", "license_checked_on"):
         try:
-            date.fromisoformat(metadata[field])
+            parsed_date = date.fromisoformat(metadata[field])
         except (TypeError, ValueError) as exc:
             raise ValueError(f"{field} must be an ISO date (YYYY-MM-DD)") from exc
+        if parsed_date.isoformat() != metadata[field]:
+            raise ValueError(f"{field} must use the YYYY-MM-DD format")
     if metadata["jurisdiction"] != "DZ":
         raise ValueError("Only Algerian jurisdiction (DZ) is supported")
     if metadata["official_source_checked"] is not True:
