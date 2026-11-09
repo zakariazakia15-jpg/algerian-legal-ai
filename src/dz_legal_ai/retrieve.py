@@ -11,6 +11,80 @@ from .policy import validate_source_url
 
 _TOKEN = re.compile(r"[^\W_]+", re.UNICODE)
 _DIACRITICS = re.compile(r"[\u064B-\u065F\u0670]")
+_ABOVE_PHRASE = re.compile(r"\bau[-‐‑‒–— ]dessus\b")
+_STOPWORDS = {
+    "a",
+    "au",
+    "aux",
+    "avec",
+    "ce",
+    "ces",
+    "dans",
+    "de",
+    "des",
+    "du",
+    "elle",
+    "en",
+    "est",
+    "et",
+    "eux",
+    "il",
+    "la",
+    "le",
+    "les",
+    "leur",
+    "lui",
+    "mais",
+    "ne",
+    "nos",
+    "notre",
+    "nous",
+    "ou",
+    "par",
+    "pas",
+    "pour",
+    "que",
+    "qui",
+    "se",
+    "ses",
+    "son",
+    "sur",
+    "tout",
+    "tous",
+    "toute",
+    "toutes",
+    "un",
+    "une",
+    "vos",
+    "votre",
+    "vous",
+    "هم",
+    "هن",
+    "هو",
+    "هي",
+    "في",
+    "من",
+    "على",
+    "عن",
+    "إلى",
+    "الى",
+    "مع",
+    "ما",
+    "ماذا",
+    "هذا",
+    "هذه",
+    "ذلك",
+    "تلك",
+    "الذي",
+    "التي",
+    "الذين",
+    "كان",
+    "كانت",
+    "يكون",
+    "و",
+    "أو",
+    "او",
+}
 _ARABIC_NORMALIZATION = str.maketrans(
     {
         "\u0622": "\u0627",
@@ -24,7 +98,8 @@ _ARABIC_NORMALIZATION = str.maketrans(
 def tokenize(text: str) -> list[str]:
     normalized = unicodedata.normalize("NFKC", text).casefold()
     normalized = _DIACRITICS.sub("", normalized).translate(_ARABIC_NORMALIZATION)
-    return _TOKEN.findall(normalized)
+    normalized = _ABOVE_PHRASE.sub("audessus", normalized)
+    return [token for token in _TOKEN.findall(normalized) if token not in _STOPWORDS]
 
 
 def split_segments(text: str) -> list[str]:
@@ -45,6 +120,7 @@ class Evidence:
     legal_status_checked_on: str | None
     legal_status_evidence_urls: list[str]
     legal_status_verification_note: str
+    source_document_sha256: str | None
     content_sha256: str
     excerpt: str
     segment: int
@@ -92,6 +168,7 @@ def retrieve(
                     legal_status_verification_note=document[
                         "legal_status_verification_note"
                     ],
+                    source_document_sha256=document.get("source_document_sha256"),
                     content_sha256=document["content_sha256"],
                     excerpt=segment,
                     segment=index,

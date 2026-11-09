@@ -69,6 +69,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     "ingested": True,
                     "document_id": record["document_id"],
                     "content_sha256": record["content_sha256"],
+                    "source_document_sha256": record.get("source_document_sha256"),
                 },
                 ensure_ascii=False,
             )

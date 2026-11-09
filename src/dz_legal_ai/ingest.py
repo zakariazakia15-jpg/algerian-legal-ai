@@ -18,6 +18,7 @@ from .policy import (
 )
 
 _DOCUMENT_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$")
+_SHA256 = re.compile(r"^[0-9a-f]{64}$")
 _REQUIRED_METADATA = (
     "document_id",
     "title",
@@ -130,6 +131,17 @@ def build_record(text: str, metadata: dict[str, Any]) -> dict[str, Any]:
         "source_locator"
     ].strip():
         raise ValueError("source_locator must identify the source issue and text location")
+    source_document_sha256 = metadata.get("source_document_sha256")
+    if source_document_sha256 is not None and (
+        not isinstance(source_document_sha256, str)
+        or not _SHA256.fullmatch(source_document_sha256)
+    ):
+        raise ValueError("source_document_sha256 must be a lowercase SHA-256 digest")
+    extraction_method = metadata.get("extraction_method")
+    if extraction_method is not None and (
+        not isinstance(extraction_method, str) or not extraction_method.strip()
+    ):
+        raise ValueError("extraction_method must be a non-empty string when provided")
     reuse_basis = metadata["reuse_basis"]
     if not isinstance(reuse_basis, str) or reuse_basis not in ALLOWED_REUSE_BASES:
         raise ValueError("Reuse basis is unknown or unsupported; do not ingest this material")
@@ -174,6 +186,10 @@ def build_record(text: str, metadata: dict[str, Any]) -> dict[str, Any]:
         "text": normalized_text,
         "content_sha256": hashlib.sha256(normalized_text.encode("utf-8")).hexdigest(),
     }
+    if source_document_sha256 is not None:
+        record["source_document_sha256"] = source_document_sha256
+    if extraction_method is not None:
+        record["extraction_method"] = extraction_method.strip()
     record["record_sha256"] = _record_digest(record)
     return record
 

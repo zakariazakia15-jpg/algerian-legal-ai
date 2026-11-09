@@ -10,7 +10,12 @@
     {"id": "civil_procedure", "status": "not_started", "source_ids": []},
     {"id": "commercial", "status": "not_started", "source_ids": []},
     {"id": "competition", "status": "not_started", "source_ids": []},
-    {"id": "constitutional", "status": "not_started", "source_ids": []},
+    {
+      "id": "constitutional",
+      "status": "seed_present_status_unverified",
+      "source_ids": ["algerian-constitution-2020-fr"],
+      "note": "One extracted French official translation from JO 82/2020; not visually proofread article-by-article and later revisions/current force are unverified."
+    },
     {"id": "consumer", "status": "not_started", "source_ids": []},
     {"id": "criminal", "status": "not_started", "source_ids": []},
     {"id": "criminal_procedure", "status": "not_started", "source_ids": []},

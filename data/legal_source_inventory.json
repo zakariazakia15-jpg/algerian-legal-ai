@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "jurisdiction": "DZ",
+  "checked_on": "2026-11-09",
+  "notice": "Discovery and extraction log, not a declaration of current law or a license to republish Gazette files. Only records marked included_seed have extracted legal text in data/seed/. Legal status remains unknown unless independently verified.",
+  "sources": [
+    {
+      "source_id": "algerian-ord-03-05-fr",
+      "reference": "Ordonnance 03-05, Journal officiel n° 44/2003, French edition",
+      "source_url": "https://www.joradp.dz/FTP/jo-francais/2003/F2003044.pdf",
+      "source_document_sha256": "9a26449016e18c1be89992ce3b2db0efbc8df20e308624c88add4d5da202e639",
+      "status": "included_seed",
+      "legal_status": "unknown",
+      "legal_domain": "intellectual_property",
+      "text_file": "data/seed/ordinance-03-05-fr.txt",
+      "metadata_file": "data/seed/ordinance-03-05-fr.metadata.json",
+      "limitations": "French extract only; Articles 11 and 164 were spot-checked against a fresh text-layer extraction, not visually audited article-by-article; amendments, repeal, and current force are unverified."
+    },
+    {
+      "source_id": "algerian-constitution-2020-fr",
+      "reference": "Constitutional revision promulgated by Presidential Decree 20-442, Journal officiel n° 82/2020, French translation",
+      "source_url": "https://www.joradp.dz/FTP/jo-francais/2020/F2020082.pdf",
+      "source_document_sha256": "8c4254ec4bbe37da5e4b613399e259c2c9d55453f3f22a8f3675ee40c79a3a3f",
+      "status": "included_seed_extraction_not_visually_proofread",
+      "legal_status": "unknown",
+      "legal_domain": "constitutional",
+      "text_file": "data/seed/constitution-2020-fr.txt",
+      "metadata_file": "data/seed/constitution-2020-fr.metadata.json",
+      "limitations": "PDF pages 4-49 have a text layer and were extracted with Poppler pdftotext 4.00; headers and printer footer were removed. Extraction boundaries and encoding were checked, but the full translation was not visually compared article-by-article. Later revisions and current force are unverified."
+    },
+    {
+      "source_id": "constitution-2020-ar-candidate",
+      "reference_hint": "Arabic JORADP n° 82/2020 PDF",
+      "source_url": "https://www.joradp.dz/FTP/jo-arabe/2020/A2020082.pdf",
+      "source_document_sha256": "778ba537b311f50a57a7ebee5ee343df45e0d8af466b67eded2b9273dc56f3d6",
+      "status": "candidate_text_requires_arabic_layout_and_character_review",
+      "legal_status": "unknown",
+      "observation": "Official PDF endpoint returned application/pdf on 2026-11-09; text extraction produced content, but reading order and Arabic character fidelity have not been compared page-by-page against the source.",
+      "not_included_reason": "Do not use as corpus or SFT input until qualified Arabic review verifies the complete extraction and source boundaries."
+    },
+    {
+      "source_id": "family-code-1984-candidate",
+      "reference_hint": "Candidate Gazette issue 24/1984, French and Arabic PDFs; exact legal text identity needs visual confirmation",
+      "source_urls": [
+        "https://www.joradp.dz/FTP/jo-francais/1984/F1984024.pdf",
+        "https://www.joradp.dz/FTP/jo-arabe/1984/A1984024.pdf"
+      ],
+      "source_document_sha256": [
+        "901125333c04ce5dbeec333a5c45a9eca21564c4948b9e6537bf4a1f2f3e33f4",
+        "72a9290493fe6b94b7b4ab6547cfebafb6d4f85c7530a2c80a9fcad8ca378c9b"
+      ],
+      "status": "candidate_image_only_no_text_extracted",
+      "legal_status": "unknown",
+      "observation": "Both official endpoints returned application/pdf on 2026-11-09. pypdf reported 15 French and 16 Arabic pages; pdftotext extracted zero characters from each.",
+      "not_included_reason": "Scanned PDFs need text capture and qualified comparison; identity, amendments, current force, and specific reuse classification remain unreviewed."
+    },
+    {
+      "source_id": "civil-code-1975-candidate",
+      "reference_hint": "Candidate Gazette issue 78/1975 French PDF; exact legal text identity needs visual confirmation",
+      "source_url": "https://www.joradp.dz/FTP/jo-francais/1975/F1975078.pdf",
+      "source_document_sha256": "a6f6e4d51a3e0cd622682e6c8cf09bf91e96beb056cfa8378f8b4141d4001124",
+      "status": "candidate_image_only_no_text_extracted",
+      "legal_status": "unknown",
+      "observation": "Official endpoint returned application/pdf on 2026-11-09. pypdf reported 55 pages; pdftotext extracted zero characters.",
+      "not_included_reason": "Scanned PDF requires text capture and qualified comparison; identity, amendments, current force, and specific reuse classification remain unreviewed."
+    },
+    {
+      "source_id": "penal-code-1966-candidate",
+      "reference_hint": "Candidate Gazette issue 49/1966 French and Arabic PDFs; exact legal text identity needs visual confirmation",
+      "source_urls": [
+        "https://www.joradp.dz/FTP/jo-francais/1966/F1966049.pdf",
+        "https://www.joradp.dz/FTP/jo-arabe/1966/A1966049.pdf"
+      ],
+      "source_document_sha256": [
+        "a776936a79ad305a2ae43b461db6a8a0c95f87cc03ba263c9df666d53547d5dd",
+        "1b2fe847abd88e276cf63b8529ae60dda7e40a44c26c50a259afeea385bfb41b"
+      ],
+      "status": "candidate_image_only_no_text_extracted",
+      "legal_status": "unknown",
+      "observation": "Both official endpoints returned application/pdf on 2026-11-09. pypdf reported 35 French and 56 Arabic pages; pdftotext extracted zero characters from each.",
+      "not_included_reason": "Scanned PDFs require text capture and qualified comparison; identity, amendments, current force, and specific reuse classification remain unreviewed."
+    }
+  ]
+}

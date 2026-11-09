@@ -22,6 +22,10 @@ UNVERIFIED_STATUS_ABSTENTION = (
     "لا أستطيع تأكيد الوضع القانوني الحالي: لم أجد مراجعة رسمية موثقة لتعديلات النص "
     "أو إلغائه أو تاريخ سريانه."
 )
+UNVERIFIED_EVIDENCE_ABSTENTION = (
+    "لا أجيب استنادًا إلى نص لا توجد له مراجعة رسمية موثقة للنفاذ الحالي. "
+    "المصادر المتاحة محفوظة كمواد تاريخية/مرشحة خارج corpus القانون النافذ."
+)
 
 
 def answer_query(query: str, documents: list[dict[str, Any]]) -> dict[str, Any]:
@@ -52,11 +56,14 @@ def answer_query(query: str, documents: list[dict[str, Any]]) -> dict[str, Any]:
                 "disclaimer": DISCLAIMER,
             }
     else:
-        current_evidence = [
-            item for item in evidence if item.legal_status == "verified_current"
-        ]
-        if current_evidence:
-            evidence = current_evidence
+        evidence = [item for item in evidence if item.legal_status == "verified_current"]
+        if not evidence:
+            return {
+                "answer": UNVERIFIED_EVIDENCE_ABSTENTION,
+                "abstained": True,
+                "citations": [],
+                "disclaimer": DISCLAIMER,
+            }
 
     citations = [
         {
@@ -72,6 +79,7 @@ def answer_query(query: str, documents: list[dict[str, Any]]) -> dict[str, Any]:
             "legal_status_checked_on": item.legal_status_checked_on,
             "legal_status_evidence_urls": item.legal_status_evidence_urls,
             "legal_status_verification_note": item.legal_status_verification_note,
+            "source_document_sha256": item.source_document_sha256,
             "content_sha256": item.content_sha256,
             "segment": item.segment,
             "excerpt": item.excerpt,
@@ -79,14 +87,7 @@ def answer_query(query: str, documents: list[dict[str, Any]]) -> dict[str, Any]:
         for item in evidence
     ]
     answer_text = "\n\n".join(
-        (
-            "تنبيه: حالة النفاذ والتعديلات غير متحققة. النص مقتطف من المصدر التاريخي فقط.\n"
-            if item.legal_status == "unknown"
-            else "تنبيه: المصدر مصنف تاريخيًا/ملغى، ولا يمثل القانون الحالي.\n"
-            if item.legal_status == "historical_or_repealed"
-            else ""
-        )
-        + f"«{item.excerpt}»\n"
+        f"«{item.excerpt}»\n"
         f"المصدر: {item.title} — {item.source_locator}، "
         f"المقطع المستورد رقم {item.segment} "
         f"({item.source_url})"

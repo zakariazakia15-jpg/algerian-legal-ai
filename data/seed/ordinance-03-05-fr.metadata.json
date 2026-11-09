@@ -8,7 +8,7 @@
   "source_locator": "Journal officiel n° 44 du 23 juillet 2003, p. 3-18 (PDF pages 3-18), Ordonnance n° 03-05",
   "official_source_checked": true,
   "source_checked_on": "2026-11-09",
-  "verification_note": "Extracted from the official JORADP French Gazette PDF; Gazette headers and page numbers removed; no other ordinance included. Current amendment/repeal status has not been verified.",
+  "verification_note": "Official JORADP French Gazette PDF, pages 3-18; Gazette headers and page numbers removed, and extraction ends before Ordinance 03-06. The official PDF checksum is recorded; Articles 11 and 164 were spot-checked against a fresh pdftotext extraction, but no full visual article-by-article review was performed. Current amendment/repeal status has not been verified.",
   "reuse_basis": "DZ-ORD-03-05-ART-11",
   "legal_text_type": "law",
   "reuse_evidence_url": "https://www.joradp.dz/FTP/jo-francais/2003/F2003044.pdf",
@@ -19,5 +19,7 @@
   "legal_status_evidence_urls": [],
   "legal_status_verification_note": "Amendments, repeal, and current force have not been independently verified.",
   "legal_domain": "intellectual_property",
-  "legal_instrument_id": "DZ-ORD-03-05"
+  "legal_instrument_id": "DZ-ORD-03-05",
+  "source_document_sha256": "9a26449016e18c1be89992ce3b2db0efbc8df20e308624c88add4d5da202e639",
+  "extraction_method": "Existing curated UTF-8 legal-text extraction; official PDF pages 3-18 spot-checked with pdftotext 4.00; not a full visual audit"
 }
