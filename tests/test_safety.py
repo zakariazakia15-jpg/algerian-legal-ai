@@ -161,6 +161,43 @@ def test_official_seed_is_french_and_bounded_to_ordinance_03_05():
     assert "\ufffd" not in record["text"]
 
 
+def test_official_seed_end_to_end_cli_ingest_and_cited_answer(tmp_path, capsys):
+    from dz_legal_ai.cli import main
+
+    seed = Path(__file__).parent.parent / "data" / "seed"
+    corpus = tmp_path / "corpus.jsonl"
+
+    assert main(
+        [
+            "ingest",
+            "--text",
+            str(seed / "ordinance-03-05-fr.txt"),
+            "--metadata",
+            str(seed / "ordinance-03-05-fr.metadata.json"),
+            "--corpus",
+            str(corpus),
+        ]
+    ) == 0
+    ingested = json.loads(capsys.readouterr().out)
+    assert ingested["ingested"] is True
+    assert ingested["document_id"] == "algerian-ord-03-05-fr"
+
+    assert main(["ask", "les décisions de justice", "--corpus", str(corpus)]) == 0
+    answer = json.loads(capsys.readouterr().out)
+    assert answer["abstained"] is False
+    assert answer["citations"][0]["source_language"] == "fr"
+    assert answer["citations"][0]["url"] == (
+        "https://www.joradp.dz/FTP/jo-francais/2003/F2003044.pdf"
+    )
+    assert answer["citations"][0]["excerpt"].startswith("Art. 11.")
+    assert "ليست استشارة قانونية" in answer["disclaimer"]
+
+    assert main(["ask", "unmatched-phrase-xyz", "--corpus", str(corpus)]) == 0
+    abstention = json.loads(capsys.readouterr().out)
+    assert abstention["abstained"] is True
+    assert abstention["citations"] == []
+
+
 @pytest.mark.parametrize(
     "updates",
     [

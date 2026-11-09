@@ -22,7 +22,7 @@ except ImportError as exc:
 app = FastAPI(
     title="Algerian Legal AI",
     description="Local citation-first retrieval. Informational only, not legal advice.",
-    version="0.1.2",
+    version="0.1.3",
 )
 
 
