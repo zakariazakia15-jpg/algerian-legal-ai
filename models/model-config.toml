@@ -1,0 +1,16 @@
+# Reference profile only. No weights are downloaded or loaded in v0.1.0.
+[generator]
+enabled = false
+provider = "transformers"
+model_id = "microsoft/Phi-3.5-mini-instruct"
+model_license = "MIT"
+model_card_url = "https://huggingface.co/microsoft/Phi-3.5-mini-instruct"
+license_url = "https://huggingface.co/microsoft/Phi-3.5-mini-instruct/raw/main/LICENSE"
+license_review_required_before_use = true
+generation_status = "not-implemented"
+
+[policy]
+jurisdiction = "DZ"
+require_retrieved_citations = true
+allow_uncited_generation = false
+on_insufficient_evidence = "abstain"
