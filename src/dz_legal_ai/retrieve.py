@@ -34,12 +34,17 @@ def split_segments(text: str) -> list[str]:
 @dataclass(frozen=True)
 class Evidence:
     document_id: str
+    legal_domain: str
     title: str
     issuer: str
     source_url: str
     source_language: str
     source_locator: str
     source_checked_on: str
+    legal_status: str
+    legal_status_checked_on: str | None
+    legal_status_evidence_urls: list[str]
+    legal_status_verification_note: str
     content_sha256: str
     excerpt: str
     segment: int
@@ -74,12 +79,19 @@ def retrieve(
             candidates.append(
                 Evidence(
                     document_id=document["document_id"],
+                    legal_domain=document["legal_domain"],
                     title=document["title"],
                     issuer=document["issuer"],
                     source_url=document["source_url"],
                     source_language=document["source_language"],
                     source_locator=document["source_locator"],
                     source_checked_on=document["source_checked_on"],
+                    legal_status=document["legal_status"],
+                    legal_status_checked_on=document["legal_status_checked_on"],
+                    legal_status_evidence_urls=document["legal_status_evidence_urls"],
+                    legal_status_verification_note=document[
+                        "legal_status_verification_note"
+                    ],
                     content_sha256=document["content_sha256"],
                     excerpt=segment,
                     segment=index,

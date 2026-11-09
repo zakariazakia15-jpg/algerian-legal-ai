@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 import json
 import sys
 from pathlib import Path
@@ -11,6 +12,11 @@ from typing import Sequence
 from .evaluation import evaluate_cases
 from .ingest import ingest_files, read_corpus
 from .service import answer_query
+from .training_data import (
+    heldout_data_sha256,
+    load_training_splits,
+    training_data_sha256,
+)
 
 DEFAULT_CORPUS = Path("data/corpus.jsonl")
 
@@ -37,6 +43,15 @@ def _parser() -> argparse.ArgumentParser:
 
     check = commands.add_parser("corpus-check", help="Validate local corpus records and hashes")
     check.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+
+    training_check = commands.add_parser(
+        "training-check",
+        help="Validate reviewed Algerian-law SFT data, provenance, and split isolation",
+    )
+    training_check.add_argument("--train", type=Path, required=True)
+    training_check.add_argument("--validation", type=Path, required=True)
+    training_check.add_argument("--test", type=Path, required=True)
+    training_check.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
     return parser
 
 
@@ -84,6 +99,34 @@ def main(argv: Sequence[str] | None = None) -> int:
                     "valid": True,
                     "documents": len(documents),
                     "document_ids": [document["document_id"] for document in documents],
+                    "legal_domain_counts": dict(
+                        sorted(Counter(document["legal_domain"] for document in documents).items())
+                    ),
+                    "legal_status_counts": dict(
+                        sorted(Counter(document["legal_status"] for document in documents).items())
+                    ),
+                },
+                ensure_ascii=False,
+            )
+        )
+        return 0
+
+    if args.command == "training-check":
+        splits = load_training_splits(
+            train_path=args.train,
+            validation_path=args.validation,
+            test_path=args.test,
+            corpus_path=args.corpus,
+        )
+        print(
+            json.dumps(
+                {
+                    "valid": True,
+                    "example_counts": {name: len(items) for name, items in splits.items()},
+                    "training_validation_sha256": training_data_sha256(splits),
+                    "test_sha256": heldout_data_sha256(splits),
+                    "jurisdiction": "DZ",
+                    "legal_answers_generated": 0,
                 },
                 ensure_ascii=False,
             )

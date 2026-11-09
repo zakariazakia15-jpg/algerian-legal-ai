@@ -9,5 +9,8 @@ dist/
 data/corpus.jsonl
 data/*.tmp
 data/raw/
+data/training/*.jsonl
 private/
 models/cache/
+models/adapters/
+models/evaluations/

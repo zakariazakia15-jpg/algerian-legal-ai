@@ -11,6 +11,7 @@ from typing import Any
 
 from .policy import (
     ALLOWED_REUSE_BASES,
+    LEGAL_DOMAINS,
     LEGAL_TEXT_TYPES,
     validate_reuse_evidence_for,
     validate_source_url,
@@ -32,7 +33,14 @@ _REQUIRED_METADATA = (
     "reuse_evidence_url",
     "rights_checked_on",
     "rights_verification_note",
+    "legal_status",
+    "legal_status_checked_on",
+    "legal_status_evidence_urls",
+    "legal_status_verification_note",
+    "legal_domain",
+    "legal_instrument_id",
 )
+_LEGAL_STATUSES = {"verified_current", "historical_or_repealed", "unknown"}
 
 
 def _record_digest(record: dict[str, Any]) -> str:
@@ -54,6 +62,13 @@ def build_record(text: str, metadata: dict[str, Any]) -> dict[str, Any]:
     document_id = metadata["document_id"]
     if not isinstance(document_id, str) or not _DOCUMENT_ID.fullmatch(document_id):
         raise ValueError("document_id must contain only letters, digits, dot, underscore, or hyphen")
+    legal_instrument_id = metadata["legal_instrument_id"]
+    if not isinstance(legal_instrument_id, str) or not _DOCUMENT_ID.fullmatch(
+        legal_instrument_id
+    ):
+        raise ValueError(
+            "legal_instrument_id must be a stable, version-independent legal text identifier"
+        )
     for field in ("title", "issuer", "verification_note"):
         if not isinstance(metadata[field], str) or not metadata[field].strip():
             raise ValueError(f"{field} must be a non-empty string")
@@ -68,13 +83,48 @@ def build_record(text: str, metadata: dict[str, Any]) -> dict[str, Any]:
             raise ValueError(f"{field} must be an ISO date (YYYY-MM-DD)") from exc
         if parsed_date.isoformat() != metadata[field]:
             raise ValueError(f"{field} must use the YYYY-MM-DD format")
+    legal_status = metadata["legal_status"]
+    if not isinstance(legal_status, str) or legal_status not in _LEGAL_STATUSES:
+        raise ValueError("legal_status must be verified_current, historical_or_repealed, or unknown")
+    status_checked_on = metadata["legal_status_checked_on"]
+    status_evidence_urls = metadata["legal_status_evidence_urls"]
+    if not isinstance(status_evidence_urls, list):
+        raise ValueError("legal_status_evidence_urls must be a list")
+    if legal_status == "unknown":
+        if status_checked_on is not None or status_evidence_urls:
+            raise ValueError(
+                "Unknown legal status must not claim a review date or status evidence"
+            )
+    else:
+        try:
+            parsed_status_date = date.fromisoformat(status_checked_on)
+        except (TypeError, ValueError) as exc:
+            raise ValueError(
+                "Verified legal status requires legal_status_checked_on as an ISO date"
+            ) from exc
+        if parsed_status_date.isoformat() != status_checked_on:
+            raise ValueError("legal_status_checked_on must use the YYYY-MM-DD format")
+        if not status_evidence_urls:
+            raise ValueError("Verified legal status requires official evidence URLs")
+        for evidence_url in status_evidence_urls:
+            validate_source_url(evidence_url)
+    if not isinstance(metadata["legal_status_verification_note"], str) or not metadata[
+        "legal_status_verification_note"
+    ].strip():
+        raise ValueError("legal_status_verification_note must be non-empty")
     if metadata["jurisdiction"] != "DZ":
         raise ValueError("Only Algerian jurisdiction (DZ) is supported")
+    if not isinstance(metadata["legal_domain"], str) or metadata[
+        "legal_domain"
+    ] not in LEGAL_DOMAINS:
+        raise ValueError("legal_domain must be a supported Algerian law domain")
     if metadata["official_source_checked"] is not True:
         raise ValueError("A human reviewer must confirm official_source_checked=true")
     if not isinstance(metadata["source_url"], str):
         raise ValueError("source_url must be a URL string")
-    if metadata["source_language"] not in {"ar", "fr"}:
+    if not isinstance(metadata["source_language"], str) or metadata[
+        "source_language"
+    ] not in {"ar", "fr"}:
         raise ValueError("source_language must be ar or fr")
     if not isinstance(metadata["source_locator"], str) or not metadata[
         "source_locator"
@@ -86,7 +136,9 @@ def build_record(text: str, metadata: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(metadata["reuse_evidence_url"], str):
         raise ValueError("reuse_evidence_url must be a URL string")
     legal_text_type = metadata.get("legal_text_type")
-    if reuse_basis == "DZ-ORD-03-05-ART-11" and legal_text_type not in LEGAL_TEXT_TYPES:
+    if reuse_basis == "DZ-ORD-03-05-ART-11" and (
+        not isinstance(legal_text_type, str) or legal_text_type not in LEGAL_TEXT_TYPES
+    ):
         raise ValueError(
             "The Algerian statutory reuse basis requires a supported legal_text_type"
         )
@@ -99,6 +151,8 @@ def build_record(text: str, metadata: dict[str, Any]) -> dict[str, Any]:
         "title": metadata["title"].strip(),
         "issuer": metadata["issuer"].strip(),
         "jurisdiction": "DZ",
+        "legal_domain": metadata["legal_domain"],
+        "legal_instrument_id": legal_instrument_id,
         "source_url": metadata["source_url"],
         "source_language": metadata["source_language"],
         "source_locator": metadata["source_locator"].strip(),
@@ -109,6 +163,12 @@ def build_record(text: str, metadata: dict[str, Any]) -> dict[str, Any]:
         "reuse_evidence_url": metadata["reuse_evidence_url"],
         "rights_checked_on": metadata["rights_checked_on"],
         "rights_verification_note": metadata["rights_verification_note"].strip(),
+        "legal_status": legal_status,
+        "legal_status_checked_on": status_checked_on,
+        "legal_status_evidence_urls": status_evidence_urls,
+        "legal_status_verification_note": metadata[
+            "legal_status_verification_note"
+        ].strip(),
         "legal_text_type": legal_text_type,
         "ingested_at": datetime.now(timezone.utc).isoformat(),
         "text": normalized_text,

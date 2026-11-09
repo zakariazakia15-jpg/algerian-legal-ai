@@ -13,5 +13,11 @@
   "legal_text_type": "law",
   "reuse_evidence_url": "https://www.joradp.dz/FTP/jo-francais/2003/F2003044.pdf",
   "rights_checked_on": "2026-11-09",
-  "rights_verification_note": "Ordinance 03-05 itself is a law within Article 11 scope. Extracted legal text only, not the Gazette issue or surrounding content."
+  "rights_verification_note": "Ordinance 03-05 itself is a law within Article 11 scope. Extracted legal text only, not the Gazette issue or surrounding content.",
+  "legal_status": "unknown",
+  "legal_status_checked_on": null,
+  "legal_status_evidence_urls": [],
+  "legal_status_verification_note": "Amendments, repeal, and current force have not been independently verified.",
+  "legal_domain": "intellectual_property",
+  "legal_instrument_id": "DZ-ORD-03-05"
 }

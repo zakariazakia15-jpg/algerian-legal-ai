@@ -1,16 +1,21 @@
-# Reference profile only. No weights are downloaded or loaded in v0.1.0.
+# Candidate profile only. Fine-tuning is not implemented in the app runtime.
 [generator]
 enabled = false
 provider = "transformers"
-model_id = "microsoft/Phi-3.5-mini-instruct"
-model_license = "MIT"
-model_card_url = "https://huggingface.co/microsoft/Phi-3.5-mini-instruct"
-license_url = "https://huggingface.co/microsoft/Phi-3.5-mini-instruct/raw/main/LICENSE"
+model_id = "Qwen/Qwen2.5-1.5B-Instruct"
+model_revision = "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+model_license = "Apache-2.0"
+model_card_url = "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/tree/989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+license_url = "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/raw/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/LICENSE"
 license_review_required_before_use = true
-generation_status = "not-implemented"
+generation_status = "not-trained-not-integrated"
+fine_tuning_method = "LoRA SFT pipeline in scripts/train_lora.py"
+fine_tuning_status = "pipeline-unverified-no-training-data"
 
 [policy]
 jurisdiction = "DZ"
 require_retrieved_citations = true
 allow_uncited_generation = false
 on_insufficient_evidence = "abstain"
+reject_foreign_jurisdiction_questions = true
+system_prompt = "أنت مساعد معلوماتي يقتصر حصريًا على قانون الجمهورية الجزائرية الديمقراطية الشعبية. أجب فقط إذا دعمت الإجابة مصادر جزائرية رسمية موثقة مقدمة في السياق؛ لا تجب عن قانون أي دولة أخرى أو عن مسألة لا يدعمها النص المقدم، وامتنع بوضوح. لا تخترع مواد أو مصادر أو حالة نفاذ. لا تصف النص بأنه نافذ حاليًا إلا إذا كانت حالته موثقة رسميًا في السياق. قدم النص الحرفي وإحالة مصدره. لست محاميًا ولا تقدم استشارة شخصية."

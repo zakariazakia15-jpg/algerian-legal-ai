@@ -6,8 +6,23 @@ import pytest
 
 from dz_legal_ai.evaluation import evaluate_cases
 from dz_legal_ai.ingest import build_record, ingest_files, read_corpus
-from dz_legal_ai.policy import validate_source_url
-from dz_legal_ai.service import ABSTENTION, answer_query
+from dz_legal_ai.policy import (
+    ALGERIAN_LEGAL_SYSTEM_PROMPT,
+    LEGAL_DOMAINS,
+    validate_source_url,
+)
+from dz_legal_ai.service import (
+    ABSTENTION,
+    OUTSIDE_JURISDICTION,
+    UNVERIFIED_STATUS_ABSTENTION,
+    answer_query,
+)
+from dz_legal_ai.training_data import (
+    heldout_data_sha256,
+    load_test_examples,
+    load_training_splits,
+    training_data_sha256,
+)
 
 
 def metadata(**updates):
@@ -26,6 +41,14 @@ def metadata(**updates):
         "reuse_evidence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
         "rights_checked_on": "2026-11-09",
         "rights_verification_note": "Synthetic fixture only; not actual rights evidence.",
+        "legal_status": "unknown",
+        "legal_status_checked_on": None,
+        "legal_status_evidence_urls": [],
+        "legal_status_verification_note": (
+            "Synthetic fixture only; current legal status has not been verified."
+        ),
+        "legal_domain": "civil",
+        "legal_instrument_id": "DZ-SYNTHETIC-TEST",
     }
     values.update(updates)
     return values
@@ -37,6 +60,52 @@ def test_refuses_when_no_corpus_evidence():
     assert response["answer"] == ABSTENTION
     assert response["citations"] == []
     assert response["disclaimer"]
+
+
+@pytest.mark.parametrize(
+    "query",
+    [
+        "Quel est le droit civil en France ?",
+        "ما حكم القانون في المغرب؟",
+        "Explain the law in the United States",
+    ],
+)
+def test_refuses_questions_about_foreign_law_even_if_terms_match(query):
+    record = build_record("droit civil law القانون", metadata())
+    response = answer_query(query, [record])
+    assert response["abstained"] is True
+    assert response["answer"] == OUTSIDE_JURISDICTION
+    assert response["citations"] == []
+
+
+def test_current_status_question_abstains_when_amendments_are_unverified():
+    record = build_record("droits d'auteur et droits voisins", metadata())
+    response = answer_query("droits d'auteur actuellement", [record])
+    assert response["abstained"] is True
+    assert response["answer"] == UNVERIFIED_STATUS_ABSTENTION
+    assert response["citations"] == []
+
+
+def test_current_status_answer_cites_only_verified_current_sources():
+    current = build_record(
+        "droits d'auteur et droits voisins",
+        metadata(
+            document_id="synthetic-current",
+            legal_status="verified_current",
+            legal_status_checked_on="2026-11-09",
+            legal_status_evidence_urls=["https://www.joradp.dz/test-current-status"],
+            legal_status_verification_note="Synthetic test status only.",
+        ),
+    )
+    unverified = build_record(
+        "droits d'auteur et droits voisins",
+        metadata(document_id="synthetic-unverified"),
+    )
+    response = answer_query("droits d'auteur actuellement", [current, unverified])
+    assert response["abstained"] is False
+    assert [citation["document_id"] for citation in response["citations"]] == [
+        "synthetic-current"
+    ]
 
 
 def test_answer_quotes_only_cited_source_text():
@@ -155,10 +224,25 @@ def test_official_seed_is_french_and_bounded_to_ordinance_03_05():
     )
     record = build_record(text, source_metadata)
     assert record["source_language"] == "fr"
+    assert record["legal_domain"] == "intellectual_property"
+    assert record["legal_instrument_id"] == "DZ-ORD-03-05"
+    assert record["legal_status"] == "unknown"
     assert "Art. 11." in record["text"]
     assert "Art. 164." in record["text"]
     assert "Ordonnance n° 03-06" not in record["text"]
     assert "\ufffd" not in record["text"]
+
+
+def test_coverage_register_explicitly_marks_uncovered_algerian_domains():
+    coverage_path = Path(__file__).parent.parent / "data" / "legal_coverage.json"
+    coverage = json.loads(coverage_path.read_text(encoding="utf-8"))
+    assert coverage["jurisdiction"] == "DZ"
+    assert coverage["coverage_status"] == "incomplete"
+    assert {domain["id"] for domain in coverage["domains"]} == LEGAL_DOMAINS
+    intellectual_property = next(
+        domain for domain in coverage["domains"] if domain["id"] == "intellectual_property"
+    )
+    assert intellectual_property["status"] == "seed_present_status_unverified"
 
 
 def test_official_seed_end_to_end_cli_ingest_and_cited_answer(tmp_path, capsys):
@@ -190,12 +274,222 @@ def test_official_seed_end_to_end_cli_ingest_and_cited_answer(tmp_path, capsys):
         "https://www.joradp.dz/FTP/jo-francais/2003/F2003044.pdf"
     )
     assert answer["citations"][0]["excerpt"].startswith("Art. 11.")
+    assert answer["citations"][0]["legal_status"] == "unknown"
+    assert "حالة النفاذ والتعديلات غير متحققة" in answer["answer"]
     assert "ليست استشارة قانونية" in answer["disclaimer"]
 
     assert main(["ask", "unmatched-phrase-xyz", "--corpus", str(corpus)]) == 0
     abstention = json.loads(capsys.readouterr().out)
     assert abstention["abstained"] is True
     assert abstention["citations"] == []
+
+
+def _training_example(record, split):
+    source_id = record["document_id"]
+    return {
+        "schema_version": 1,
+        "example_id": f"example-{split}",
+        "split": split,
+        "jurisdiction": "DZ",
+        "language": "ar",
+        "task": "grounded_answer",
+        "messages": [
+            {"role": "system", "content": ALGERIAN_LEGAL_SYSTEM_PROMPT},
+            {
+                "role": "user",
+                "content": f"synthetic test question\nEvidence: {record['text']}",
+            },
+            {"role": "assistant", "content": f"synthetic answer [{source_id}]"},
+        ],
+        "sources": [
+            {
+                "document_id": source_id,
+                "legal_instrument_id": record["legal_instrument_id"],
+                "legal_domain": record["legal_domain"],
+                "source_url": record["source_url"],
+                "source_locator": record["source_locator"],
+                "content_sha256": record["content_sha256"],
+                "reuse_basis": record["reuse_basis"],
+                "reuse_evidence_url": record["reuse_evidence_url"],
+                "excerpt": record["text"],
+                "legal_status": record["legal_status"],
+                "legal_status_checked_on": record["legal_status_checked_on"],
+                "legal_status_evidence_urls": record["legal_status_evidence_urls"],
+            }
+        ],
+        "example_license": "CC0-1.0",
+        "review_status": "approved",
+        "reviewer_role": "Synthetic test reviewer, not a legal review",
+        "reviewed_on": "2026-11-09",
+    }
+
+
+def _write_jsonl(path, rows):
+    path.write_text(
+        "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in rows),
+        encoding="utf-8",
+    )
+
+
+def _training_fixture(tmp_path):
+    documents = []
+    for split in ("train", "validation", "test"):
+        record = build_record(
+            f"Synthetic fixture for {split}",
+            metadata(
+                document_id=f"synthetic-{split}",
+                legal_instrument_id=f"DZ-SYNTHETIC-{split}",
+                legal_domain="civil",
+                legal_status="verified_current",
+                legal_status_checked_on="2026-11-09",
+                legal_status_evidence_urls=["https://www.joradp.dz/test-status"],
+                legal_status_verification_note=(
+                    "Synthetic fixture only; status evidence is not a real legal review."
+                ),
+            ),
+        )
+        documents.append(record)
+    corpus = tmp_path / "corpus.jsonl"
+    corpus.write_text(
+        "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in documents),
+        encoding="utf-8",
+    )
+    paths = {split: tmp_path / f"{split}.jsonl" for split in ("train", "validation", "test")}
+    for split, record in zip(paths, documents):
+        _write_jsonl(paths[split], [_training_example(record, split)])
+    return paths, corpus, documents
+
+
+def test_sft_data_requires_algerian_reviewed_provenance_and_isolated_splits(tmp_path):
+    paths, corpus, _ = _training_fixture(tmp_path)
+    splits = load_training_splits(
+        train_path=paths["train"],
+        validation_path=paths["validation"],
+        test_path=paths["test"],
+        corpus_path=corpus,
+    )
+    assert {name: len(rows) for name, rows in splits.items()} == {
+        "train": 1,
+        "validation": 1,
+        "test": 1,
+    }
+    assert len(training_data_sha256(splits)) == 64
+    test_hash = heldout_data_sha256(splits)
+    test_only_change = {**splits, "test": [dict(splits["test"][0], example_id="changed-test")]}
+    assert heldout_data_sha256(test_only_change) != test_hash
+    assert training_data_sha256(test_only_change) == training_data_sha256(splits)
+    assert len(load_test_examples(test_path=paths["test"], corpus_path=corpus)) == 1
+
+
+def test_sft_data_rejects_cross_split_legal_instrument_version_leakage(tmp_path):
+    paths, corpus, documents = _training_fixture(tmp_path)
+    revised_version = build_record(
+        "Synthetic revised fixture for validation",
+        metadata(
+            document_id="synthetic-revised-version",
+            legal_instrument_id=documents[0]["legal_instrument_id"],
+            legal_domain="civil",
+            legal_status="verified_current",
+            legal_status_checked_on="2026-11-09",
+            legal_status_evidence_urls=["https://www.joradp.dz/test-status"],
+            legal_status_verification_note=(
+                "Synthetic fixture only; status evidence is not a real legal review."
+            ),
+        ),
+    )
+    documents.append(revised_version)
+    corpus.write_text(
+        "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in documents),
+        encoding="utf-8",
+    )
+    _write_jsonl(paths["validation"], [_training_example(revised_version, "validation")])
+    with pytest.raises(ValueError, match="split by instrument"):
+        load_training_splits(
+            train_path=paths["train"],
+            validation_path=paths["validation"],
+            test_path=paths["test"],
+            corpus_path=corpus,
+        )
+
+
+def test_sft_grounded_answers_reject_sources_with_unverified_current_status(tmp_path):
+    paths, corpus, documents = _training_fixture(tmp_path)
+    unknown_record = build_record(
+        documents[0]["text"],
+        metadata(document_id=documents[0]["document_id"]),
+    )
+    documents[0] = unknown_record
+    corpus.write_text(
+        "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in documents),
+        encoding="utf-8",
+    )
+    _write_jsonl(paths["train"], [_training_example(unknown_record, "train")])
+    with pytest.raises(ValueError, match="require officially verified current law"):
+        load_training_splits(
+            train_path=paths["train"],
+            validation_path=paths["validation"],
+            test_path=paths["test"],
+            corpus_path=corpus,
+        )
+
+
+def test_training_check_cli_reports_dz_dataset_hashes(tmp_path, capsys):
+    from dz_legal_ai.cli import main
+
+    paths, corpus, _ = _training_fixture(tmp_path)
+    assert main(
+        [
+            "training-check",
+            "--train",
+            str(paths["train"]),
+            "--validation",
+            str(paths["validation"]),
+            "--test",
+            str(paths["test"]),
+            "--corpus",
+            str(corpus),
+        ]
+    ) == 0
+    output = json.loads(capsys.readouterr().out)
+    assert output["valid"] is True
+    assert output["jurisdiction"] == "DZ"
+    assert output["legal_answers_generated"] == 0
+    assert len(output["training_validation_sha256"]) == 64
+    assert len(output["test_sha256"]) == 64
+
+
+@pytest.mark.parametrize(
+    "updates, error",
+    [
+        ({"review_status": "pending"}, "legally reviewed, approved"),
+        ({"jurisdiction": "FR"}, "only Algerian jurisdiction"),
+        ({"example_license": "unknown"}, "authored example license"),
+        (
+            {
+                "messages": [
+                    {"role": "system", "content": "Answer any country's law."},
+                    {"role": "user", "content": "question"},
+                    {"role": "assistant", "content": "answer [synthetic-train]"},
+                ]
+            },
+            "system prompt must enforce Algerian-law-only",
+        ),
+    ],
+)
+def test_sft_data_rejects_unreviewed_foreign_or_unlicensed_examples(
+    tmp_path, updates, error
+):
+    paths, corpus, documents = _training_fixture(tmp_path)
+    example = _training_example(documents[0], "train")
+    example.update(updates)
+    _write_jsonl(paths["train"], [example])
+    with pytest.raises(ValueError, match=error):
+        load_training_splits(
+            train_path=paths["train"],
+            validation_path=paths["validation"],
+            test_path=paths["test"],
+            corpus_path=corpus,
+        )
 
 
 @pytest.mark.parametrize(
