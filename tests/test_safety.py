@@ -1,5 +1,6 @@
 import hashlib
 import json
+import re
 from pathlib import Path
 
 import pytest
@@ -341,6 +342,44 @@ def test_source_inventory_matches_included_seed_metadata_and_keeps_candidates_ou
         for source in inventory["sources"]
         if not source["status"].startswith("included_seed")
     )
+    extracted_candidates = [
+        source
+        for source in inventory["sources"]
+        if source.get("text_file") and not source["status"].startswith("included_seed")
+    ]
+    expected_candidate_ids = {
+        "algerian-constitution-2020-ar-ocr-candidate",
+        "civil-procedure-code-2008-candidate",
+        "public-procurement-decree-2015-candidate",
+    }
+    assert expected_candidate_ids <= {source["source_id"] for source in extracted_candidates}
+    for source in extracted_candidates:
+        candidate_text = root / source["text_file"]
+        candidate_metadata = json.loads((root / source["metadata_file"]).read_text(encoding="utf-8"))
+        assert candidate_text.is_relative_to(root / "data" / "candidates")
+        assert hashlib.sha256(candidate_text.read_bytes()).hexdigest() == source["candidate_text_sha256"]
+        assert candidate_metadata["legal_status"] == "unknown"
+        assert candidate_metadata["source_document_sha256"] == source["source_document_sha256"]
+        assert candidate_metadata["candidate_text_sha256"] == source["candidate_text_sha256"]
+
+
+def test_french_constitution_extraction_has_checked_boundaries_and_article_references():
+    root = Path(__file__).parent.parent
+    seed = root / "data" / "seed"
+    text = (seed / "constitution-2020-fr.txt").read_text(encoding="utf-8")
+    metadata = json.loads(
+        (seed / "constitution-2020-fr.metadata.json").read_text(encoding="utf-8")
+    )
+    references = [int(value) for value in re.findall(r"(?im)^\s*Art\.\s*(\d+)\b", text)]
+    assert text.startswith("CONSTITUTION")
+    assert "Article 1er." in text
+    assert sorted(set(references)) == list(range(2, 226))
+    assert "Art. 224." in text
+    assert "Art. 225." in text
+    assert "sur toute question relevant de la compétence de la Cour constitutionnelle" in text
+    assert "\ufffd" not in text
+    assert metadata["legal_status"] == "unknown"
+    assert "not a visual audit" in metadata["verification_note"]
 
 
 def test_official_seed_end_to_end_cli_ingest_and_cited_answer(tmp_path, capsys):

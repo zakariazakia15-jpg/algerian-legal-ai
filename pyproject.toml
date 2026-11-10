@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dz-legal-ai"
-version = "0.1.5"
+version = "0.1.6"
 description = "Local, citation-first retrieval foundation for Algerian legal information"
 readme = "README.md"
 requires-python = ">=3.10"

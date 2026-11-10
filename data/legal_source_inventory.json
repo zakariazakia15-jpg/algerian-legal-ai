@@ -2,7 +2,7 @@
   "schema_version": 1,
   "jurisdiction": "DZ",
   "checked_on": "2026-11-09",
-  "notice": "Discovery and extraction log, not a declaration of current law or a license to republish Gazette files. Only records marked included_seed have extracted legal text in data/seed/. Legal status remains unknown unless independently verified.",
+  "notice": "Discovery and extraction log, not a declaration of current law or a license to republish Gazette files. Only records marked included_seed have text in data/seed/; files under data/candidates/ are unreviewed and excluded from corpus and SFT.",
   "sources": [
     {
       "source_id": "algerian-ord-03-05-fr",
@@ -26,17 +26,21 @@
       "legal_domain": "constitutional",
       "text_file": "data/seed/constitution-2020-fr.txt",
       "metadata_file": "data/seed/constitution-2020-fr.metadata.json",
-      "limitations": "PDF pages 4-49 have a text layer and were extracted with Poppler pdftotext 4.00; headers and printer footer were removed. Extraction boundaries and encoding were checked, but the full translation was not visually compared article-by-article. Later revisions and current force are unverified."
+      "limitations": "PDF pages 4-49 have a text layer and were extracted with Poppler pdftotext 4.00; headers and printer footer were removed. Title, Article 1er, selected article references and a closing-oath phrase were checked against a fresh text-layer extraction, not visually compared page-by-page. Later revisions and current force are unverified."
     },
     {
-      "source_id": "constitution-2020-ar-candidate",
-      "reference_hint": "Arabic JORADP n° 82/2020 PDF",
+      "source_id": "algerian-constitution-2020-ar-ocr-candidate",
+      "reference": "Arabic constitutional text attached to Presidential Decree 20-442, Journal officiel n° 82/2020",
       "source_url": "https://www.joradp.dz/FTP/jo-arabe/2020/A2020082.pdf",
       "source_document_sha256": "778ba537b311f50a57a7ebee5ee343df45e0d8af466b67eded2b9273dc56f3d6",
-      "status": "candidate_text_requires_arabic_layout_and_character_review",
+      "status": "candidate_ocr_unreviewed_not_in_corpus",
       "legal_status": "unknown",
-      "observation": "Official PDF endpoint returned application/pdf on 2026-11-09; text extraction produced content, but reading order and Arabic character fidelity have not been compared page-by-page against the source.",
-      "not_included_reason": "Do not use as corpus or SFT input until qualified Arabic review verifies the complete extraction and source boundaries."
+      "legal_domain": "constitutional",
+      "text_file": "data/candidates/constitution-2020-ar-ocr.txt",
+      "metadata_file": "data/candidates/constitution-2020-ar-ocr.metadata.json",
+      "candidate_text_sha256": "5d74a59a27d1988c5349453a2dfdc068a6f6ac7a432332c2ed1bc28fc64f6076",
+      "observation": "Official endpoint returned a 47-page PDF. A local Tesseract Arabic OCR candidate was generated for PDF pages 4-47 (44 pages), with Gazette headers and printer-footer regions cropped. Visual spot-checks on source pages 4 and 47 found OCR errors in words and formatting.",
+      "not_included_reason": "The OCR has not been proofread page-by-page; observed errors make it unsuitable for answers or SFT until a qualified Arabic reviewer compares the complete text with the official pages. Amendments and current force are also unverified."
     },
     {
       "source_id": "family-code-1984-candidate",
@@ -51,6 +55,7 @@
       ],
       "status": "candidate_image_only_no_text_extracted",
       "legal_status": "unknown",
+      "legal_domain": "family",
       "observation": "Both official endpoints returned application/pdf on 2026-11-09. pypdf reported 15 French and 16 Arabic pages; pdftotext extracted zero characters from each.",
       "not_included_reason": "Scanned PDFs need text capture and qualified comparison; identity, amendments, current force, and specific reuse classification remain unreviewed."
     },
@@ -61,6 +66,7 @@
       "source_document_sha256": "a6f6e4d51a3e0cd622682e6c8cf09bf91e96beb056cfa8378f8b4141d4001124",
       "status": "candidate_image_only_no_text_extracted",
       "legal_status": "unknown",
+      "legal_domain": "civil",
       "observation": "Official endpoint returned application/pdf on 2026-11-09. pypdf reported 55 pages; pdftotext extracted zero characters.",
       "not_included_reason": "Scanned PDF requires text capture and qualified comparison; identity, amendments, current force, and specific reuse classification remain unreviewed."
     },
@@ -77,8 +83,92 @@
       ],
       "status": "candidate_image_only_no_text_extracted",
       "legal_status": "unknown",
+      "legal_domain": "criminal",
       "observation": "Both official endpoints returned application/pdf on 2026-11-09. pypdf reported 35 French and 56 Arabic pages; pdftotext extracted zero characters from each.",
       "not_included_reason": "Scanned PDFs require text capture and qualified comparison; identity, amendments, current force, and specific reuse classification remain unreviewed."
+    },
+    {
+      "source_id": "commercial-code-1975-candidate",
+      "reference_hint": "Candidate Ordonnance 75-59, Journal officiel n° 101/1975, French edition; exact instrument identity requires visual confirmation",
+      "source_url": "https://www.joradp.dz/FTP/jo-francais/1975/F1975101.pdf",
+      "source_document_sha256": "c16f48912a422ffb27c4b1ab80288c02c85b2cd2ab77f424fb44452c1b6bb271",
+      "status": "candidate_image_only_no_text_extracted",
+      "legal_status": "unknown",
+      "legal_domain": "commercial",
+      "observation": "Official endpoint returned application/pdf on 2026-11-09; pypdf reported 62 pages and pdftotext extracted zero characters.",
+      "not_included_reason": "Scanned pages need a reviewed transcription; confirm the instrument identity, amendments, current force, and reuse classification before corpus or SFT use."
+    },
+    {
+      "source_id": "civil-procedure-code-2008-candidate",
+      "reference": "Law 08-09 of 25 February 2008, Code of Civil and Administrative Procedure, Journal officiel n° 21/2008, official French translation",
+      "source_url": "https://www.joradp.dz/FTP/jo-francais/2008/F2008021.pdf",
+      "source_document_sha256": "ab20f3ce14bcfb9c1164397c55b2231c1106b9f61ea801480bc9448065e2e1a1",
+      "status": "candidate_text_layer_unreviewed_not_in_corpus",
+      "legal_status": "unknown",
+      "legal_domain": "civil_procedure",
+      "text_file": "data/candidates/law-08-09-2008-cpca-fr-extract.txt",
+      "metadata_file": "data/candidates/law-08-09-2008-cpca-fr-extract.metadata.json",
+      "candidate_text_sha256": "cceba778c98158fcc1368c6c11593b2c98de4452e8db4c7ad4e867737aa062ed",
+      "observation": "Official 83-page PDF. The title and final Article 1065/signature appear on PDF pages 3 and 83; an extracted text-layer candidate covers pages 3-83 after visible issue headers and printer-footer lines are removed.",
+      "not_included_reason": "The multi-column extraction order and all article text have not been visually checked; amendments, current force, and instrument-specific reuse review are incomplete."
+    },
+    {
+      "source_id": "criminal-procedure-code-1966-candidate",
+      "reference_hint": "Candidate Ordinance 66-155, Journal officiel n° 48/1966, French edition; exact instrument identity requires visual confirmation",
+      "source_url": "https://www.joradp.dz/FTP/jo-francais/1966/F1966048.pdf",
+      "source_document_sha256": "92db3b3b34ee3686c70ea20ec8fbe92cacecb2dc14a493323e977dfd0bae2d9d",
+      "status": "candidate_image_only_no_text_extracted",
+      "legal_status": "unknown",
+      "legal_domain": "criminal_procedure",
+      "observation": "Official endpoint returned application/pdf on 2026-11-09; pypdf reported 47 pages and pdftotext extracted zero characters.",
+      "not_included_reason": "Scanned pages need a reviewed transcription; confirm instrument identity, amendments, current force, and reuse classification before corpus or SFT use."
+    },
+    {
+      "source_id": "nationality-code-1970-candidate",
+      "reference_hint": "Candidate Ordinance 70-86, Journal officiel n° 105/1970, French edition; exact instrument identity requires visual confirmation",
+      "source_url": "https://www.joradp.dz/FTP/jo-francais/1970/F1970105.pdf",
+      "source_document_sha256": "12c87ab4724983ee2ea6cdd0f3b82129cc9d97a722045f6e009a4569b09d78e1",
+      "status": "candidate_image_only_no_text_extracted",
+      "legal_status": "unknown",
+      "legal_domain": "nationality",
+      "observation": "Official endpoint returned application/pdf on 2026-11-09; pypdf reported 20 pages and pdftotext extracted zero characters.",
+      "not_included_reason": "Scanned pages need a reviewed transcription; confirm instrument identity, amendments, current force, and reuse classification before corpus or SFT use."
+    },
+    {
+      "source_id": "labor-law-1990-candidate",
+      "reference_hint": "Candidate Law 90-11, Journal officiel n° 17/1990, French edition; exact instrument identity requires visual confirmation",
+      "source_url": "https://www.joradp.dz/FTP/jo-francais/1990/F1990017.pdf",
+      "source_document_sha256": "b7c60b8cee3d5a6ca2ef1e3df2e0263d9da823196220ed8597da4e6132d101d1",
+      "status": "candidate_image_only_no_text_extracted",
+      "legal_status": "unknown",
+      "legal_domain": "labor",
+      "observation": "Official endpoint returned application/pdf on 2026-11-09; pypdf reported 15 pages and pdftotext extracted zero characters.",
+      "not_included_reason": "Scanned pages need a reviewed transcription; confirm instrument identity, amendments, current force, and reuse classification before corpus or SFT use."
+    },
+    {
+      "source_id": "land-orientation-law-1990-candidate",
+      "reference_hint": "Candidate Law 90-25, Journal officiel n° 49/1990, French edition; exact instrument identity requires visual confirmation",
+      "source_url": "https://www.joradp.dz/FTP/jo-francais/1990/F1990049.pdf",
+      "source_document_sha256": "675ad545366273dba66d246a774dd4dadd2e6e799f9189010445069a1962087f",
+      "status": "candidate_image_only_no_text_extracted",
+      "legal_status": "unknown",
+      "legal_domain": "land_registration",
+      "observation": "Official endpoint returned application/pdf on 2026-11-09; pypdf reported 9 pages and pdftotext extracted zero characters.",
+      "not_included_reason": "Scanned pages need a reviewed transcription; confirm instrument identity, amendments, current force, and reuse classification before corpus or SFT use."
+    },
+    {
+      "source_id": "public-procurement-decree-2015-candidate",
+      "reference": "Presidential Decree 15-247 of 16 September 2015 on public procurement and public-service delegations, Journal officiel n° 50/2015, official French translation",
+      "source_url": "https://www.joradp.dz/FTP/jo-francais/2015/F2015050.pdf",
+      "source_document_sha256": "c88ebc8d4e6854073ea2649a19f4747c6feb41a62d4b6b008b5267cf85ee80d6",
+      "status": "candidate_text_layer_unreviewed_not_in_corpus",
+      "legal_status": "unknown",
+      "legal_domain": "public_procurement",
+      "text_file": "data/candidates/decree-15-247-2015-procurement-fr-extract.txt",
+      "metadata_file": "data/candidates/decree-15-247-2015-procurement-fr-extract.metadata.json",
+      "candidate_text_sha256": "e080056f6c4dde5ad6cf9ef91c6c200457ec1e8f5dff656a5ec2194533e61cbc",
+      "observation": "Official 48-page PDF. The decree title and signature were located on PDF pages 3 and 41; a text-layer candidate for those pages was extracted, excluding visible Gazette headers and the printer footer.",
+      "not_included_reason": "The two-column extraction order and full text have not been visually checked; amendments, repeal, current force, and instrument-specific reuse review are incomplete."
     }
   ]
 }

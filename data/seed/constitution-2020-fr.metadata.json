@@ -8,7 +8,7 @@
   "source_locator": "Journal officiel n° 82 du 30 décembre 2020, p. 4-49 (PDF pages 4-49), texte annexé au décret présidentiel n° 20-442",
   "official_source_checked": true,
   "source_checked_on": "2026-11-09",
-  "verification_note": "Official JORADP French edition; PDF pages 4-49 were extracted with pdftotext 4.00 using UTF-8 and layout preservation. Gazette headers and the printer footer were removed. Extraction boundaries and text-layer encoding were checked, but the complete text has not been visually proofread article by article. The constitutional status and any later revisions have not been independently verified.",
+  "verification_note": "Official JORADP French edition; PDF pages 4-49 were re-extracted with pdftotext 4.00 using UTF-8 and compared with this file. The title, Article 1er, Articles 2, 30, 91, 224 and 225, and a phrase from the final oath were checked against the fresh text-layer extraction; selected excerpts align with minor extraction differences. Gazette headers and printer footer are excluded. This is not a visual audit of every page or a legal-status review. Later revisions and current force remain unverified.",
   "reuse_basis": "DZ-ORD-03-05-ART-11",
   "legal_text_type": "official_translation",
   "reuse_evidence_url": "https://www.joradp.dz/FTP/jo-francais/2003/F2003044.pdf",
@@ -21,5 +21,11 @@
   "legal_domain": "constitutional",
   "legal_instrument_id": "DZ-CONSTITUTION-2020",
   "source_document_sha256": "8c4254ec4bbe37da5e4b613399e259c2c9d55453f3f22a8f3675ee40c79a3a3f",
-  "extraction_method": "pdftotext 4.00 -enc UTF-8 -layout; PDF pages 4-49; Gazette headers and printer footer removed"
+  "extraction_method": "pdftotext 4.00 -enc UTF-8 -layout; PDF pages 4-49; Gazette headers and printer footer removed; selected-reference text-layer spot-check on 2026-11-09",
+  "text_layer_spot_check": {
+    "checked_on": "2026-11-09",
+    "pdf_pages": [4, 7, 11, 22, 48, 49],
+    "references": ["title", "Article 1er", "Articles 2, 30, 91, 224, 225", "final oath phrase"],
+    "method_note": "Compared extracted text only; selected excerpts align with minor extraction differences. No full-page visual proofreading."
+  }
 }
