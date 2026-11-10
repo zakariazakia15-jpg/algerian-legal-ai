@@ -2,7 +2,7 @@
 
 ## الحالة
 
-المسترجع الحالي لا يستخدم نموذجًا توليديًا. لم تُنزّل الأوزان، ولم يجر تدريب أو تقييم قانوني للنموذج. توجد الآن pipeline LoRA منفصلة في `scripts/train_lora.py`؛ وجودها لا يعني أن النموذج دُرّب، ولا يحوّل RAG إلى fine-tuning.
+المسترجع الحالي لا يستخدم نموذجًا توليديًا. نُزّلت أوزان النموذج الأساسي محليًا في نسخة العمل الحالية، لكنها مستثناة من Git ولا تتضمنها النسخ المستنسخة من المستودع. لم يجر تدريب أو تقييم قانوني للنموذج، ولا تُحمّل الأوزان أو يُفعّل التوليد داخل التطبيق. توجد pipeline LoRA منفصلة في `scripts/train_lora.py`؛ وجودها لا يعني أن النموذج دُرّب، ولا يحوّل RAG إلى fine-tuning.
 
 ## النموذج المختار للتجربة
 
@@ -13,6 +13,22 @@
 - بطاقة مثبتة: <https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/tree/989aa7980e4cf806f80c7fef2b1adb7bc71aa306>
 - الترخيص المثبت: <https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/raw/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/LICENSE>
 - النموذج معلن لدعم العربية والفرنسية: <https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct>
+
+## الأوزان المحلية
+
+في نسخة العمل التي جهّزت هذا الملف، توجد الأوزان في `models/base/Qwen2.5-1.5B-Instruct/`، بحجم 3,087,467,144 بايت لملف `model.safetensors`. بصمته SHA-256 هي `dd924a11b4c220f385b51ffa522daea7c9f3d850e31b162bb5661df483c6d3ee`، المطابقة لبيانات الملف في revision المثبت أعلاه. تحققت أيضًا من ملفات الإعداد والترميز والترخيص. هذا المسار مستثنى من Git عمدًا؛ لا ترفع ملفات الأوزان إلى المستودع أو تضفها إلى commit. بعد clone جديد، لن يوجد هذا المجلد إلا إذا نزّل المستخدم الأوزان محليًا.
+
+لتحميل النموذج الأساسي محليًا لأغراض التجربة فقط بعد تثبيت التبعيات الاختيارية (`python -m pip install -e ".[finetune]"`)، يمكن استخدام `transformers` مع منع أي تنزيل تلقائي:
+
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+model_path = "models/base/Qwen2.5-1.5B-Instruct"
+tokenizer = AutoTokenizer.from_pretrained(model_path, local_files_only=True)
+model = AutoModelForCausalLM.from_pretrained(model_path, local_files_only=True)
+```
+
+هذا يحمّل نموذجًا عامًا غير مدرّب قانونيًا؛ ولا يدمجه في التطبيق أو يجعله مصدرًا لإجابة قانونية. الحمل الكامل يستهلك ذاكرة إضافية، وقد لا يناسب الأجهزة محدودة الذاكرة. في بيئة التطوير التي فُحصت أثناء مهمة التنزيل، لم تكن `transformers` و`safetensors` مثبتتين، لذلك لم يُجر اختبار تحميل أو استدلال.
 
 ## ما أُعدّ وما لم يُنجز
 

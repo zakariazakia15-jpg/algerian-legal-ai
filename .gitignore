@@ -13,5 +13,6 @@ data/raw/
 data/training/*.jsonl
 private/
 models/cache/
+models/base/Qwen2.5-1.5B-Instruct/
 models/adapters/
 models/evaluations/
