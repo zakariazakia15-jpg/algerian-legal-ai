@@ -6,8 +6,9 @@ import logging
 import os
 from pathlib import Path
 
+from .candidate_corpus import candidate_corpus_status
 from .ingest import read_corpus
-from .service import answer_query
+from .service import answer_query, lookup_source_text
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +23,7 @@ except ImportError as exc:
 app = FastAPI(
     title="Algerian Legal AI",
     description="Local citation-first retrieval. Informational only, not legal advice.",
-    version="0.1.6",
+    version="0.1.7",
 )
 
 
@@ -35,6 +36,20 @@ def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
+@app.get("/candidate-corpus/status")
+def candidate_corpus_health() -> dict[str, object]:
+    corpus_path = Path(
+        os.environ.get("DZ_LEGAL_AI_CANDIDATE_CORPUS", "data/candidate-corpus.jsonl")
+    )
+    try:
+        return candidate_corpus_status(corpus_path)
+    except (OSError, ValueError) as exc:
+        logger.exception("Could not read the configured local candidate corpus")
+        raise HTTPException(
+            status_code=500, detail="Local candidate corpus could not be read"
+        ) from exc
+
+
 @app.post("/ask")
 def ask(request: AskRequest) -> dict[str, object]:
     if not request.query.strip():
@@ -44,6 +59,18 @@ def ask(request: AskRequest) -> dict[str, object]:
         return answer_query(request.query, read_corpus(corpus_path))
     except (OSError, ValueError) as exc:
         logger.exception("Could not read the configured local corpus")
+        raise HTTPException(status_code=500, detail="Local corpus could not be read") from exc
+
+
+@app.post("/lookup")
+def lookup(request: AskRequest) -> dict[str, object]:
+    if not request.query.strip():
+        raise HTTPException(status_code=422, detail="query must not be blank")
+    corpus_path = Path(os.environ.get("DZ_LEGAL_AI_CORPUS", "data/corpus.jsonl"))
+    try:
+        return lookup_source_text(request.query, read_corpus(corpus_path))
+    except (OSError, ValueError) as exc:
+        logger.exception("Could not read the configured local corpus for source lookup")
         raise HTTPException(status_code=500, detail="Local corpus could not be read") from exc
 
 

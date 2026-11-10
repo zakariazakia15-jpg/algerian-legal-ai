@@ -9,9 +9,14 @@ import sys
 from pathlib import Path
 from typing import Sequence
 
+from .candidate_corpus import (
+    DEFAULT_CANDIDATE_CORPUS,
+    build_candidate_corpus,
+    candidate_corpus_status,
+)
 from .evaluation import evaluate_cases
-from .ingest import ingest_files, read_corpus
-from .service import answer_query
+from .ingest import build_seed_corpus, ingest_files, read_corpus
+from .service import answer_query, lookup_source_text
 from .training_data import (
     heldout_data_sha256,
     load_training_splits,
@@ -32,6 +37,19 @@ def _parser() -> argparse.ArgumentParser:
     ask.add_argument("query")
     ask.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
 
+    lookup = commands.add_parser(
+        "lookup",
+        help="Find exact excerpts in imported sources; does not answer legal questions",
+    )
+    lookup.add_argument("query")
+    lookup.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+
+    seed = commands.add_parser(
+        "seed-corpus",
+        help="Load bundled historical samples for source lookup (not current-law answers)",
+    )
+    seed.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+
     ingest = commands.add_parser("ingest", help="Ingest one reviewed UTF-8 text file")
     ingest.add_argument("--text", type=Path, required=True)
     ingest.add_argument("--metadata", type=Path, required=True)
@@ -43,6 +61,23 @@ def _parser() -> argparse.ArgumentParser:
 
     check = commands.add_parser("corpus-check", help="Validate local corpus records and hashes")
     check.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+
+    candidate_build = commands.add_parser(
+        "candidate-corpus-build",
+        help="Build a local unreviewed candidate corpus isolated from legal answers",
+    )
+    candidate_build.add_argument(
+        "--inventory", type=Path, default=Path("data/legal_source_inventory.json")
+    )
+    candidate_build.add_argument("--output", type=Path, default=DEFAULT_CANDIDATE_CORPUS)
+
+    candidate_check = commands.add_parser(
+        "candidate-corpus-check",
+        help="Validate candidate corpus provenance and answer/training exclusion flags",
+    )
+    candidate_check.add_argument(
+        "--candidate-corpus", type=Path, default=DEFAULT_CANDIDATE_CORPUS
+    )
 
     training_check = commands.add_parser(
         "training-check",
@@ -74,6 +109,29 @@ def main(argv: Sequence[str] | None = None) -> int:
                 ensure_ascii=False,
             )
         )
+        return 0
+
+    if args.command == "seed-corpus":
+        records, added = build_seed_corpus(args.corpus)
+        print(
+            json.dumps(
+                {
+                    "built": True,
+                    "documents": len(records),
+                    "added": added,
+                    "all_statuses_unverified": all(
+                        record["legal_status"] == "unknown" for record in records
+                    ),
+                    "corpus": str(args.corpus),
+                },
+                ensure_ascii=False,
+            )
+        )
+        return 0
+
+    if args.command == "lookup":
+        result = lookup_source_text(args.query, read_corpus(args.corpus))
+        print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0
 
     if args.command == "evaluate":
@@ -111,6 +169,28 @@ def main(argv: Sequence[str] | None = None) -> int:
             )
         )
         return 0
+
+    if args.command == "candidate-corpus-build":
+        records = build_candidate_corpus(args.inventory, args.output)
+        print(
+            json.dumps(
+                {
+                    "built": True,
+                    "candidate_documents": len(records),
+                    "candidate_corpus": str(args.output),
+                    "answer_eligible": False,
+                    "training_eligible": False,
+                    "document_ids": [record["document_id"] for record in records],
+                },
+                ensure_ascii=False,
+            )
+        )
+        return 0
+
+    if args.command == "candidate-corpus-check":
+        result = candidate_corpus_status(args.candidate_corpus)
+        print(json.dumps(result, ensure_ascii=False))
+        return int(not result["available"])
 
     if args.command == "training-check":
         splits = load_training_splits(

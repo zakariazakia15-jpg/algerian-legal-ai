@@ -99,3 +99,63 @@ def answer_query(query: str, documents: list[dict[str, Any]]) -> dict[str, Any]:
         "citations": citations,
         "disclaimer": DISCLAIMER,
     }
+
+
+def lookup_source_text(query: str, documents: list[dict[str, Any]]) -> dict[str, Any]:
+    """Return exact source excerpts without asserting they state current law."""
+    if not query.strip():
+        raise ValueError("query must not be empty")
+    if is_foreign_jurisdiction_query(query):
+        return {
+            "answer": OUTSIDE_JURISDICTION,
+            "abstained": True,
+            "legal_answer_provided": False,
+            "citations": [],
+            "disclaimer": DISCLAIMER,
+        }
+
+    evidence = retrieve(query, documents)
+    if not evidence:
+        return {
+            "answer": ABSTENTION,
+            "abstained": True,
+            "legal_answer_provided": False,
+            "citations": [],
+            "disclaimer": DISCLAIMER,
+        }
+
+    citations = [
+        {
+            "document_id": item.document_id,
+            "title": item.title,
+            "issuer": item.issuer,
+            "url": item.source_url,
+            "source_language": item.source_language,
+            "source_locator": item.source_locator,
+            "source_checked_on": item.source_checked_on,
+            "legal_status": item.legal_status,
+            "legal_status_verification_note": item.legal_status_verification_note,
+            "source_document_sha256": item.source_document_sha256,
+            "content_sha256": item.content_sha256,
+            "segment": item.segment,
+            "excerpt": item.excerpt,
+        }
+        for item in evidence
+    ]
+    answer_text = (
+        "هذه مقتطفات حرفية من المواد المستوردة وليست جوابًا قانونيًا. "
+        "حالة النفاذ والتعديلات غير متحققة؛ لا تعتمد عليها كقانون ساري.\n\n"
+        + "\n\n".join(
+            f"«{item.excerpt}»\n"
+            f"المصدر: {item.title} — {item.source_locator} "
+            f"({item.source_url})"
+            for item in evidence
+        )
+    )
+    return {
+        "answer": answer_text,
+        "abstained": True,
+        "legal_answer_provided": False,
+        "citations": citations,
+        "disclaimer": DISCLAIMER,
+    }

@@ -100,6 +100,7 @@
     },
     {
       "source_id": "civil-procedure-code-2008-candidate",
+      "candidate_document_id": "algerian-law-08-09-2008-cpca-fr-candidate",
       "reference": "Law 08-09 of 25 February 2008, Code of Civil and Administrative Procedure, Journal officiel n° 21/2008, official French translation",
       "source_url": "https://www.joradp.dz/FTP/jo-francais/2008/F2008021.pdf",
       "source_document_sha256": "ab20f3ce14bcfb9c1164397c55b2231c1106b9f61ea801480bc9448065e2e1a1",
@@ -158,6 +159,7 @@
     },
     {
       "source_id": "public-procurement-decree-2015-candidate",
+      "candidate_document_id": "algerian-decree-15-247-2015-procurement-fr-candidate",
       "reference": "Presidential Decree 15-247 of 16 September 2015 on public procurement and public-service delegations, Journal officiel n° 50/2015, official French translation",
       "source_url": "https://www.joradp.dz/FTP/jo-francais/2015/F2015050.pdf",
       "source_document_sha256": "c88ebc8d4e6854073ea2649a19f4747c6feb41a62d4b6b008b5267cf85ee80d6",

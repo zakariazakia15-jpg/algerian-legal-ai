@@ -10,7 +10,7 @@
   "source_checked_on": "2026-11-09",
   "verification_note": "Candidate OCR only. The official 47-page PDF was fetched locally and its SHA-256 recorded. Pages 4-47 were OCRed on a local CPU after cropping Gazette-header and printer-footer regions. Visual spot-checks on pages 4 and 47 found misspellings, dropped text, and formatting errors; no page-by-page proofread or legal-status review has occurred. Never use this candidate for answers or SFT.",
   "reuse_basis": "DZ-ORD-03-05-ART-11",
-  "legal_text_type": "official_legal_text",
+  "legal_text_type": "law",
   "reuse_evidence_url": "https://www.joradp.dz/FTP/jo-francais/2003/F2003044.pdf",
   "rights_checked_on": "2026-11-09",
   "rights_verification_note": "The candidate is limited to the constitutional legal text, not the Gazette issue as a whole. Reuse classification follows the statutory exception for laws and regulations in Article 11 of Ordinance 03-05; this is a documented technical basis, not a legal opinion.",

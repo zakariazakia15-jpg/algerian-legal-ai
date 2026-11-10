@@ -215,6 +215,52 @@ def ingest_files(text_path: Path, metadata_path: Path, corpus_path: Path) -> dic
     return record
 
 
+def build_seed_corpus(corpus_path: Path) -> tuple[list[dict[str, Any]], int]:
+    root = Path(__file__).resolve().parents[2]
+    seed_directory = root / "data" / "seed"
+    seed_files = (
+        ("ordinance-03-05-fr.txt", "ordinance-03-05-fr.metadata.json"),
+        ("constitution-2020-fr.txt", "constitution-2020-fr.metadata.json"),
+    )
+    records = read_corpus(corpus_path)
+    by_id = {record["document_id"]: record for record in records}
+    added = 0
+    for text_name, metadata_name in seed_files:
+        text_path = seed_directory / text_name
+        metadata_path = seed_directory / metadata_name
+        try:
+            text = text_path.read_text(encoding="utf-8")
+            metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+            raise ValueError(f"Could not read bundled seed source: {text_name}") from exc
+        if not isinstance(metadata, dict):
+            raise ValueError(f"Seed metadata must be a JSON object: {metadata_name}")
+        record = build_record(text, metadata)
+        existing = by_id.get(record["document_id"])
+        if existing is not None:
+            if (
+                existing.get("content_sha256") != record["content_sha256"]
+                or existing.get("source_document_sha256")
+                != record.get("source_document_sha256")
+            ):
+                raise ValueError(
+                    f"Existing corpus has conflicting seed document: {record['document_id']}"
+                )
+            continue
+        records.append(record)
+        by_id[record["document_id"]] = record
+        added += 1
+
+    corpus_path.parent.mkdir(parents=True, exist_ok=True)
+    temporary_path = corpus_path.with_suffix(corpus_path.suffix + ".tmp")
+    temporary_path.write_text(
+        "".join(json.dumps(item, ensure_ascii=False) + "\n" for item in records),
+        encoding="utf-8",
+    )
+    temporary_path.replace(corpus_path)
+    return records, added
+
+
 def read_corpus(corpus_path: Path) -> list[dict[str, Any]]:
     if not corpus_path.exists():
         return []
