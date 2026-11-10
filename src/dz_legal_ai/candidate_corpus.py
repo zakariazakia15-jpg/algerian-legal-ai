@@ -10,6 +10,8 @@ from pathlib import Path
 from typing import Any
 
 from .ingest import build_record
+from .policy import is_foreign_jurisdiction_query
+from .retrieve import retrieve
 
 DEFAULT_INVENTORY = Path("data/legal_source_inventory.json")
 DEFAULT_CANDIDATE_CORPUS = Path("data/candidate-corpus.jsonl")
@@ -141,6 +143,7 @@ def _build_record(
         "source_id": source["source_id"],
         "document_id": metadata["document_id"],
         "title": metadata["title"],
+        "issuer": metadata["issuer"],
         "jurisdiction": "DZ",
         "legal_domain": metadata["legal_domain"],
         "legal_instrument_id": metadata["legal_instrument_id"],
@@ -148,6 +151,7 @@ def _build_record(
         "source_url": metadata["source_url"],
         "source_language": language,
         "source_locator": metadata["source_locator"],
+        "source_checked_on": metadata["source_checked_on"],
         "source_document_sha256": metadata["source_document_sha256"],
         "candidate_text_sha256": text_sha256,
         "verification_note": metadata["verification_note"],
@@ -262,4 +266,64 @@ def candidate_corpus_status(corpus_path: Path) -> dict[str, Any]:
         "text_audits": {
             record["document_id"]: record["text_audit"] for record in records
         },
+    }
+
+
+def lookup_candidate_sources(
+    query: str, corpus_path: Path, *, limit: int = 3
+) -> dict[str, Any]:
+    if not query.strip():
+        raise ValueError("query must not be empty")
+    if is_foreign_jurisdiction_query(query):
+        return {
+            "answer": "لا أجيب إلا عن القانون الجزائري. لا أقدّم معلومات عن قوانين دول أخرى.",
+            "legal_answer_provided": False,
+            "citations": [],
+        }
+    candidates = read_candidate_corpus(corpus_path)
+    searchable = [
+        {
+            **record,
+            "official_source_checked": True,
+            "legal_status_checked_on": None,
+            "legal_status_evidence_urls": [],
+            "content_sha256": record["candidate_text_sha256"],
+        }
+        for record in candidates
+    ]
+    evidence = retrieve(query, searchable, limit=limit)
+    citations = [
+        {
+            "document_id": item.document_id,
+            "title": item.title,
+            "url": item.source_url,
+            "source_language": item.source_language,
+            "source_locator": item.source_locator,
+            "legal_status": "unknown",
+            "candidate_text_sha256": item.content_sha256,
+            "excerpt": item.excerpt,
+            "segment": item.segment,
+        }
+        for item in evidence
+    ]
+    if not evidence:
+        message = "لم أعثر على مقتطف مطابق في ملفات المرشحين المحلية."
+    else:
+        message = (
+            "مقتطفات من تفريغات مرشحة غير مراجعة؛ ليست إجابة قانونية ولا دليلًا "
+            "على النفاذ أو اكتمال النص. تحقق من الأصل الرسمي قبل الاعتماد.\n\n"
+            + "\n\n".join(
+                f"«{item.excerpt}»\n"
+                f"مرشح: {item.title} — {item.source_locator} ({item.source_url})"
+                for item in evidence
+            )
+        )
+    return {
+        "answer": message,
+        "legal_answer_provided": False,
+        "citations": citations,
+        "disclaimer": (
+            "المقتطفات من تفريغات آلية/غير مراجعة، وليست استشارة قانونية أو دليلًا "
+            "على النفاذ. راجع النص الرسمي الساري."
+        ),
     }

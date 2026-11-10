@@ -28,7 +28,12 @@ UNVERIFIED_EVIDENCE_ABSTENTION = (
 )
 
 
-def answer_query(query: str, documents: list[dict[str, Any]]) -> dict[str, Any]:
+def answer_query(
+    query: str,
+    documents: list[dict[str, Any]],
+    *,
+    generator: Any | None = None,
+) -> dict[str, Any]:
     if not query.strip():
         raise ValueError("query must not be empty")
     if is_foreign_jurisdiction_query(query):
@@ -86,7 +91,12 @@ def answer_query(query: str, documents: list[dict[str, Any]]) -> dict[str, Any]:
         }
         for item in evidence
     ]
-    answer_text = "\n\n".join(
+    answer_text = (
+        generator.generate_grounded_answer(query, evidence)
+        if generator is not None
+        else None
+    )
+    answer_text = answer_text or "\n\n".join(
         f"«{item.excerpt}»\n"
         f"المصدر: {item.title} — {item.source_locator}، "
         f"المقطع المستورد رقم {item.segment} "

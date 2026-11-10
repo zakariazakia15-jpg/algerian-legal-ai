@@ -1,14 +1,19 @@
-# Candidate profile only. Fine-tuning is not implemented in the app runtime.
+# Local-only inference profile. Fine-tuning is not required for runtime use.
 [generator]
-enabled = false
+enabled = true
 provider = "transformers"
 model_id = "Qwen/Qwen2.5-1.5B-Instruct"
 model_revision = "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
 model_license = "Apache-2.0"
 model_card_url = "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/tree/989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
 license_url = "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/raw/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/LICENSE"
-license_review_required_before_use = true
-generation_status = "not-trained-not-integrated"
+license_file_verified = "models/base/Qwen2.5-1.5B-Instruct/LICENSE (local copy, Apache-2.0)"
+model_directory = "models/base/Qwen2.5-1.5B-Instruct"
+local_files_only = true
+trust_remote_code = false
+generation_status = "integrated-and-smoke-tested-local-only"
+last_smoke_test_date = "2026-11-10"
+last_smoke_test_device = "cpu"
 fine_tuning_method = "LoRA SFT pipeline in scripts/train_lora.py"
 fine_tuning_status = "pipeline-unverified-no-training-data"
 

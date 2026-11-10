@@ -13,9 +13,11 @@ from .candidate_corpus import (
     DEFAULT_CANDIDATE_CORPUS,
     build_candidate_corpus,
     candidate_corpus_status,
+    lookup_candidate_sources,
 )
 from .evaluation import evaluate_cases
 from .ingest import build_seed_corpus, ingest_files, read_corpus
+from .local_model import DEFAULT_MODEL_DIRECTORY, LocalQwenGenerator
 from .service import answer_query, lookup_source_text
 from .training_data import (
     heldout_data_sha256,
@@ -36,6 +38,8 @@ def _parser() -> argparse.ArgumentParser:
     ask = commands.add_parser("ask", help="Ask using the local verified corpus")
     ask.add_argument("query")
     ask.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+    ask.add_argument("--generate", action="store_true", help="Use the local Qwen model")
+    ask.add_argument("--model-dir", type=Path, default=DEFAULT_MODEL_DIRECTORY)
 
     lookup = commands.add_parser(
         "lookup",
@@ -78,6 +82,20 @@ def _parser() -> argparse.ArgumentParser:
     candidate_check.add_argument(
         "--candidate-corpus", type=Path, default=DEFAULT_CANDIDATE_CORPUS
     )
+
+    candidate_lookup = commands.add_parser(
+        "candidate-lookup",
+        help="Search unreviewed candidate excerpts without treating them as legal answers",
+    )
+    candidate_lookup.add_argument("query")
+    candidate_lookup.add_argument(
+        "--candidate-corpus", type=Path, default=DEFAULT_CANDIDATE_CORPUS
+    )
+
+    model_check = commands.add_parser(
+        "model-check", help="Run a local-only Qwen inference smoke test"
+    )
+    model_check.add_argument("--model-dir", type=Path, default=DEFAULT_MODEL_DIRECTORY)
 
     training_check = commands.add_parser(
         "training-check",
@@ -192,6 +210,27 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(json.dumps(result, ensure_ascii=False))
         return int(not result["available"])
 
+    if args.command == "candidate-lookup":
+        result = lookup_candidate_sources(args.query, args.candidate_corpus)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return 0
+
+    if args.command == "model-check":
+        generator = LocalQwenGenerator(args.model_dir)
+        result = generator.smoke_test()
+        print(
+            json.dumps(
+                {
+                    "model_directory": str(generator.model_directory),
+                    "device": generator.device,
+                    "local_only": True,
+                    "smoke_test_output": result,
+                },
+                ensure_ascii=False,
+            )
+        )
+        return 0
+
     if args.command == "training-check":
         splits = load_training_splits(
             train_path=args.train,
@@ -214,7 +253,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         return 0
 
-    result = answer_query(args.query, read_corpus(args.corpus))
+    generator = LocalQwenGenerator(args.model_dir) if args.generate else None
+    result = answer_query(
+        args.query, read_corpus(args.corpus), generator=generator
+    )
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0
 

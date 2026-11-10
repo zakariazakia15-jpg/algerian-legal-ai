@@ -5,7 +5,10 @@ import pytest
 
 from dz_legal_ai.candidate_corpus import build_candidate_corpus, candidate_corpus_status
 from dz_legal_ai.cli import main
-from dz_legal_ai.ingest import build_seed_corpus, read_corpus
+from dz_legal_ai.candidate_corpus import lookup_candidate_sources
+from dz_legal_ai.ingest import build_record, build_seed_corpus, read_corpus
+from dz_legal_ai.local_model import LocalQwenGenerator
+from dz_legal_ai.retrieve import retrieve
 from dz_legal_ai.service import answer_query, lookup_source_text
 
 ROOT = Path(__file__).parent.parent
@@ -135,6 +138,25 @@ def test_candidate_api_status_never_feeds_the_ask_endpoint(tmp_path, monkeypatch
         assert answer["abstained"] is True
         assert answer["citations"] == []
 
+        generate_request = client.post(
+            "/ask", json={"query": "marchés publics", "generate": True}
+        )
+        assert generate_request.status_code == 200
+        assert generate_request.json()["abstained"] is True
+        assert generate_request.json()["citations"] == []
+
+        candidate_lookup_response = client.post(
+            "/candidate-lookup", json={"query": "Art. 220 publication décret"}
+        )
+        assert candidate_lookup_response.status_code == 200
+        candidate_answer = candidate_lookup_response.json()
+        assert candidate_answer["legal_answer_provided"] is False
+        assert candidate_answer["citations"]
+        assert all(
+            citation["legal_status"] == "unknown"
+            for citation in candidate_answer["citations"]
+        )
+
         lookup_response = client.post(
             "/lookup", json={"query": "marchés publics"}
         )
@@ -200,3 +222,80 @@ def test_seed_corpus_and_source_lookup_are_runnable_without_claiming_current_law
     assert main(["seed-corpus", "--corpus", str(corpus)]) == 0
     seeded = json.loads(capsys.readouterr().out)
     assert seeded["added"] == 0
+
+
+def test_candidate_lookup_returns_only_labeled_unreviewed_excerpts(tmp_path):
+    candidate_path = tmp_path / "candidates.jsonl"
+    build_candidate_corpus(INVENTORY, candidate_path)
+    result = lookup_candidate_sources("Art. 220 publication décret", candidate_path)
+    assert result["legal_answer_provided"] is False
+    assert result["citations"]
+    assert all(citation["legal_status"] == "unknown" for citation in result["citations"])
+    assert "غير مراجعة" in result["answer"]
+
+    foreign = lookup_candidate_sources("Que dit le droit en France ?", candidate_path)
+    assert foreign["citations"] == []
+    assert foreign["legal_answer_provided"] is False
+
+
+class _FakeGenerator:
+    def __init__(self):
+        self.called = False
+
+    def generate_grounded_answer(self, query, evidence):
+        self.called = True
+        assert query == "match synthetic text"
+        assert evidence
+        return "Generated from reviewed Algerian-law source."
+
+
+def _reviewed_test_record():
+    metadata = {
+        "document_id": "verified-synthetic-test",
+        "title": "Synthetic test fixture (not law)",
+        "issuer": "Test fixture",
+        "jurisdiction": "DZ",
+        "source_url": "https://www.joradp.dz/test-fixture",
+        "source_language": "fr",
+        "source_locator": "Synthetic fixture",
+        "official_source_checked": True,
+        "source_checked_on": "2026-11-09",
+        "verification_note": "Synthetic test only",
+        "reuse_basis": "CC0-1.0",
+        "reuse_evidence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "rights_checked_on": "2026-11-09",
+        "rights_verification_note": "Synthetic test only",
+        "legal_status": "verified_current",
+        "legal_status_checked_on": "2026-11-09",
+        "legal_status_evidence_urls": ["https://www.joradp.dz/test-status"],
+        "legal_status_verification_note": "Synthetic test only",
+        "legal_domain": "civil",
+        "legal_instrument_id": "DZ-SYNTHETIC-TEST",
+    }
+    return build_record("match synthetic text", metadata)
+
+
+def test_local_generation_is_only_called_with_retrieved_verified_current_evidence():
+    record = _reviewed_test_record()
+    generator = _FakeGenerator()
+    result = answer_query(
+        "match synthetic text", [record], generator=generator
+    )
+    assert generator.called is True
+    assert result["abstained"] is False
+    assert result["answer"].startswith("Generated from")
+    assert result["citations"][0]["document_id"] == record["document_id"]
+
+    unknown_record = {**record, "legal_status": "unknown"}
+    unknown_generator = _FakeGenerator()
+    unknown_result = answer_query(
+        "match synthetic text", [unknown_record], generator=unknown_generator
+    )
+    assert unknown_generator.called is False
+    assert unknown_result["abstained"] is True
+
+
+def test_local_model_reports_missing_weights_without_attempting_a_download(tmp_path):
+    generator = LocalQwenGenerator(tmp_path)
+    with pytest.raises(FileNotFoundError, match="no model download is attempted"):
+        generator.smoke_test()

@@ -13,5 +13,6 @@ data/raw/
 data/training/*.jsonl
 private/
 models/cache/
+models/base/
 models/adapters/
 models/evaluations/

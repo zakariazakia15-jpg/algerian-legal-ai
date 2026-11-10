@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import logging
 import os
+from functools import lru_cache
 from pathlib import Path
 
-from .candidate_corpus import candidate_corpus_status
+from .candidate_corpus import candidate_corpus_status, lookup_candidate_sources
 from .ingest import read_corpus
+from .local_model import DEFAULT_MODEL_DIRECTORY, LocalQwenGenerator
 from .service import answer_query, lookup_source_text
 
 logger = logging.getLogger(__name__)
@@ -23,12 +25,18 @@ except ImportError as exc:
 app = FastAPI(
     title="Algerian Legal AI",
     description="Local citation-first retrieval. Informational only, not legal advice.",
-    version="0.1.7",
+    version="0.1.8",
 )
 
 
 class AskRequest(BaseModel):
     query: str = Field(min_length=1, max_length=4000)
+    generate: bool = False
+
+
+@lru_cache(maxsize=2)
+def _local_generator(model_directory: str) -> LocalQwenGenerator:
+    return LocalQwenGenerator(Path(model_directory))
 
 
 @app.get("/health")
@@ -50,16 +58,45 @@ def candidate_corpus_health() -> dict[str, object]:
         ) from exc
 
 
+@app.post("/candidate-lookup")
+def candidate_lookup(request: AskRequest) -> dict[str, object]:
+    if not request.query.strip():
+        raise HTTPException(status_code=422, detail="query must not be blank")
+    corpus_path = Path(
+        os.environ.get("DZ_LEGAL_AI_CANDIDATE_CORPUS", "data/candidate-corpus.jsonl")
+    )
+    try:
+        return lookup_candidate_sources(request.query, corpus_path)
+    except (OSError, ValueError) as exc:
+        logger.exception("Could not read the configured candidate corpus")
+        raise HTTPException(
+            status_code=500, detail="Local candidate corpus could not be read"
+        ) from exc
+
+
 @app.post("/ask")
 def ask(request: AskRequest) -> dict[str, object]:
     if not request.query.strip():
         raise HTTPException(status_code=422, detail="query must not be blank")
     corpus_path = Path(os.environ.get("DZ_LEGAL_AI_CORPUS", "data/corpus.jsonl"))
     try:
-        return answer_query(request.query, read_corpus(corpus_path))
+        documents = read_corpus(corpus_path)
     except (OSError, ValueError) as exc:
         logger.exception("Could not read the configured local corpus")
         raise HTTPException(status_code=500, detail="Local corpus could not be read") from exc
+    generator = None
+    if request.generate:
+        model_directory = os.environ.get(
+            "DZ_LEGAL_AI_MODEL_DIR", str(DEFAULT_MODEL_DIRECTORY)
+        )
+        generator = _local_generator(str(Path(model_directory).expanduser().resolve()))
+    try:
+        return answer_query(request.query, documents, generator=generator)
+    except (OSError, RuntimeError) as exc:
+        logger.exception("Local Qwen inference failed")
+        raise HTTPException(
+            status_code=503, detail="Local model inference unavailable"
+        ) from exc
 
 
 @app.post("/lookup")

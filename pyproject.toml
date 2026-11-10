@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dz-legal-ai"
-version = "0.1.7"
+version = "0.1.8"
 description = "Local, citation-first retrieval foundation for Algerian legal information"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -14,6 +14,12 @@ dependencies = []
 [project.optional-dependencies]
 api = ["fastapi>=0.110,<1", "uvicorn[standard]>=0.27,<1"]
 dev = ["pytest>=8,<9"]
+inference = [
+    "torch>=2.2",
+    "transformers>=4.46,<5",
+    "safetensors>=0.4.3",
+    "accelerate>=1,<2",
+]
 finetune = [
     "torch>=2.2",
     "transformers>=4.46,<5",
