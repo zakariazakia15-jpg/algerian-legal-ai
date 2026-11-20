@@ -59,6 +59,12 @@ LEGAL_SYNONYMS: dict[str, tuple[str, ...]] = {
     "سجن": ("emprisonnement", "prison"),
     "غرامة": ("amende",),
     "amende": ("غرامة",),
+    # A question about the *person* ("المتحرش") must reach articles written
+    # about the *act* ("التحرش الجنسي"); neither word contains the other.
+    "متحرش": ("تحرش", "التحرش الجنسي", "harassment", "harcèlement"),
+    "تحرش": ("متحرش", "التحرش الجنسي", "harassment", "harcèlement"),
+    "harassment": ("تحرش", "متحرش", "harcèlement"),
+    "harcèlement": ("تحرش", "متحرش", "harassment"),
     "زواج": ("mariage",),
     "mariage": ("زواج",),
     "طلاق": ("divorce",),

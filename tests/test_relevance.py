@@ -104,3 +104,26 @@ def test_persian_yeh_and_tatweel_do_not_hide_a_legal_term():
 
     assert tokenize("قانون التسجیل") == ["قانون", "تسجيل"]
     assert "بـ" not in tokenize("متعلق بـ قانون")
+
+
+def test_question_about_the_harasser_reaches_the_harassment_article():
+    """The user asks about "المتحرش"; the code says "التحرش الجنسي".
+
+    This is a retrieval regression only: it must surface the cited article,
+    never turn the excerpt into a verdict or a legal conclusion.
+    """
+    unrelated = record(
+        "generic-punishment",
+        "المادة 20: كل من أخل النظام بمخالفة توجب عقوبة يعاقب بغرامة زجرية.",
+    )
+    harassment = record(
+        "penal-code-ar-portal",
+        "المادة 341 مكرر: يعد مرتكبا لجريمة التحرش الجنسي ويعاقب بالحبس من شهرين "
+        "إلى سنة وبغرامة من 50.000 دج إلى 100.000 دج.",
+    )
+    evidence = retrieve_articles("ماهي عقوبة المتحرش", [unrelated, harassment])
+    assert evidence
+    assert evidence[0].document_id == "penal-code-ar-portal"
+    assert evidence[0].article_label == "المادة 341 مكرر"
+    assert "التحرش الجنسي" in evidence[0].excerpt
+    assert all(item.document_id != "generic-punishment" for item in evidence)
