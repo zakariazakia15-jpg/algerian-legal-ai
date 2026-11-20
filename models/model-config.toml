@@ -25,8 +25,9 @@ timeout_seconds = 180
 [retrieval]
 top_k = 8
 minimum_coverage = 0.3
-# Dense retrieval stays off until the BGE-M3 weights are downloaded locally.
-dense_enabled = false
+# BGE-M3 weights are downloaded locally; dense retrieval is enabled and the
+# index is built explicitly with `python -m dz_legal_ai.cli build-index`.
+dense_enabled = true
 dense_model = "BAAI/bge-m3"
 index_dir = "data/vector_index"
 lexical_weight = 0.7

@@ -10,6 +10,7 @@ is used, which is sufficient for a local research corpus.
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -72,8 +73,23 @@ class VectorStore:
         ]
         prefix = passage_prefix(model_name)
         texts = [prefix + chunk["text"] for chunk in entries]
-        vectors = encoder.encode(texts, normalize_embeddings=True, show_progress_bar=False)
-        self.vectors = np.asarray(vectors, dtype="float32")
+        # Encode in bounded batches: a 23k-chunk corpus otherwise allocates one
+        # large tensor and gives no progress signal on CPU-only machines.
+        batch_size = 64
+        batches: list[Any] = []
+        for start in range(0, len(texts), batch_size):
+            batch = encoder.encode(
+                texts[start : start + batch_size],
+                normalize_embeddings=True,
+                show_progress_bar=False,
+            )
+            batches.append(np.asarray(batch, dtype="float32"))
+            done = start + len(batch)
+            if done % (batch_size * 20) == 0 or done == len(texts):
+                print(f"[index] encoded {done}/{len(texts)} chunks", file=sys.stderr)
+        self.vectors = (
+            np.vstack(batches) if batches else np.empty((0, 0), dtype="float32")
+        )
         self._try_faiss()
         self.directory.mkdir(parents=True, exist_ok=True)
         np.save(self.directory / INDEX_FILE, self.vectors)

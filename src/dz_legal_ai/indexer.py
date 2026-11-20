@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+import os
 from typing import Any
 
 from .chunking import chunk_record
 from .config import corpus_quality_settings, retrieval_settings
-from .policy import validate_source_url
+from .policy import validate_secondary_source_url
 from .vector_store import VectorStore
 
 
@@ -24,6 +25,11 @@ def build_vector_index(
     quality = corpus_quality_settings(config)
     excluded = set(quality["excluded_document_ids"])
     try:
+        # Ignore an unrelated broken TensorFlow install if one is present, and
+        # guarantee that an explicit index build never reaches the network.
+        os.environ.setdefault("USE_TF", "0")
+        os.environ.setdefault("USE_FLAX", "0")
+        os.environ.setdefault("HF_HUB_OFFLINE", "1")
         from sentence_transformers import SentenceTransformer
     except ImportError as exc:
         raise IndexUnavailable(
@@ -43,7 +49,7 @@ def build_vector_index(
             continue
         if document.get("document_id") in excluded:
             continue
-        validate_source_url(document.get("source_url", ""))
+        validate_secondary_source_url(document.get("source_url", ""))
         if document.get("official_source_checked") is not True:
             continue
         if not document.get("content_sha256"):

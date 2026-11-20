@@ -11,12 +11,13 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import logging
+import os
 from typing import Any
 
 from .bm25 import BM25Index
 from .chunking import chunk_record
 from .config import corpus_quality_settings, retrieval_settings
-from .policy import validate_source_url
+from .policy import validate_secondary_source_url
 from .retrieve import tokenize
 from .vector_store import VectorStore, passage_prefix, query_prefix
 
@@ -83,6 +84,18 @@ LEGAL_SYNONYMS: dict[str, tuple[str, ...]] = {
 }
 
 _DENSE_CACHE: dict[str, Any] = {}
+# Chunking a 6 MB corpus on every question costs ~60 s on CPU. Cache by
+# immutable document hash so repeated questions reuse the same article chunks.
+_CHUNK_CACHE: dict[tuple[str, str], list[dict[str, Any]]] = {}
+
+
+def _chunks_for(document: dict[str, Any]) -> list[dict[str, Any]]:
+    key = (str(document.get("document_id", "")), str(document.get("content_sha256", "")))
+    cached = _CHUNK_CACHE.get(key)
+    if cached is None:
+        cached = chunk_record(document)
+        _CHUNK_CACHE[key] = cached
+    return cached
 
 
 @dataclass(frozen=True)
@@ -110,6 +123,7 @@ class ArticleEvidence:
     book: str | None = None
     chapter: str | None = None
     section: str | None = None
+    source_tier: str = "official"
 
 
 def expand_query_tokens(query: str) -> set[str]:
@@ -125,12 +139,13 @@ def _load_dense(model_name: str) -> Any | None:
     if model_name in _DENSE_CACHE:
         return _DENSE_CACHE[model_name]
     try:
+        # A broken/partial TensorFlow install must not break the local encoder.
+        os.environ.setdefault("USE_TF", "0")
         from sentence_transformers import SentenceTransformer
 
-        try:
-            encoder = SentenceTransformer(model_name, local_files_only=True)
-        except TypeError:
-            encoder = SentenceTransformer(model_name)
+        # Never download weights at answer time; build-index is the only path
+        # that is allowed to fetch a model, and that is an explicit CLI step.
+        encoder = SentenceTransformer(model_name, local_files_only=True)
         _DENSE_CACHE[model_name] = encoder
         return encoder
     except Exception as exc:  # optional dependency / model not downloaded
@@ -177,6 +192,8 @@ def retrieve_articles(
         if store.load():
             # A prebuilt local index avoids encoding thousands of chunks per query.
             try:
+                os.environ.setdefault("USE_TF", "0")
+                os.environ.setdefault("HF_HUB_OFFLINE", "1")
                 from sentence_transformers import SentenceTransformer
             except ImportError:
                 encoder = None
@@ -193,13 +210,9 @@ def retrieve_articles(
                     query_text, normalize_embeddings=True
                 ).tolist()
                 dense_by_chunk = store.similarity_by_chunk(query_vector)
-        else:
-            encoder = _load_dense(settings["dense_model"])
-            if encoder is not None:
-                query_text = query_prefix(settings["dense_model"]) + query
-                query_vector = encoder.encode(
-                    query_text, normalize_embeddings=True
-                ).tolist()
+        # When the prebuilt index is missing, stay lexical. Loading the encoder
+        # at answer time only to discard its vector would add minutes of model
+        # startup and can trigger network lookups in offline deployments.
 
     # Collect eligible article chunks first so BM25 can use corpus-wide IDF.
     candidates: list[dict[str, Any]] = []
@@ -208,12 +221,12 @@ def retrieve_articles(
             continue
         if document.get("document_id") in excluded:
             continue
-        validate_source_url(document.get("source_url", ""))
+        validate_secondary_source_url(document.get("source_url", ""))
         if document.get("official_source_checked") is not True:
             continue
         if not document.get("content_sha256"):
             continue
-        for chunk in chunk_record(document):
+        for chunk in _chunks_for(document):
             # Table of contents, covers and gazette headers are not legal evidence.
             if not chunk.get("article_label"):
                 continue
@@ -283,6 +296,7 @@ def retrieve_articles(
                 book=chunk.get("book"),
                 chapter=chunk.get("chapter"),
                 section=chunk.get("section"),
+                source_tier=chunk.get("source_tier") or "official",
             )
         )
     results.sort(key=lambda item: (-item.score, item.document_id, item.chunk_index))

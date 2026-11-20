@@ -1,0 +1,855 @@
+{
+  "schema_version": 1,
+  "ingested_on": "2026-11-20",
+  "source_tier": "secondary",
+  "note": "Non-official publisher; all texts legal_status=unknown and citable only in informational mode.",
+  "documents": {
+    "orac-001-law": {
+      "title": "قانون الإجراءات المدنية والإدارية",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A5%D8%AC%D8%B1%D8%A7%D8%A1%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%A5%D8%AF%D8%A7%D8%B1%D9%8A%D8%A9.php",
+      "legal_domain": "civil_procedure",
+      "text_sha256": "70e40b95bc97bda392656d0863950570be501d128ce93d1b4f44cff7a83e8327",
+      "article_headings": 1085
+    },
+    "orac-002-law": {
+      "title": "قانون الاجراءات الجزائية الجديد",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A7%D8%AC%D8%B1%D8%A7%D8%A1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A7%D8%A6%D9%8A%D8%A9%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "5909a29e568aec884ae9f1bfd5c558fa3f803e035ae49810c60a1b6ee1876c45",
+      "article_headings": 887
+    },
+    "orac-003-law": {
+      "title": "قانون العقوبات",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%B9%D9%82%D9%88%D8%A8%D8%A7%D8%AA.php",
+      "legal_domain": "criminal",
+      "text_sha256": "fa978918fb48c2a889a137f83f50284c13467853d3309f53941f9389bce921d2",
+      "article_headings": 704
+    },
+    "orac-004-law": {
+      "title": "القانون المدني",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A.php",
+      "legal_domain": "civil",
+      "text_sha256": "a18b2380c90301ddf55f05b1b39b201db1818ac6f67471961125d4378688c7a3",
+      "article_headings": 994
+    },
+    "orac-005-law": {
+      "title": "القانون التجاري",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A.php",
+      "legal_domain": "commercial",
+      "text_sha256": "f69377bc9885ae81a3855ed2438fc9c8db98c085606862c1e63d29dde6b5b0fa",
+      "article_headings": 1077
+    },
+    "orac-006-law": {
+      "title": "قانون الأسرة",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A3%D8%B3%D8%B1%D8%A9%20.php",
+      "legal_domain": "family",
+      "text_sha256": "7527d9440c52ebd9a20a553e3b3ee04efdb1aa2e3a86cc270abeb2aa40dc09a3",
+      "article_headings": 265
+    },
+    "orac-007-law": {
+      "title": "قانون الوقاية من المخدرات و المؤثرات العقلية و قمع الاستعمال والاتجار غير المشروعين بها",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%88%D9%82%D8%A7%D9%8A%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D9%85%D8%AE%D8%AF%D8%B1%D8%A7%D8%AA%20%D9%88%20%D8%A7%D9%84%D9%85%D8%A4%D8%AB%D8%B1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B9%D9%82%D9%84%D9%8A%D8%A9%20%D9%88%20%D9%82%D9%85%D8%B9%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%B9%D9%85%D8%A7%D9%84%20%D9%88%D8%A7%D9%84%D8%A7%D8%AA%D8%AC%D8%A7%D8%B1%20%D8%BA%D9%8A%D8%B1%20%D8%A7%D9%84%D9%85%D8%B4%D8%B1%D9%88%D8%B9%D9%8A%D9%86%20%D8%A8%D9%87%D8%A7.php",
+      "legal_domain": "criminal",
+      "text_sha256": "eeeaed0a8cc4d3916ab0bf046fb1323fd4e32d4eaca9f17bdbf4ffa12bf79e57",
+      "article_headings": 51
+    },
+    "orac-008-law": {
+      "title": "الوقاية من عصابات الأحياء ومكافحتها",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%88%D9%82%D8%A7%D9%8A%D8%A9%20%D9%85%D9%86%20%D8%B9%D8%B5%D8%A7%D8%A8%D8%A7%D8%AA%20%D8%A7%D9%84%D8%A3%D8%AD%D9%8A%D8%A7%D8%A1%20%D9%88%D9%85%D9%83%D8%A7%D9%81%D8%AD%D8%AA%D9%87%D8%A7.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "32b3c9c6778e165808c1904a2a96bca0fbd529467950314c9b5d6f1b95f1919f",
+      "article_headings": 40
+    },
+    "orac-009-law": {
+      "title": "الوقاية من جرائم اختطاف الأشخاص ومكافحتها",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%88%D9%82%D8%A7%D9%8A%D8%A9%20%D9%85%D9%86%20%D8%AC%D8%B1%D8%A7%D8%A6%D9%85%20%D8%A7%D8%AE%D8%AA%D8%B7%D8%A7%D9%81%20%D8%A7%D9%84%D8%A3%D8%B4%D8%AE%D8%A7%D8%B5%20%D9%88%D9%85%D9%83%D8%A7%D9%81%D8%AD%D8%AA%D9%87%D8%A7.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "8e59bb6eed97b232fcd978c167f7a90205b5bc0c275de986b56bf9403e037110",
+      "article_headings": 58
+    },
+    "orac-010-law": {
+      "title": "تنظیم حركة المرور عبر الطرق و سلامتها و أمنها",
+      "source_url": "https://oraconstantine.com/laws/%D8%AA%D9%86%D8%B8%DB%8C%D9%85%20%D8%AD%D8%B1%D9%83%D8%A9%20%D8%A7%D9%84%D9%85%D8%B1%D9%88%D8%B1%20%D8%B9%D8%A8%D8%B1%20%D8%A7%D9%84%D8%B7%D8%B1%D9%82%20%D9%88%20%D8%B3%D9%84%D8%A7%D9%85%D8%AA%D9%87%D8%A7%20%D9%88%20%D8%A3%D9%85%D9%86%D9%87%D8%A7.php",
+      "legal_domain": "transport",
+      "text_sha256": "64560c62e7ba2b8f4a3a5011f60638364d7abbc364173d565bf01a0b696299e2",
+      "article_headings": 146
+    },
+    "orac-011-law": {
+      "title": "قواعد حركة المرور عبر الطرق",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D9%88%D8%A7%D8%B9%D8%AF%20%D8%AD%D8%B1%D9%83%D8%A9%20%D8%A7%D9%84%D9%85%D8%B1%D9%88%D8%B1%20%D8%B9%D8%A8%D8%B1%20%D8%A7%D9%84%D8%B7%D8%B1%D9%82.php",
+      "legal_domain": "transport",
+      "text_sha256": "a0678a341c09ac6f5e1a08f0d2c9870ec3959f42d13b353ca6023b9a728588f9",
+      "article_headings": 326
+    },
+    "orac-012-law": {
+      "title": "قانون یتضمن توجیه النقل البري و تنظیمه",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%DB%8C%D8%AA%D8%B6%D9%85%D9%86%20%D8%AA%D9%88%D8%AC%DB%8C%D9%87%20%D8%A7%D9%84%D9%86%D9%82%D9%84%20%D8%A7%D9%84%D8%A8%D8%B1%D9%8A%20%D9%88%20%D8%AA%D9%86%D8%B8%DB%8C%D9%85%D9%87.php",
+      "legal_domain": "transport",
+      "text_sha256": "e7f8b0e6f7f497c8b637a2b8f462bb275d359d8108795eee09f87a9629e8991b",
+      "article_headings": 72
+    },
+    "orac-013-law": {
+      "title": "بإلزامية التأمين على السيارات و بنظام التعويض عن الأضرار",
+      "source_url": "https://oraconstantine.com/laws/%D8%A8%D8%A5%D9%84%D8%B2%D8%A7%D9%85%D9%8A%D8%A9%20%D8%A7%D9%84%D8%AA%D8%A3%D9%85%D9%8A%D9%86%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A7%D8%AA%20%D9%88%20%D8%A8%D9%86%D8%B8%D8%A7%D9%85%20%D8%A7%D9%84%D8%AA%D8%B9%D9%88%D9%8A%D8%B6%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%A3%D8%B6%D8%B1%D8%A7%D8%B1.php",
+      "legal_domain": "banking_financial",
+      "text_sha256": "697914bd69a34cecbdd4893b06fa021219fd2faf58ccfaf0c4a7bf1f5e9123d1",
+      "article_headings": 41
+    },
+    "orac-014-law": {
+      "title": "حوادث العمل والأمراض المهنية",
+      "source_url": "https://oraconstantine.com/laws/%D8%AD%D9%88%D8%A7%D8%AF%D8%AB%20%D8%A7%D9%84%D8%B9%D9%85%D9%84%20%D9%88%D8%A7%D9%84%D8%A3%D9%85%D8%B1%D8%A7%D8%B6%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "9671bb9484f57c40dc7c8d6c3158e04128615f65bf02c5f2c480702e398ab321",
+      "article_headings": 91
+    },
+    "orac-015-law": {
+      "title": "إلزامية التأمين على الكوارث الطبيعية وبتعويض الضحايا",
+      "source_url": "https://oraconstantine.com/laws/%D8%A5%D9%84%D8%B2%D8%A7%D9%85%D9%8A%D8%A9%20%D8%A7%D9%84%D8%AA%D8%A3%D9%85%D9%8A%D9%86%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D9%83%D9%88%D8%A7%D8%B1%D8%AB%20%D8%A7%D9%84%D8%B7%D8%A8%D9%8A%D8%B9%D9%8A%D8%A9%20%D9%88%D8%A8%D8%AA%D8%B9%D9%88%D9%8A%D8%B6%20%D8%A7%D9%84%D8%B6%D8%AD%D8%A7%D9%8A%D8%A7.php",
+      "legal_domain": "banking_financial",
+      "text_sha256": "ef82ff393b2f97571e7f2b4db8034b39d66c6e10b65bf11fc20055b268756382",
+      "article_headings": 17
+    },
+    "orac-017-law": {
+      "title": "علاقات العمل",
+      "source_url": "https://oraconstantine.com/laws/%D8%B9%D9%84%D8%A7%D9%82%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B9%D9%85%D9%84.php",
+      "legal_domain": "labor",
+      "text_sha256": "71ea150d24ea79ddfed7c5f3c341e3307d7b59c61ad1bb4a1c16e486fb34ea24",
+      "article_headings": 176
+    },
+    "orac-018-law": {
+      "title": "الحفاظ على الشغل وحماية الأجراء الذين قد يفقدون عملهم بصفة لاإرادية",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D8%AD%D9%81%D8%A7%D8%B8%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D8%B4%D8%BA%D9%84%20%D9%88%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%A7%D9%84%D8%A3%D8%AC%D8%B1%D8%A7%D8%A1%20%D8%A7%D9%84%D8%B0%D9%8A%D9%86%20%D9%82%D8%AF%20%D9%8A%D9%81%D9%82%D8%AF%D9%88%D9%86%20%D8%B9%D9%85%D9%84%D9%87%D9%85%20%D8%A8%D8%B5%D9%81%D8%A9%20%D9%84%D8%A7%D8%A5%D8%B1%D8%A7%D8%AF%D9%8A%D8%A9.php",
+      "legal_domain": "labor",
+      "text_sha256": "0b1c461fa42b6db4044790699ebdf4ad05f591e9e45880236f24f08ab65964d7",
+      "article_headings": 36
+    },
+    "orac-019-law": {
+      "title": "تسوية النزاعات الفردية في العمل",
+      "source_url": "https://oraconstantine.com/laws/%D8%AA%D8%B3%D9%88%D9%8A%D8%A9%20%D8%A7%D9%84%D9%86%D8%B2%D8%A7%D8%B9%D8%A7%D8%AA%20%D8%A7%D9%84%D9%81%D8%B1%D8%AF%D9%8A%D8%A9%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%B9%D9%85%D9%84.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "e0aca1d42b9a589c8aade1e9c7d625359fbd0b3135db37395a55b9c8a5093988",
+      "article_headings": 42
+    },
+    "orac-021-law": {
+      "title": "شروط تشغیل العمال الاجانب معدل و متمم",
+      "source_url": "https://oraconstantine.com/laws/%D8%B4%D8%B1%D9%88%D8%B7%20%D8%AA%D8%B4%D8%BA%DB%8C%D9%84%20%D8%A7%D9%84%D8%B9%D9%85%D8%A7%D9%84%20%D8%A7%D9%84%D8%A7%D8%AC%D8%A7%D9%86%D8%A8%20%D9%85%D8%B9%D8%AF%D9%84%20%D9%88%20%D9%85%D8%AA%D9%85%D9%85.php",
+      "legal_domain": "labor",
+      "text_sha256": "a21a7343e9f6f502d2e79332f022a37d2d911f63d64daf9d88a9f3acbe52d605",
+      "article_headings": 27
+    },
+    "orac-022-law": {
+      "title": "تنصيب العمال ومراقبة التشغيل",
+      "source_url": "https://oraconstantine.com/laws/%D8%AA%D9%86%D8%B5%D9%8A%D8%A8%20%D8%A7%D9%84%D8%B9%D9%85%D8%A7%D9%84%20%D9%88%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%A9%20%D8%A7%D9%84%D8%AA%D8%B4%D8%BA%D9%8A%D9%84.php",
+      "legal_domain": "labor",
+      "text_sha256": "e6c5e1396ed7bb3a62412766548050020a627068c5a4f58ea9acb0fb50782571",
+      "article_headings": 29
+    },
+    "orac-023-law": {
+      "title": "قانون مفتشية العمل",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D9%85%D9%81%D8%AA%D8%B4%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B9%D9%85%D9%84.php",
+      "legal_domain": "labor",
+      "text_sha256": "fc2f307f2238aa61e66942b2b5d0f95f4714204465724a44351fe677e842263c",
+      "article_headings": 27
+    },
+    "orac-024-law": {
+      "title": "القانون الأساسي العام للوظيفة العمومية",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A3%D8%B3%D8%A7%D8%B3%D9%8A%20%D8%A7%D9%84%D8%B9%D8%A7%D9%85%20%D9%84%D9%84%D9%88%D8%B8%D9%8A%D9%81%D8%A9%20%D8%A7%D9%84%D8%B9%D9%85%D9%88%D9%85%D9%8A%D8%A9.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "4b6134ec790f1440b43a02c1048f98706a377668a56ecd56c6042aac85a0e215",
+      "article_headings": 231
+    },
+    "orac-025-law": {
+      "title": "قانون التقاعد",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AA%D9%82%D8%A7%D8%B9%D8%AF.php",
+      "legal_domain": "social_security",
+      "text_sha256": "9ad5609dc0f63efeaa2d9a979975f64f1d7838a0ac33a30b9ec52704a8ae7f92",
+      "article_headings": 75
+    },
+    "orac-026-law": {
+      "title": "قانون المعاشات العسكرية",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%B4%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B9%D8%B3%D9%83%D8%B1%D9%8A%D8%A9.php",
+      "legal_domain": "social_security",
+      "text_sha256": "a09a7d05b38b2e41385ff1a430012654994ce1f973084c1e61abb26629ed3ea1",
+      "article_headings": 137
+    },
+    "orac-027-law": {
+      "title": "إعداد مسح الأراضي العام",
+      "source_url": "https://oraconstantine.com/laws/%D8%A5%D8%B9%D8%AF%D8%A7%D8%AF%20%D9%85%D8%B3%D8%AD%20%D8%A7%D9%84%D8%A3%D8%B1%D8%A7%D8%B6%D9%8A%20%D8%A7%D9%84%D8%B9%D8%A7%D9%85.php",
+      "legal_domain": "land_registration",
+      "text_sha256": "1495458ac0d00027737ac8aed26b70c351aac61a9a71761e7dca82c1b9407e58",
+      "article_headings": 30
+    },
+    "orac-028-law": {
+      "title": "اعداد مسح الأراضي العام و تأسيس السجل العقاري",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D8%B9%D8%AF%D8%A7%D8%AF%20%D9%85%D8%B3%D8%AD%20%D8%A7%D9%84%D8%A3%D8%B1%D8%A7%D8%B6%D9%8A%20%D8%A7%D9%84%D8%B9%D8%A7%D9%85%20%D9%88%20%D8%AA%D8%A3%D8%B3%D9%8A%D8%B3%20%D8%A7%D9%84%D8%B3%D8%AC%D9%84%20%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A.php",
+      "legal_domain": "land_registration",
+      "text_sha256": "73a3788045887a072413d9967eac8450d2a22225c2c4b96c505e536111a6c68b",
+      "article_headings": 31
+    },
+    "orac-029-law": {
+      "title": "تأسيس السجل العقاري",
+      "source_url": "https://oraconstantine.com/laws/%D8%AA%D8%A3%D8%B3%D9%8A%D8%B3%20%D8%A7%D9%84%D8%B3%D8%AC%D9%84%20%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A.php",
+      "legal_domain": "land_registration",
+      "text_sha256": "04d64248b252da81db0b564194768738dd6e7ff39948a0f3bbc595697bc511d5",
+      "article_headings": 116
+    },
+    "orac-030-law": {
+      "title": "القواعد المتعلقة بنزع الملكية من أجل المنفعة العمومية",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%B9%D8%AF%20%D8%A7%D9%84%D9%85%D8%AA%D8%B9%D9%84%D9%82%D8%A9%20%D8%A8%D9%86%D8%B2%D8%B9%20%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9%20%D9%85%D9%86%20%D8%A3%D8%AC%D9%84%20%D8%A7%D9%84%D9%85%D9%86%D9%81%D8%B9%D8%A9%20%D8%A7%D9%84%D8%B9%D9%85%D9%88%D9%85%D9%8A%D8%A9.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "912503cabb312822ff5c188e5203728ca52385255cf283ce35242cc211ef3549",
+      "article_headings": 43
+    },
+    "orac-031-law": {
+      "title": "الوكالة الوطنية للوساطة والضبط العقاري وقانونها الأساسي",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%88%D9%83%D8%A7%D9%84%D8%A9%20%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9%20%D9%84%D9%84%D9%88%D8%B3%D8%A7%D8%B7%D8%A9%20%D9%88%D8%A7%D9%84%D8%B6%D8%A8%D8%B7%20%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A%20%D9%88%D9%82%D8%A7%D9%86%D9%88%D9%86%D9%87%D8%A7%20%D8%A7%D9%84%D8%A3%D8%B3%D8%A7%D8%B3%D9%8A.php",
+      "legal_domain": "real_estate",
+      "text_sha256": "f8d8dd2553cf8438e494fc23e355250d37aab8007a0a3c5757db41232e6cb31a",
+      "article_headings": 42
+    },
+    "orac-032-law": {
+      "title": "قواعد إحداث وكالات محلية للتسيير والتنظيم العقاريين الحضريين، وتنظيم ذلك",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D9%88%D8%A7%D8%B9%D8%AF%20%D8%A5%D8%AD%D8%AF%D8%A7%D8%AB%20%D9%88%D9%83%D8%A7%D9%84%D8%A7%D8%AA%20%D9%85%D8%AD%D9%84%D9%8A%D8%A9%20%D9%84%D9%84%D8%AA%D8%B3%D9%8A%D9%8A%D8%B1%20%D9%88%D8%A7%D9%84%D8%AA%D9%86%D8%B8%D9%8A%D9%85%20%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A%D9%8A%D9%86%20%D8%A7%D9%84%D8%AD%D8%B6%D8%B1%D9%8A%D9%8A%D9%86%D8%8C%20%D9%88%D8%AA%D9%86%D8%B8%D9%8A%D9%85%20%D8%B0%D9%84%D9%83.php",
+      "legal_domain": "real_estate",
+      "text_sha256": "ae058947b01918afd4533f290e0a8a1c8b253e7edc5299bf1b4d7deb53c37404",
+      "article_headings": 36
+    },
+    "orac-033-law": {
+      "title": "القواعد التي تنظم نشاط الترقية العقارية",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%B9%D8%AF%20%D8%A7%D9%84%D8%AA%D9%8A%20%D8%AA%D9%86%D8%B8%D9%85%20%D9%86%D8%B4%D8%A7%D8%B7%20%D8%A7%D9%84%D8%AA%D8%B1%D9%82%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A%D8%A9.php",
+      "legal_domain": "real_estate",
+      "text_sha256": "5b771c2468eeac5751d7b3ab7ec7e3e5bf193f9bbac7dfebdd54115d2c19fb34",
+      "article_headings": 80
+    },
+    "orac-034-law": {
+      "title": "معاينة حق الملكية العقارية وتسليم سندات الملكية عن طريق تحقيق عقاري",
+      "source_url": "https://oraconstantine.com/laws/%D9%85%D8%B9%D8%A7%D9%8A%D9%86%D8%A9%20%D8%AD%D9%82%20%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A%D8%A9%20%D9%88%D8%AA%D8%B3%D9%84%D9%8A%D9%85%20%D8%B3%D9%86%D8%AF%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9%20%D8%B9%D9%86%20%D8%B7%D8%B1%D9%8A%D9%82%20%D8%AA%D8%AD%D9%82%D9%8A%D9%82%20%D8%B9%D9%82%D8%A7%D8%B1%D9%8A.php",
+      "legal_domain": "real_estate",
+      "text_sha256": "1074fae4ab932f6054cb535c4010252fb0aa912f8923200d77f5aaa6a25a7b97",
+      "article_headings": 20
+    },
+    "orac-035-law": {
+      "title": "حيـازة الملكيـة العقـاريــة الفلاحيـة",
+      "source_url": "https://oraconstantine.com/laws/%D8%AD%D9%8A%D9%80%D8%A7%D8%B2%D8%A9%20%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D9%80%D8%A9%20%D8%A7%D9%84%D8%B9%D9%82%D9%80%D8%A7%D8%B1%D9%8A%D9%80%D9%80%D8%A9%20%D8%A7%D9%84%D9%81%D9%84%D8%A7%D8%AD%D9%8A%D9%80%D8%A9.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "1fa3fc2a2677aaa37c9448ce00c8f5be8dc3a4848fd4c05574d28dc3847fac78",
+      "article_headings": 21
+    },
+    "orac-036-law": {
+      "title": "قانون التوجيه العقاري",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AA%D9%88%D8%AC%D9%8A%D9%87%20%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A.php",
+      "legal_domain": "real_estate",
+      "text_sha256": "67c365dac62fd869f74d34c3df737c275b3d45b65d86dc90c657e5c08bc23c07",
+      "article_headings": 97
+    },
+    "orac-037-law": {
+      "title": "قانون الاستثمار",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%AB%D9%85%D8%A7%D8%B1%20.php",
+      "legal_domain": "banking_financial",
+      "text_sha256": "ef8312b114c9ffccdde29e55013899ca18ab830b3f47b372fc202be11c79b928",
+      "article_headings": 41
+    },
+    "orac-038-law": {
+      "title": "المنافسة",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%81%D8%B3%D8%A9.php",
+      "legal_domain": "competition",
+      "text_sha256": "a6f57480e6355f9c873e3bbf00b3428013c249c55faed2f208302420cf2a2400",
+      "article_headings": 79
+    },
+    "orac-039-law": {
+      "title": "قانون مكافحة المضاربة غير المشروعة",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D9%85%D9%83%D8%A7%D9%81%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D8%B6%D8%A7%D8%B1%D8%A8%D8%A9%20%D8%BA%D9%8A%D8%B1%20%D8%A7%D9%84%D9%85%D8%B4%D8%B1%D9%88%D8%B9%D8%A9.php",
+      "legal_domain": "competition",
+      "text_sha256": "e63fda0277a188ad405a2f87e0ebf1a3e6e91f9795c5c135af03e8622251bf51",
+      "article_headings": 25
+    },
+    "orac-040-law": {
+      "title": "توريق القروض الرهنية",
+      "source_url": "https://oraconstantine.com/laws/%D8%AA%D9%88%D8%B1%D9%8A%D9%82%20%D8%A7%D9%84%D9%82%D8%B1%D9%88%D8%B6%20%D8%A7%D9%84%D8%B1%D9%87%D9%86%D9%8A%D8%A9.php",
+      "legal_domain": "banking_financial",
+      "text_sha256": "65d722a5f066781a1b4504287bd71465090966479e010009cc6b564fd3e42612",
+      "article_headings": 26
+    },
+    "orac-041-law": {
+      "title": "قانون بورصة القیم المنقولة",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A8%D9%88%D8%B1%D8%B5%D8%A9%20%D8%A7%D9%84%D9%82%DB%8C%D9%85%20%D8%A7%D9%84%D9%85%D9%86%D9%82%D9%88%D9%84%D8%A9.php",
+      "legal_domain": "banking_financial",
+      "text_sha256": "130e79e34fe9680521c560d2b8274013a0d77aeec4253a1beed341a389a8dff1",
+      "article_headings": 78
+    },
+    "orac-042-law": {
+      "title": "بالصرف وحركة رؤوس الأموال من وإلى الخارج",
+      "source_url": "https://oraconstantine.com/laws/%D8%A8%D8%A7%D9%84%D8%B5%D8%B1%D9%81%20%D9%88%D8%AD%D8%B1%D9%83%D8%A9%20%D8%B1%D8%A4%D9%88%D8%B3%20%D8%A7%D9%84%D8%A3%D9%85%D9%88%D8%A7%D9%84%20%D9%85%D9%86%20%D9%88%D8%A5%D9%84%D9%89%20%D8%A7%D9%84%D8%AE%D8%A7%D8%B1%D8%AC.php",
+      "legal_domain": "banking_financial",
+      "text_sha256": "08a9db4c5f413a3c79fef0771fefb82c6a6d8b74094b1750b7b110cc75ac6d3d",
+      "article_headings": 19
+    },
+    "orac-043-law": {
+      "title": "الدستور",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D8%AF%D8%B3%D8%AA%D9%88%D8%B1.php",
+      "legal_domain": "constitutional",
+      "text_sha256": "9ebfa847f468558d2790f1000f7bcce1f220a64fb6df5a50c81a2ff5456f6a2f",
+      "article_headings": 225
+    },
+    "orac-044-law": {
+      "title": "البلدية",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D8%A8%D9%84%D8%AF%D9%8A%D8%A9.php",
+      "legal_domain": "public_service",
+      "text_sha256": "b681898b76237c8559dcc790cd5c5eef7ba8f0e50ade2def8c276f7dddc16cd4",
+      "article_headings": 221
+    },
+    "orac-045-law": {
+      "title": "الولاية",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%88%D9%84%D8%A7%D9%8A%D8%A9.php",
+      "legal_domain": "public_service",
+      "text_sha256": "ea2eef46166e9ad6926a2ef63a4303a290f78001601f6e65356a2f112492bb81",
+      "article_headings": 179
+    },
+    "orac-046-law": {
+      "title": "الأملاك الوطنية",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D8%A3%D9%85%D9%84%D8%A7%D9%83%20%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9.php",
+      "legal_domain": "public_service",
+      "text_sha256": "69add6edeb1dc1cabb1065e05324aacb0643f8d4f0e88e43e4cacc4c77621ad5",
+      "article_headings": 152
+    },
+    "orac-047-law": {
+      "title": "قانون الأوقاف",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A3%D9%88%D9%82%D8%A7%D9%81.php",
+      "legal_domain": "public_service",
+      "text_sha256": "201fa1138a9677f184ab94515f182f105ea700196f198fe3be159679d38955af",
+      "article_headings": 64
+    },
+    "orac-048-law": {
+      "title": "قانون التأمينات",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AA%D8%A3%D9%85%D9%8A%D9%86%D8%A7%D8%AA.php",
+      "legal_domain": "banking_financial",
+      "text_sha256": "de2eb3c82af84a031337567610907bdac8c806dbccc91fe7bc4d45108710a3a6",
+      "article_headings": 313
+    },
+    "orac-049-law": {
+      "title": "التأمينات الإجتماعية",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D8%AA%D8%A3%D9%85%D9%8A%D9%86%D8%A7%D8%AA%20%D8%A7%D9%84%D8%A5%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A%D8%A9.php",
+      "legal_domain": "banking_financial",
+      "text_sha256": "08246ddb2696df1067650f32b09a7dca39e94e6a1349ff4ea5fdaf3277ea3472",
+      "article_headings": 120
+    },
+    "orac-050-law": {
+      "title": "التزامات المكلفين في مجال الضمان الاجتماعي",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D8%AA%D8%B2%D8%A7%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D9%83%D9%84%D9%81%D9%8A%D9%86%20%D9%81%D9%8A%20%D9%85%D8%AC%D8%A7%D9%84%20%D8%A7%D9%84%D8%B6%D9%85%D8%A7%D9%86%20%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A.php",
+      "legal_domain": "social_security",
+      "text_sha256": "09fee6d36dd39cb41c91e09771fb7b69033d763c6ac7cc9eb3f6dda180e84522",
+      "article_headings": 59
+    },
+    "orac-051-law": {
+      "title": "قانون الصحة",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%B5%D8%AD%D8%A9.php",
+      "legal_domain": "health",
+      "text_sha256": "52b975f52cf5845094884287530b8b63330aa94010b7ff60ba3b3a0b20fe65c2",
+      "article_headings": 451
+    },
+    "orac-052-law": {
+      "title": "قانون حماية البيئة في اطار التنمية المستدامة",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%A7%D9%84%D8%A8%D9%8A%D8%A6%D8%A9%20%D9%81%D9%8A%20%D8%A7%D8%B7%D8%A7%D8%B1%20%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9.php",
+      "legal_domain": "environmental",
+      "text_sha256": "7b903d3566af0104f136c1313dc5fc3d1a7aa6d395645910d8c27a3c0c662ce6",
+      "article_headings": 108
+    },
+    "orac-053-law": {
+      "title": "قانون حماية الطفل",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B7%D9%81%D9%84.php",
+      "legal_domain": "health",
+      "text_sha256": "8d01d87c5b7e622591ff3b46021f3b2e04e7a8e57200d6a65eeda7cef0c3d027",
+      "article_headings": 149
+    },
+    "orac-054-law": {
+      "title": "قانون حماية الاشخاص المسنين",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%A7%D9%84%D8%A7%D8%B4%D8%AE%D8%A7%D8%B5%20%D8%A7%D9%84%D9%85%D8%B3%D9%86%D9%8A%D9%86.php",
+      "legal_domain": "social_security",
+      "text_sha256": "cc127b30a9ffc385a84b449511e4bbdccbec87f89aa78868e3c09138abaf703a",
+      "article_headings": 42
+    },
+    "orac-055-law": {
+      "title": "حماية الأشخاص ذوي الاحتياجات الخاصة وترقيتهم",
+      "source_url": "https://oraconstantine.com/laws/%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%A7%D9%84%D8%A7%D9%94%D8%B4%D8%AE%D8%A7%D8%B5%20%D8%B0%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D9%8A%D8%A7%D8%AC%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AE%D8%A7%D8%B5%D8%A9%20%D9%88%D8%AA%D8%B1%D9%82%D9%8A%D8%AA%D9%87%D9%85.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "f2d0b46c2244faeeb423f05036b2b8742b04d84585994261556be7ab0b4fb0e5",
+      "article_headings": 56
+    },
+    "orac-056-law": {
+      "title": "قانون حماية المستهلك و قمع الغش",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%87%D9%84%D9%83%20%D9%88%20%D9%82%D9%85%D8%B9%20%D8%A7%D9%84%D8%BA%D8%B4.php",
+      "legal_domain": "consumer",
+      "text_sha256": "eb9fd13fa2061be3c3d3792712b5f852a0004999f2a999d9fbb1c6dba7d2f44b",
+      "article_headings": 99
+    },
+    "orac-057-law": {
+      "title": "قانون الوقاية من الفساد ومكافحته",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%88%D9%82%D8%A7%D9%8A%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D9%81%D8%B3%D8%A7%D8%AF%20%D9%88%D9%85%D9%83%D8%A7%D9%81%D8%AD%D8%AA%D9%87.php",
+      "legal_domain": "criminal",
+      "text_sha256": "8f885ff771f73a49223a5e91a296e658faeb76cb85cd49440f765c985345a4b8",
+      "article_headings": 73
+    },
+    "orac-058-law": {
+      "title": "قانون الوقاية من تبييض الأموال وتمويل الإرهاب ومكافحتهما",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%88%D9%82%D8%A7%D9%8A%D8%A9%20%D9%85%D9%86%20%D8%AA%D8%A8%D9%8A%D9%8A%D8%B6%20%D8%A7%D9%84%D8%A3%D9%85%D9%88%D8%A7%D9%84%20%D9%88%D8%AA%D9%85%D9%88%D9%8A%D9%84%20%D8%A7%D9%84%D8%A5%D8%B1%D9%87%D8%A7%D8%A8%20%D9%88%D9%85%D9%83%D8%A7%D9%81%D8%AD%D8%AA%D9%87%D9%85%D8%A7.php",
+      "legal_domain": "criminal",
+      "text_sha256": "89a3ccdf9e162ba8e0f742c42d88f87d37edbd7da429654aa7c0b9be5306f81e",
+      "article_headings": 80
+    },
+    "orac-059-law": {
+      "title": "قانون الوقاية من التمييز و خطاب الكراهية ومكافحتهما",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%88%D9%82%D8%A7%D9%8A%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2%20%D9%88%20%D8%AE%D8%B7%D8%A7%D8%A8%20%D8%A7%D9%84%D9%83%D8%B1%D8%A7%D9%87%D9%8A%D8%A9%20%D9%88%D9%85%D9%83%D8%A7%D9%81%D8%AD%D8%AA%D9%87%D9%85%D8%A7.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "b936a12bd3bcee09f55a9d90409a5b791f8329f1bbbb4c6b5c0a7b56c6da7bf2",
+      "article_headings": 50
+    },
+    "orac-060-law": {
+      "title": "قانون العتاد الحربي و الأسلحة و الذﹼخيرة",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%B9%D8%AA%D8%A7%D8%AF%20%D8%A7%D9%84%D8%AD%D8%B1%D8%A8%D9%8A%20%D9%88%20%D8%A7%D9%84%D8%A3%D8%B3%D9%84%D8%AD%D8%A9%20%D9%88%20%D8%A7%D9%84%D8%B0%EF%B9%BC%D8%AE%D9%8A%D8%B1%D8%A9%20.php",
+      "legal_domain": "military",
+      "text_sha256": "7175fea69838c44cb9342f8699f812222031a1be17b966ae73e4a55919d5fa2e",
+      "article_headings": 55
+    },
+    "orac-061-law": {
+      "title": "قانون القضاء العسكري",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%82%D8%B6%D8%A7%D8%A1%20%D8%A7%D9%84%D8%B9%D8%B3%D9%83%D8%B1%D9%8A.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "39985fa30a747d9db34efa89ab04e6b171d1a8de0833c79eb37a0532e4608d5a",
+      "article_headings": 364
+    },
+    "orac-062-law": {
+      "title": "قانون المساعدة القضائية",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D8%A9%20%D8%A7%D9%84%D9%82%D8%B6%D8%A7%D8%A6%D9%8A%D8%A9.php",
+      "legal_domain": "criminal_procedure",
+      "text_sha256": "076aaddc0eb7dd606ad1270695d57b5402f89abb01a77e5e0acb13713b241049",
+      "article_headings": 45
+    },
+    "orac-063-law": {
+      "title": "قانون الاجتماعات والتظاهرات العمومية",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D8%A7%D8%AA%20%D9%88%D8%A7%D9%84%D8%AA%D8%B8%D8%A7%D9%87%D8%B1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B9%D9%85%D9%88%D9%85%D9%8A%D8%A9.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "889f896ff2782c4ef40f193bf72f1a84835946749e6a2b7a41a7dd4a4a406a75",
+      "article_headings": 32
+    },
+    "orac-064-law": {
+      "title": "قانون الاعلام",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A7%D8%B9%D9%84%D8%A7%D9%85.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "ebb5211cef3707e898217ad1336d61e585bb1b6ca9a58d6fa58f83f439f127ca",
+      "article_headings": 56
+    },
+    "orac-065-law": {
+      "title": "تعميم استعمال اللغة العربية",
+      "source_url": "https://oraconstantine.com/laws/%D8%AA%D8%B9%D9%85%D9%8A%D9%85%20%D8%A7%D8%B3%D8%AA%D8%B9%D9%85%D8%A7%D9%84%20%D8%A7%D9%84%D9%84%D8%BA%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9.php",
+      "legal_domain": "education",
+      "text_sha256": "6cd4228aee7254c0afdcee1f6ab4752ea865ccaff1fa8e0aac94d1c5aff7dc56",
+      "article_headings": 41
+    },
+    "orac-066-law": {
+      "title": "قانون التهيئة والتعمير",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AA%D9%87%D9%8A%D8%A6%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%B9%D9%85%D9%8A%D8%B1%20.php",
+      "legal_domain": "real_estate",
+      "text_sha256": "4dc4ca2ee4c4bb4199d2b8894b523dce40cc048ae186637c6d1bfc4340ffbae9",
+      "article_headings": 87
+    },
+    "orac-067-law": {
+      "title": "قواعد مطابقة البنايات و إتمام إنجازها",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D9%88%D8%A7%D8%B9%D8%AF%20%D9%85%D8%B7%D8%A7%D8%A8%D9%82%D8%A9%20%D8%A7%D9%84%D8%A8%D9%86%D8%A7%D9%8A%D8%A7%D8%AA%20%D9%88%20%D8%A5%D8%AA%D9%85%D8%A7%D9%85%20%D8%A5%D9%86%D8%AC%D8%A7%D8%B2%D9%87%D8%A7.php",
+      "legal_domain": "real_estate",
+      "text_sha256": "23ab12849ec9f10c568eb6df9ccafa04e5b45b762c44f3b3728cfd536dc052eb",
+      "article_headings": 98
+    },
+    "orac-068-law": {
+      "title": "كيفيات تحضير عقود التعمير و تسليمها",
+      "source_url": "https://oraconstantine.com/laws/%D9%83%D9%8A%D9%81%D9%8A%D8%A7%D8%AA%20%D8%AA%D8%AD%D8%B6%D9%8A%D8%B1%20%D8%B9%D9%82%D9%88%D8%AF%20%D8%A7%D9%84%D8%AA%D8%B9%D9%85%D9%8A%D8%B1%20%D9%88%20%D8%AA%D8%B3%D9%84%D9%8A%D9%85%D9%87%D8%A7.php",
+      "legal_domain": "real_estate",
+      "text_sha256": "538c20c294e3191d39cabcdb1462e47e33fee4b99652319ad48e6b5616c0d02b",
+      "article_headings": 98
+    },
+    "orac-069-law": {
+      "title": "مناطق التوسع والمواقع السياحية",
+      "source_url": "https://oraconstantine.com/laws/%D9%85%D9%86%D8%A7%D8%B7%D9%82%20%D8%A7%D9%84%D8%AA%D9%88%D8%B3%D8%B9%20%D9%88%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9%20%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A%D8%A9.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "9c9b977c616bb884566918afbea0f5e628d0debd7bc2923e0dcf400548c5c9f1",
+      "article_headings": 28
+    },
+    "orac-070-law": {
+      "title": "القواعد العامة للاستعمال والاستغلال السياحيين للشواطئ",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%B9%D8%AF%20%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9%20%D9%84%D9%84%D8%A7%D8%B3%D8%AA%D8%B9%D9%85%D8%A7%D9%84%20%D9%88%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%BA%D9%84%D8%A7%D9%84%20%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D9%8A%D9%8A%D9%86%20%D9%84%D9%84%D8%B4%D9%88%D8%A7%D8%B7%D8%A6.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "1e565d6794a22a3773f1ab6526d3b28c33d3eef7170b142439806c837810a081",
+      "article_headings": 55
+    },
+    "orac-071-law": {
+      "title": "حماية الساحل وتثمينه",
+      "source_url": "https://oraconstantine.com/laws/%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B3%D8%A7%D8%AD%D9%84%20%D9%88%D8%AA%D8%AB%D9%85%D9%8A%D9%86%D9%87.php",
+      "legal_domain": "environmental",
+      "text_sha256": "eb35db8a2d4d6af1f1125ff0a8cac58392dac2cfb66113fbea9d03118536e711",
+      "article_headings": 42
+    },
+    "orac-072-law": {
+      "title": "النظام العام للغابات",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%86%D8%B8%D8%A7%D9%85%20%D8%A7%D9%84%D8%B9%D8%A7%D9%85%20%D9%84%D9%84%D8%BA%D8%A7%D8%A8%D8%A7%D8%AA.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "8b2db09fb2696f8600d5be60d9687828aac8bd4d0d74ca34779797699b92cbf8",
+      "article_headings": 97
+    },
+    "orac-073-law": {
+      "title": "كيفيات تنظيم وتنسيق الأعمال المتعلقة بالوقاية من حرائق الغابات ومكافحتها",
+      "source_url": "https://oraconstantine.com/laws/%D9%83%D9%8A%D9%81%D9%8A%D8%A7%D8%AA%20%D8%AA%D9%86%D8%B8%D9%8A%D9%85%20%D9%88%D8%AA%D9%86%D8%B3%D9%8A%D9%82%20%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84%20%D8%A7%D9%84%D9%85%D8%AA%D8%B9%D9%84%D9%82%D8%A9%20%D8%A8%D8%A7%D9%84%D9%88%D9%82%D8%A7%D9%8A%D8%A9%20%D9%85%D9%86%20%D8%AD%D8%B1%D8%A7%D8%A6%D9%82%20%D8%A7%D9%84%D8%BA%D8%A7%D8%A8%D8%A7%D8%AA%20%D9%88%D9%85%D9%83%D8%A7%D9%81%D8%AD%D8%AA%D9%87%D8%A7.php",
+      "legal_domain": "environmental",
+      "text_sha256": "05bf453d8fd7cb1807190a7c98127f0cdab9acc3031c2aa302546002d21698e0",
+      "article_headings": 13
+    },
+    "orac-074-law": {
+      "title": "قانون التوجيه الفلاحي",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AA%D9%88%D8%AC%D9%8A%D9%87%20%D8%A7%D9%84%D9%81%D9%84%D8%A7%D8%AD%D9%8A.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "9c882ed2bc0afa16ffe53fc27e79e4edc9db40ffd690dec8a6195f59f5553ae3",
+      "article_headings": 89
+    },
+    "orac-075-law": {
+      "title": "القواعد التي تطبق على التعاونيات الفلاحية",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%B9%D8%AF%20%D8%A7%D9%84%D8%AA%D9%8A%20%D8%AA%D8%B7%D8%A8%D9%82%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%88%D9%86%D9%8A%D8%A7%D8%AA%20%D8%A7%D9%84%D9%81%D9%84%D8%A7%D8%AD%D9%8A%D8%A9.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "ae4069f233f52d1d054823a2cb16b77f8d0ddeb6d0cafd5295416fdc2fbb9752",
+      "article_headings": 120
+    },
+    "orac-076-law": {
+      "title": "شروط و كيفيات استغلال الأراضي الفلاحية",
+      "source_url": "https://oraconstantine.com/laws/%D8%B4%D8%B1%D9%88%D8%B7%20%D9%88%20%D9%83%D9%8A%D9%81%D9%8A%D8%A7%D8%AA%20%D8%A7%D8%B3%D8%AA%D8%BA%D9%84%D8%A7%D9%84%20%D8%A7%D9%84%D8%A3%D8%B1%D8%A7%D8%B6%D9%8A%20%D8%A7%D9%84%D9%81%D9%84%D8%A7%D8%AD%D9%8A%D8%A9.php",
+      "legal_domain": "environmental",
+      "text_sha256": "452f79f02a52aaa7455b55eb673b37e47742c6490350f22e6afe12e795160297",
+      "article_headings": 35
+    },
+    "orac-077-law": {
+      "title": "حماية الصحة النباتية",
+      "source_url": "https://oraconstantine.com/laws/%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%86%D8%A8%D8%A7%D8%AA%D9%8A%D8%A9.php",
+      "legal_domain": "health",
+      "text_sha256": "6a2d11dd972979443facddd9b4e0e345d3fcbf137c2e477187c8c723ef09690d",
+      "article_headings": 59
+    },
+    "orac-078-law": {
+      "title": "قانون نشاطات الطب البيطري وحماية الصحة الحيوانية",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D9%86%D8%B4%D8%A7%D8%B7%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B7%D8%A8%20%D8%A7%D9%84%D8%A8%D9%8A%D8%B7%D8%B1%D9%8A%20%D9%88%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D8%AD%D9%8A%D9%88%D8%A7%D9%86%D9%8A%D8%A9.php",
+      "legal_domain": "health",
+      "text_sha256": "3fe137ba7ec8df21376cfb1ca7af8b545958f74538a0aad991c97666e2e33f86",
+      "article_headings": 101
+    },
+    "orac-079-law": {
+      "title": "حماية بعض الانواع الحيوانية المهددة بالانقراض والمحافظة عليها",
+      "source_url": "https://oraconstantine.com/laws/%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%A8%D8%B9%D8%B6%20%D8%A7%D9%84%D8%A7%D9%86%D9%88%D8%A7%D8%B9%20%D8%A7%D9%84%D8%AD%D9%8A%D9%88%D8%A7%D9%86%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D8%AF%D8%AF%D8%A9%20%D8%A8%D8%A7%D9%84%D8%A7%D9%86%D9%82%D8%B1%D8%A7%D8%B6%20%D9%88%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9%20%D8%B9%D9%84%D9%8A%D9%87%D8%A7.php",
+      "legal_domain": "environmental",
+      "text_sha256": "0dee7aff602b42934ce6e0a281180451c190cd28a4c2549d66ab09f15d994525",
+      "article_headings": 7
+    },
+    "orac-080-law": {
+      "title": "الطيران المدني",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D8%B7%D9%8A%D8%B1%D8%A7%D9%86%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A.php",
+      "legal_domain": "transport",
+      "text_sha256": "1333c7f40007e1789a4683b26f1a85dc2b3cb3ea1d4ac1f5ec931e33dcaf407d",
+      "article_headings": 279
+    },
+    "orac-081-law": {
+      "title": "القانون البحري",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A8%D8%AD%D8%B1%D9%8A.php",
+      "legal_domain": "maritime",
+      "text_sha256": "c5a575a638b4252ada7d94efeb1ecb9130f4ff57342e28c27418a7450bdd5770",
+      "article_headings": 949
+    },
+    "orac-082-law": {
+      "title": "الامن والسلامة والاستعمال والحفاظ في استغلال النقل بالسكك الحديدية",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D8%A7%D9%85%D9%86%20%D9%88%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%B9%D9%85%D8%A7%D9%84%20%D9%88%D8%A7%D9%84%D8%AD%D9%81%D8%A7%D8%B8%20%D9%81%D9%8A%20%D8%A7%D8%B3%D8%AA%D8%BA%D9%84%D8%A7%D9%84%20%D8%A7%D9%84%D9%86%D9%82%D9%84%20%D8%A8%D8%A7%D9%84%D8%B3%D9%83%D9%83%20%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AF%D9%8A%D8%A9.php",
+      "legal_domain": "transport",
+      "text_sha256": "21f2f36c9337e09c25a34bb2ade23ffbb73acb609d2a8aab5cd71ea683071f97",
+      "article_headings": 46
+    },
+    "orac-083-law": {
+      "title": "نشاطات المحروقات",
+      "source_url": "https://oraconstantine.com/laws/%D9%86%D8%B4%D8%A7%D8%B7%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%AD%D8%B1%D9%88%D9%82%D8%A7%D8%AA%20.php",
+      "legal_domain": "energy",
+      "text_sha256": "e2b8b47c9c4959d8658f9c6ce24f30da0b31234ca1b76f35fbc5ab4ef8b05643",
+      "article_headings": 239
+    },
+    "orac-084-law": {
+      "title": "قانون الكهرباء وتوزيع الغاز بواسطة القنوات",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%83%D9%87%D8%B1%D8%A8%D8%A7%D8%A1%20%D9%88%D8%AA%D9%88%D8%B2%D9%8A%D8%B9%20%D8%A7%D9%84%D8%BA%D8%A7%D8%B2%20%D8%A8%D9%88%D8%A7%D8%B3%D8%B7%D8%A9%20%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA.php",
+      "legal_domain": "energy",
+      "text_sha256": "5cd8b9f5a7c20c98205ea235db485cb717e5c34172d99c6c5e0101ce0cdbf561",
+      "article_headings": 145
+    },
+    "orac-085-law": {
+      "title": "قانون تسيير النفايات ومراقبتها وازالتها",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%AA%D8%B3%D9%8A%D9%8A%D8%B1%20%D8%A7%D9%84%D9%86%D9%81%D8%A7%D9%8A%D8%A7%D8%AA%20%D9%88%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%AA%D9%87%D8%A7%20%D9%88%D8%A7%D8%B2%D8%A7%D9%84%D8%AA%D9%87%D8%A7.php",
+      "legal_domain": "environmental",
+      "text_sha256": "8ac246c01b21e93c685a43abd6979179aec509fcadde850edcafa4ceb257166f",
+      "article_headings": 92
+    },
+    "orac-086-law": {
+      "title": "تسيير المساحات الخضراء وحمايتها وتنميتها",
+      "source_url": "https://oraconstantine.com/laws/%D8%AA%D8%B3%D9%8A%D9%8A%D8%B1%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D8%AD%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AE%D8%B6%D8%B1%D8%A7%D8%A1%20%D9%88%D8%AD%D9%85%D8%A7%D9%8A%D8%AA%D9%87%D8%A7%20%D9%88%D8%AA%D9%86%D9%85%D9%8A%D8%AA%D9%87%D8%A7.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "35682ae2f18b9113229b6af0293b94d010bfb52ab87194b2b73e6a360fa6b79e",
+      "article_headings": 31
+    },
+    "orac-087-law": {
+      "title": "قانون الاجراءات الجبائیة",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A7%D8%AC%D8%B1%D8%A7%D8%A1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AC%D8%A8%D8%A7%D8%A6%DB%8C%D8%A9.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "4195615f645cecd24b15cbd2840e8c28c6088011df6176e0c01157ca411e5132",
+      "article_headings": 252
+    },
+    "orac-088-law": {
+      "title": "قانون الضرائب المباشرة و الرسوم المماثلة",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%B6%D8%B1%D8%A7%D8%A6%D8%A8%20%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1%D8%A9%20%D9%88%20%D8%A7%D9%84%D8%B1%D8%B3%D9%88%D9%85%20%D8%A7%D9%84%D9%85%D9%85%D8%A7%D8%AB%D9%84%D8%A9.php",
+      "legal_domain": "tax",
+      "text_sha256": "958192f547cc747d43c973d995d8127130cd1bfec3719ea1a7ce8af8810f8c9c",
+      "article_headings": 491
+    },
+    "orac-089-law": {
+      "title": "قانون الضرائب غیر المباشرة",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%B6%D8%B1%D8%A7%D8%A6%D8%A8%20%D8%BA%DB%8C%D8%B1%20%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1%D8%A9.php",
+      "legal_domain": "tax",
+      "text_sha256": "01fcff34dc92d28ee675322c582b06014917fd1e936c771a93b442c733e5d3bf",
+      "article_headings": 476
+    },
+    "orac-090-law": {
+      "title": "قانون الرسوم على رقم الأعمال",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%B1%D8%B3%D9%88%D9%85%20%D8%B9%D9%84%D9%89%20%D8%B1%D9%82%D9%85%20%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84.php",
+      "legal_domain": "tax",
+      "text_sha256": "93c0625b4046d7bf8d90d026eadbb2c20aa7fb27161d76d07fe26b4651be7770",
+      "article_headings": 160
+    },
+    "orac-091-law": {
+      "title": "قانون الطابع",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%B7%D8%A7%D8%A8%D8%B9.php",
+      "legal_domain": "tax",
+      "text_sha256": "6eaa96431bcb2ce4161427fde39a9391fabd8696a919bf019d55a1cb1bb03b4c",
+      "article_headings": 314
+    },
+    "orac-092-law": {
+      "title": "قانون الجمارك",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AC%D9%85%D8%A7%D8%B1%D9%83.php",
+      "legal_domain": "tax",
+      "text_sha256": "a2be6f519ad365388f67046ff2f79239975c644d4c810176a5b01c6d1feb5131",
+      "article_headings": 476
+    },
+    "orac-093-law": {
+      "title": "مكافحة التهريب",
+      "source_url": "https://oraconstantine.com/laws/%D9%85%D9%83%D8%A7%D9%81%D8%AD%D8%A9%20%D8%A7%D9%84%D8%AA%D9%87%D8%B1%D9%8A%D8%A8.php",
+      "legal_domain": "criminal",
+      "text_sha256": "7ff65db6230af6c1054d7233f29f400b6e4f42dc79914e32a621ac93782c9aff",
+      "article_headings": 46
+    },
+    "orac-094-law": {
+      "title": "شروط دخول الأجانب الى الجزائر وإقامتهم بها وتنقلهم فيها",
+      "source_url": "https://oraconstantine.com/laws/%D8%B4%D8%B1%D9%88%D8%B7%20%D8%AF%D8%AE%D9%88%D9%84%20%D8%A7%D9%84%D8%A3%D8%AC%D8%A7%D9%86%D8%A8%20%D8%A7%D9%84%D9%89%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A7%D8%A6%D8%B1%20%D9%88%D8%A5%D9%82%D8%A7%D9%85%D8%AA%D9%87%D9%85%20%D8%A8%D9%87%D8%A7%20%D9%88%D8%AA%D9%86%D9%82%D9%84%D9%87%D9%85%20%D9%81%D9%8A%D9%87%D8%A7.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "3e3adb79cc7b08d6f895faf2fa04cbc532d446a938a1c4c4ca4884d08ba77df5",
+      "article_headings": 52
+    },
+    "orac-095-law": {
+      "title": "تنظيم السجون وإعادة الإدماج الاجتماعي للمحبوسين",
+      "source_url": "https://oraconstantine.com/laws/%D8%AA%D9%86%D8%B8%D9%8A%D9%85%20%D8%A7%D9%84%D8%B3%D8%AC%D9%88%D9%86%20%D9%88%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9%20%D8%A7%D9%84%D8%A5%D8%AF%D9%85%D8%A7%D8%AC%20%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A%20%D9%84%D9%84%D9%85%D8%AD%D8%A8%D9%88%D8%B3%D9%8A%D9%86.php",
+      "legal_domain": "criminal_procedure",
+      "text_sha256": "ab1cdf274e260df7a4b7e5bb7007526da27a7b510901122de1e9d177a780dc7d",
+      "article_headings": 191
+    },
+    "orac-096-law": {
+      "title": "القانون التوجيهي للتربية الوطنية",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AA%D9%88%D8%AC%D9%8A%D9%87%D9%8A%20%D9%84%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "b974d7bf1492c66fe192043c901de0010579d2b117fd4ae524fc3c453a903ee1",
+      "article_headings": 106
+    },
+    "orac-097-law": {
+      "title": "القانون التوجيهي للمؤسسات العمومية الاقتصادية",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AA%D9%88%D8%AC%D9%8A%D9%87%D9%8A%20%D9%84%D9%84%D9%85%D8%A4%D8%B3%D8%B3%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B9%D9%85%D9%88%D9%85%D9%8A%D8%A9%20%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A%D8%A9.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "01e94b0fa2b3f80ffe857d5eeb53210656eed3dbf3f8595087375720a5495fb5",
+      "article_headings": 21
+    },
+    "orac-098-law": {
+      "title": "تنظيم المؤسسات العمومية الاقتصادية وتسييرها وخوصصتها",
+      "source_url": "https://oraconstantine.com/laws/%D8%AA%D9%86%D8%B8%D9%8A%D9%85%20%D8%A7%D9%84%D9%85%D8%A4%D8%B3%D8%B3%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B9%D9%85%D9%88%D9%85%D9%8A%D8%A9%20%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A%D8%A9%20%D9%88%D8%AA%D8%B3%D9%8A%D9%8A%D8%B1%D9%87%D8%A7%20%D9%88%D8%AE%D9%88%D8%B5%D8%B5%D8%AA%D9%87%D8%A7.php",
+      "legal_domain": "public_procurement",
+      "text_sha256": "8809ce549bac774e9a321d70968c1740891ed2dae3d451aa35a937e21afda14d",
+      "article_headings": 48
+    },
+    "orac-099-law": {
+      "title": "تنظيم الصفقات العمومية وتفويضات المرفق العام",
+      "source_url": "https://oraconstantine.com/laws/%D8%AA%D9%86%D8%B8%D9%8A%D9%85%20%D8%A7%D9%84%D8%B5%D9%81%D9%82%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B9%D9%85%D9%88%D9%85%D9%8A%D8%A9%20%D9%88%D8%AA%D9%81%D9%88%D9%8A%D8%B6%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%B1%D9%81%D9%82%20%D8%A7%D9%84%D8%B9%D8%A7%D9%85.php",
+      "legal_domain": "public_procurement",
+      "text_sha256": "e5b8ca16284b2a972e9c2ce32bc1dd4c740fdda3c3242cc9a385e301a70f47d3",
+      "article_headings": 219
+    },
+    "orac-100-law": {
+      "title": "قانون التسجیل",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AA%D8%B3%D8%AC%DB%8C%D9%84.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "ec29c3b2bf8789b3a5e86156e04d10a495260b074047bf96286e354807588b87",
+      "article_headings": 374
+    },
+    "orac-101-law": {
+      "title": "شروط وقواعد ممارسة الشعائر الدينية لغير المسلمين",
+      "source_url": "https://oraconstantine.com/laws/%D8%B4%D8%B1%D9%88%D8%B7%20%D9%88%D9%82%D9%88%D8%A7%D8%B9%D8%AF%20%D9%85%D9%85%D8%A7%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%B4%D8%B9%D8%A7%D8%A6%D8%B1%20%D8%A7%D9%84%D8%AF%D9%8A%D9%86%D9%8A%D8%A9%20%D9%84%D8%BA%D9%8A%D8%B1%20%D8%A7%D9%84%D9%85%D8%B3%D9%84%D9%85%D9%8A%D9%86.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "37b99296a24c60d8761f83cce80e137daff6be6dd4a65d44f2b71cf03d2e0b6b",
+      "article_headings": 17
+    },
+    "orac-102-law": {
+      "title": "قانون الوقاية من الاخطار الكبرى وتسيير الكوارث في اطار التنمية المستدامة",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%88%D9%82%D8%A7%D9%8A%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%A7%D8%AE%D8%B7%D8%A7%D8%B1%20%D8%A7%D9%84%D9%83%D8%A8%D8%B1%D9%89%20%D9%88%D8%AA%D8%B3%D9%8A%D9%8A%D8%B1%20%D8%A7%D9%84%D9%83%D9%88%D8%A7%D8%B1%D8%AB%20%D9%81%D9%8A%20%D8%A7%D8%B7%D8%A7%D8%B1%20%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "0d5722ce5965ca25d67a187dd053367e1a78dedeace890ef9e1ab724623afd01",
+      "article_headings": 41
+    },
+    "orac-103-law": {
+      "title": "القانون المتضمن قواعد الوقاية والتدخل والحد من أخطار الكوارث في إطار التنمية المستدامة",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%AA%D8%B6%D9%85%D9%86%20%D9%82%D9%88%D8%A7%D8%B9%D8%AF%20%D8%A7%D9%84%D9%88%D9%82%D8%A7%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AA%D8%AF%D8%AE%D9%84%20%D9%88%D8%A7%D9%84%D8%AD%D8%AF%20%D9%85%D9%86%20%D8%A3%D8%AE%D8%B7%D8%A7%D8%B1%20%D8%A7%D9%84%D9%83%D9%88%D8%A7%D8%B1%D8%AB%20%D9%81%D9%8A%20%D8%A5%D8%B7%D8%A7%D8%B1%20%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "bd3d6942c1e843927e67ab6a09d99c832f3fc406c9cbd0db044e0f2e55d86b8d",
+      "article_headings": 92
+    },
+    "orac-104-law": {
+      "title": "حماية المعلومات والوثائق الإدارية",
+      "source_url": "https://oraconstantine.com/laws/%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%A7%D9%84%D9%88%D8%AB%D8%A7%D8%A6%D9%82%20%D8%A7%D9%84%D8%A5%D8%AF%D8%A7%D8%B1%D9%8A%D8%A9.php",
+      "legal_domain": "public_service",
+      "text_sha256": "38767102d0ee534db11dcc28c73be4c5c63978062c65fa5d32d4234a7df812af",
+      "article_headings": 50
+    },
+    "orac-105-law": {
+      "title": "شروط و كيفيات اقتناء التجهيزات الحساسة وحيازتها واستغلالها واستعمالها والتنازل عنها",
+      "source_url": "https://oraconstantine.com/laws/%D8%B4%D8%B1%D9%88%D8%B7%20%D9%88%20%D9%83%D9%8A%D9%81%D9%8A%D8%A7%D8%AA%20%D8%A7%D9%82%D8%AA%D9%86%D8%A7%D8%A1%20%D8%A7%D9%84%D8%AA%D8%AC%D9%87%D9%8A%D8%B2%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AD%D8%B3%D8%A7%D8%B3%D8%A9%20%D9%88%D8%AD%D9%8A%D8%A7%D8%B2%D8%AA%D9%87%D8%A7%20%D9%88%D8%A7%D8%B3%D8%AA%D8%BA%D9%84%D8%A7%D9%84%D9%87%D8%A7%20%D9%88%D8%A7%D8%B3%D8%AA%D8%B9%D9%85%D8%A7%D9%84%D9%87%D8%A7%20%D9%88%D8%A7%D9%84%D8%AA%D9%86%D8%A7%D8%B2%D9%84%20%D8%B9%D9%86%D9%87%D8%A7.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "6372a617c9df014b891babf98c6698369fa33bb6ac80a3461fbcb54b4befb440",
+      "article_headings": 32
+    },
+    "orac-106-law": {
+      "title": "قواعد الامن المطبقة على النشاطات المنصبة على التجهيزات الحساسة",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D9%88%D8%A7%D8%B9%D8%AF%20%D8%A7%D9%84%D8%A7%D9%85%D9%86%20%D8%A7%D9%84%D9%85%D8%B7%D8%A8%D9%82%D8%A9%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D9%86%D8%B4%D8%A7%D8%B7%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D9%86%D8%B5%D8%A8%D8%A9%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D8%AA%D8%AC%D9%87%D9%8A%D8%B2%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AD%D8%B3%D8%A7%D8%B3%D8%A9.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "94652b6acccd5b5456649c7d29863af2b2b40fc5e3a6bb8f156410069141e13c",
+      "article_headings": 55
+    },
+    "orac-107-09-410": {
+      "title": "ملاحق المرسوم 09 410 يتضمن قوائم وتصنيفات التجهيزات الحساسة",
+      "source_url": "https://oraconstantine.com/laws/%D9%85%D9%84%D8%A7%D8%AD%D9%82%20%D8%A7%D9%84%D9%85%D8%B1%D8%B3%D9%88%D9%85%2009%20410%20%D9%8A%D8%AA%D8%B6%D9%85%D9%86%20%D9%82%D9%88%D8%A7%D8%A6%D9%85%20%D9%88%D8%AA%D8%B5%D9%86%D9%8A%D9%81%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AA%D8%AC%D9%87%D9%8A%D8%B2%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AD%D8%B3%D8%A7%D8%B3%D8%A9.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "457ab45aa2d7e046741707871ed554abc0640fe6b123eb57b45bbfbf677ee6f8",
+      "article_headings": 7
+    },
+    "orac-108-law": {
+      "title": "شروط وكيفيات شراء المساكن المنجزة بأموال عمومية أو مصادر بنكية او اي تمويلات اخرى في إطار البيع بالإيجار",
+      "source_url": "https://oraconstantine.com/laws/%D8%B4%D8%B1%D9%88%D8%B7%20%D9%88%D9%83%D9%8A%D9%81%D9%8A%D8%A7%D8%AA%20%D8%B4%D8%B1%D8%A7%D8%A1%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D9%86%D8%AC%D8%B2%D8%A9%20%D8%A8%D8%A3%D9%85%D9%88%D8%A7%D9%84%20%D8%B9%D9%85%D9%88%D9%85%D9%8A%D8%A9%20%D8%A3%D9%88%20%D9%85%D8%B5%D8%A7%D8%AF%D8%B1%20%D8%A8%D9%86%D9%83%D9%8A%D8%A9%20%D8%A7%D9%88%20%D8%A7%D9%8A%20%D8%AA%D9%85%D9%88%D9%8A%D9%84%D8%A7%D8%AA%20%D8%A7%D8%AE%D8%B1%D9%89%20%D9%81%D9%8A%20%D8%A5%D8%B7%D8%A7%D8%B1%20%D8%A7%D9%84%D8%A8%D9%8A%D8%B9%20%D8%A8%D8%A7%D9%84%D8%A5%D9%8A%D8%AC%D8%A7%D8%B1.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "afbfc7fae95aa4778456ac2bd8613c493c541460fec5dd4a56000d7605fba5ff",
+      "article_headings": 22
+    },
+    "orac-109-law": {
+      "title": "شروط وكيفيات منح الامتياز على الأراضي التابعة للأملاك الخاصة للدولة والموجهة لإنجاز مشاريع استثمارية",
+      "source_url": "https://oraconstantine.com/laws/%D8%B4%D8%B1%D9%88%D8%B7%20%D9%88%D9%83%D9%8A%D9%81%D9%8A%D8%A7%D8%AA%20%D9%85%D9%86%D8%AD%20%D8%A7%D9%84%D8%A7%D9%85%D8%AA%D9%8A%D8%A7%D8%B2%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D8%A3%D8%B1%D8%A7%D8%B6%D9%8A%20%D8%A7%D9%84%D8%AA%D8%A7%D8%A8%D8%B9%D8%A9%20%D9%84%D9%84%D8%A3%D9%85%D9%84%D8%A7%D9%83%20%D8%A7%D9%84%D8%AE%D8%A7%D8%B5%D8%A9%20%D9%84%D9%84%D8%AF%D9%88%D9%84%D8%A9%20%D9%88%D8%A7%D9%84%D9%85%D9%88%D8%AC%D9%87%D8%A9%20%D9%84%D8%A5%D9%86%D8%AC%D8%A7%D8%B2%20%D9%85%D8%B4%D8%A7%D8%B1%D9%8A%D8%B9%20%D8%A7%D8%B3%D8%AA%D8%AB%D9%85%D8%A7%D8%B1%D9%8A%D8%A9.php",
+      "legal_domain": "banking_financial",
+      "text_sha256": "ad0e56c3c5aa8ab300f6d3d846c8231bcad1f91253dd2628e21180d9aa23f8e4",
+      "article_headings": 15
+    },
+    "orac-110-7-05-02": {
+      "title": "شروط وكيفية تطبيق أحكام المادة 7 مكرر من الأمر 05-02",
+      "source_url": "https://oraconstantine.com/laws/%D8%B4%D8%B1%D9%88%D8%B7%20%D9%88%D9%83%D9%8A%D9%81%D9%8A%D8%A9%20%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%20%D8%A3%D8%AD%D9%83%D8%A7%D9%85%20%D8%A7%D9%84%D9%85%D8%A7%D8%AF%D8%A9%207%20%D9%85%D9%83%D8%B1%D8%B1%20%D9%85%D9%86%20%D8%A7%D9%84%D8%A3%D9%85%D8%B1%2005-02.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "9def2496ec9a0a006b11ba1bed32f740131dbb706fb216ab2c1ae7ae98289f53",
+      "article_headings": 8
+    },
+    "orac-111-law": {
+      "title": "قائمة قطاعات الأنشطة ومناصب العمل التي تتطلب تنفيذ حد أدنى من الخدمة إجباريا",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D8%A6%D9%85%D8%A9%20%D9%82%D8%B7%D8%A7%D8%B9%D8%A7%D8%AA%20%D8%A7%D9%84%D8%A3%D9%86%D8%B4%D8%B7%D8%A9%20%D9%88%D9%85%D9%86%D8%A7%D8%B5%D8%A8%20%D8%A7%D9%84%D8%B9%D9%85%D9%84%20%D8%A7%D9%84%D8%AA%D9%8A%20%D8%AA%D8%AA%D8%B7%D9%84%D8%A8%20%D8%AA%D9%86%D9%81%D9%8A%D8%B0%20%D8%AD%D8%AF%20%D8%A3%D8%AF%D9%86%D9%89%20%D9%85%D9%86%20%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A9%20%D8%A5%D8%AC%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "efb0b319a606da60e481cdf1d4d76f724f7fa00b49fe20c7fd5253f02aa4c2f4",
+      "article_headings": 9
+    },
+    "orac-112-law": {
+      "title": "بالسلطة الوطنية المستقلة للانتخابات",
+      "source_url": "https://oraconstantine.com/laws/%D8%A8%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A9%20%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%82%D9%84%D8%A9%20%D9%84%D9%84%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%D8%A7%D8%AA.php",
+      "legal_domain": "elections",
+      "text_sha256": "4d8d85fff79901e61b43df57089df2a83d5fab3d829b3396b0fe9f70c6b3d6da",
+      "article_headings": 55
+    },
+    "orac-113-law": {
+      "title": "القانون العضوي المتعلق بنظام الانتخابات",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%B9%D8%B6%D9%88%D9%8A%20%D8%A7%D9%84%D9%85%D8%AA%D8%B9%D9%84%D9%82%20%D8%A8%D9%86%D8%B8%D8%A7%D9%85%20%D8%A7%D9%84%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%D8%A7%D8%AA.php",
+      "legal_domain": "elections",
+      "text_sha256": "e59fc4f3639249aa396736a8b889f36d3b50232011e15f8e5336bec689792cb1",
+      "article_headings": 320
+    },
+    "orac-114-law": {
+      "title": "نموذج التصريح بالممتلكات",
+      "source_url": "https://oraconstantine.com/laws/%D9%86%D9%85%D9%88%D8%B0%D8%AC%20%D8%A7%D9%84%D8%AA%D8%B5%D8%B1%D9%8A%D8%AD%20%D8%A8%D8%A7%D9%84%D9%85%D9%85%D8%AA%D9%84%D9%83%D8%A7%D8%AA.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "74995cb53f7e5d4f3a2c6bc25eb67a84dcd4fe05d5f8317327510c60498346d2",
+      "article_headings": 8
+    },
+    "orac-116-law": {
+      "title": "المنازعات في مجال الضمان الاجتماعي",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B2%D8%B9%D8%A7%D8%AA%20%D9%81%D9%8A%20%D9%85%D8%AC%D8%A7%D9%84%20%D8%A7%D9%84%D8%B6%D9%85%D8%A7%D9%86%20%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A.php",
+      "legal_domain": "social_security",
+      "text_sha256": "02084503c51bfe0588ec8e10bdc0d9bd8bf6928aac347ed66af4f12c1dd892ba",
+      "article_headings": 91
+    },
+    "orac-117-law": {
+      "title": "تغيير اللقب",
+      "source_url": "https://oraconstantine.com/laws/%D8%AA%D8%BA%D9%8A%D9%8A%D8%B1%20%D8%A7%D9%84%D9%84%D9%82%D8%A8.php",
+      "legal_domain": "civil",
+      "text_sha256": "440fda3996d36667350e77ae51f2b2ff2765bf7329ec5cc194e73088d65a06f7",
+      "article_headings": 6
+    },
+    "orac-118-law": {
+      "title": "قانون الحالة المدنية",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AD%D8%A7%D9%84%D8%A9%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%D8%A9.php",
+      "legal_domain": "civil",
+      "text_sha256": "76232cb1835bc5bb0ef2cd771fad4342a6d26868e5a10dc5958e7deccafcb7c8",
+      "article_headings": 134
+    },
+    "orac-119-law": {
+      "title": "قانون الجنسية الجزائرية",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%AC%D9%86%D8%B3%D9%8A%D8%A9%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A7%D8%A6%D8%B1%D9%8A%D8%A9.php",
+      "legal_domain": "nationality",
+      "text_sha256": "cb5b756e7eef4178415ef021c2a0cd8498c0e65b2c7c8f9b5117bed09a690490",
+      "article_headings": 43
+    },
+    "orac-120-law": {
+      "title": "التجارة الإلكترونية",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A9.php",
+      "legal_domain": "commercial",
+      "text_sha256": "b1e40ac014acb93b0f7ceca1c0187d4411fb20da71b2f83ba514367540dc88b6",
+      "article_headings": 50
+    },
+    "orac-121-law": {
+      "title": "القواعد المطبقة على الممارسات التجارية",
+      "source_url": "https://oraconstantine.com/laws/%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%B9%D8%AF%20%D8%A7%D9%84%D9%85%D8%B7%D8%A8%D9%82%D8%A9%20%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D9%85%D9%85%D8%A7%D8%B1%D8%B3%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9.php",
+      "legal_domain": "commercial",
+      "text_sha256": "aa3e0640df7c8e40a34995592b591edf1a2621e82c3a7d12d13d084d9521ab3d",
+      "article_headings": 69
+    },
+    "orac-122-law": {
+      "title": "شروط ممارسة الانشطة التجارية",
+      "source_url": "https://oraconstantine.com/laws/%D8%B4%D8%B1%D9%88%D8%B7%20%D9%85%D9%85%D8%A7%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%A7%D9%86%D8%B4%D8%B7%D8%A9%20%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "b3d43857cd409b136e0075eab938f834560fc0b709d7d7369bb9d66418c30620",
+      "article_headings": 61
+    },
+    "orac-123-law": {
+      "title": "قانون النفقة",
+      "source_url": "https://oraconstantine.com/laws/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%86%D9%81%D9%82%D8%A9.php",
+      "legal_domain": "family",
+      "text_sha256": "1d2098333aa4ec260cde8b2dea30c9a7d15f811a3ef5cbdddfe803c83d48c1ad",
+      "article_headings": 25
+    },
+    "orac-124-law": {
+      "title": "شروط إنشاء مؤسسات استقبال الطفولة الصغيرة وتنظيمها وسيرها ومراقبتها",
+      "source_url": "https://oraconstantine.com/laws/%D8%B4%D8%B1%D9%88%D8%B7%20%D8%A5%D9%86%D8%B4%D8%A7%D8%A1%20%D9%85%D8%A4%D8%B3%D8%B3%D8%A7%D8%AA%20%D8%A7%D8%B3%D8%AA%D9%82%D8%A8%D8%A7%D9%84%20%D8%A7%D9%84%D8%B7%D9%81%D9%88%D9%84%D8%A9%20%D8%A7%D9%84%D8%B5%D8%BA%D9%8A%D8%B1%D8%A9%20%D9%88%D8%AA%D9%86%D8%B8%D9%8A%D9%85%D9%87%D8%A7%20%D9%88%D8%B3%D9%8A%D8%B1%D9%87%D8%A7%20%D9%88%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%AA%D9%87%D8%A7.php",
+      "legal_domain": "other_algerian_law",
+      "text_sha256": "d6e5c711d799dd784e03924e17f1157fa710ab3a8cd3fb77d507d5941df819be",
+      "article_headings": 58
+    }
+  }
+}

@@ -98,6 +98,42 @@ def test_assistant_abstains_for_unverified_texts_unless_informational_mode():
     assert "لم تُكتمل مراجعتها" in informational["disclaimer"]
 
 
+def test_grounded_generation_is_accepted_as_advisory_answer(monkeypatch):
+    """The assistant path turns a model output into a cited answer, not a lookup."""
+    from dz_legal_ai import answer
+    from dz_legal_ai.generate import GenerationResult
+
+    grounded = "«Une seconde disposition pour les tests.» [synthetic-assistant]"
+    monkeypatch.setattr(
+        answer,
+        "generate_text",
+        lambda *args, **kwargs: GenerationResult(grounded, "fake-local-model", True),
+    )
+    result = assist_query("seconde disposition", [current_record()], prefer_generation=True)
+    assert result["abstained"] is False
+    assert result["mode"] == "generated-grounded"
+    assert result["verification"]["supported"] is True
+    assert result["verification"]["cited_document_ids"] == ["synthetic-assistant"]
+    assert result["citations"][0]["article_label"] == "Article 2"
+    assert "لا استشارة قانونية" in result["disclaimer"] or "استشارة قانونية" in result["disclaimer"]
+
+
+def test_unsupported_generation_falls_back_to_extractive_answer(monkeypatch):
+    from dz_legal_ai import answer
+    from dz_legal_ai.generate import GenerationResult
+
+    unsupported = "حكم مختلف تمامًا عن عقد الإيجار [synthetic-assistant]"
+    monkeypatch.setattr(
+        answer,
+        "generate_text",
+        lambda *args, **kwargs: GenerationResult(unsupported, "fake-local-model", True),
+    )
+    result = assist_query("seconde disposition", [current_record()], prefer_generation=True)
+    assert result["mode"] == "extractive-grounded"
+    assert result["verification"]["reason"] == "extractive-fallback"
+    assert "seconde disposition" in result["answer"]
+
+
 def test_verifier_rejects_unsupported_answer():
     evidence = retrieve_articles("seconde disposition", [current_record()])
     bad = verify_answer("حكم مختلف تمامًا عن عقد الإيجار [synthetic-assistant]", evidence)

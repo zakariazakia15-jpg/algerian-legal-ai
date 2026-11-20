@@ -6,10 +6,11 @@
 
 - المضيف المفضّل هو `joradp.dz`، لكنه تعذّر الوصول إليه أثناء بناء المتن (فشل اتصال TCP على المنفذين 80 و443، وانتهاء مهلة `URLError(10060)` على `https://www.joradp.dz/TRV/AConsti.pdf`). استُخدمت بوابة وزارة العدل `droit.mjustice.gov.dz` كمصدر رسمي بديل، مع تسجيل الرابط والبصمة وتاريخ التنزيل في `data/raw/manifest.json`.
 - النطاقات المسموحة في `src/dz_legal_ai/policy.py`: `joradp.dz` و`droit.mjustice.gov.dz` و`mjustice.gov.dz` و`coursupreme.dz` و`conseildetat.dz` و`asjp.cerist.dz`. تطابق النطاق وحده لا يثبت رسمية الصفحة أو خلوّها من التعديل.
+- مصدر ثانوي غير رسمي: `oraconstantine.com` (نقابة المحامين بالقسطنطة). نصوصه تُدمج بـ `source_tier = "secondary"` و`legal_status = "unknown"` دائمًا، وتُرفق كل إجابة تستشهد بها بتنبيه صريح. `official_source_checked = True` في سجلاتها يعني فقط تحقّق URL وSHA-256 عند التنزيل، ولا يعني تأكيدًا من جهة إصدار.
 - الاستخراج عبر `PyMuPDF` أولًا مع NFKC وتحويل الأرقام العربية إلى ASCII؛ لا OCR في المسار الحالي. النصوص التي لا تحتوي طبقة نصية تُحجر ولا تُدرج.
-- إعادة البناء: `fetch_official_sources.py` ← `extract_pdfs.py` ← `fetch_html_portal.py` ← `ingest_official_sources.py`. السكربتات لا تُنزّل شيئًا أثناء الإجابة.
+- إعادة البناء: `fetch_official_sources.py` ← `extract_pdfs.py` ← `fetch_html_portal.py` ← `ingest_official_sources.py`، وللمصادر الثانوية: `fetch_oraconstantine.py` ← `ingest_oraconstantine.py`. السكربتات لا تُنزّل شيئًا أثناء الإجابة.
 
-## المستندات المدرجة في `data/corpus.jsonl` (13)
+## المستندات الرسمية المدرجة في `data/corpus.jsonl` (13 من 134)
 
 | المعرّف | المصدر | اللغة | المجال | SHA-256 لملف المصدر | ملاحظة الجودة |
 |---|---|---|---|---|---|
@@ -28,6 +29,15 @@
 | `penal-code-ar-portal` | نسخة HTML لبوابة العدل، قانون العقوبات (66-156 المعدّل) | ar | criminal | `abf58ddaaab08824ec5d903922732258dd548abbbd2944033d56e2bd5753d090` | 944/945 صفحة، 270,306 حرف، بلا OCR؛ البصمة لقائمة الصفحات `HelpCommonData.js`؛ 649 عنوان مادة فريدًا من 754 مقطعًا مُعنونًا |
 
 بصمة `constitution-ar-full` للنص المستخرج: `5f7a749ba2d4129a572c1cdefef3f130b7b5d85ecf2f6aafb5f4b866673429b5`. بصمة `penal-code-ar-portal` للنص المستخرج: `9f28e2ab401bccaf4c682a70e7376659fa09129fdeaae11f35bcc576965666b5`.
+
+## المستندات الثانوية المدرجة (121 من 134)
+
+- الموقع: `https://oraconstantine.com/laws/list_pages.php/`، ناشره نقابة المحامين بالقسطنطة. **ليس جهة إصدار رسمية**.
+- السجل الكامل: `data/oraconstantine_manifest.json` (الروابط، وبصمات HTML والنص، وحالة كل صفحة)، وتقرير الإدماج `data/oraconstantine_ingest_report.json`.
+- اُكتشف `126` رابطًا، وحُفظ `124` صفحة، منها `121` صفحة ذات عناوين مواد أُدمجت. و3 صفحات بلا عناوين مواد (`orac-115-law`، `orac-125-law`، `orac-126-law`) لم تُدمج.
+- رابطان يُعيدان `404` من الناشر نفسه، موثّقان في `unavailable_links`: `التأمين عن البطالة لف…` و`الوقایة الصحیة و الأمن و طب العمل`.
+- رابط واحد معوّج في فهرس الناشر (`شروط وقrules ممارسة الشعائر الدينية لغير المسلمين`) صُحّح يدويًا إلى `شروط وقواعد ممارسة الشعائر الدينية لغير المسلمين` بعد التحقق من `HTTP 200`.
+- كل سجل ثانوي يحمل `source_tier = "secondary"` و`legal_status = "unknown"` و`legal_status_checked_on = null`. لا يجوز تغيير الحالة إلا بتوقيع مراجع بشري مقابل الجريدة الرسمية، انظر `docs/HUMAN_REVIEW_CHECKLIST.md`.
 
 ### قيود خاصة بالمصدرين الجديدين
 
@@ -52,6 +62,7 @@
 2. التحقق من التعديلات والملغيات اللاحقة لكل صك، وتحديث `legal_status` إلى `verified_current` أو `historical_or_repealed` مع `legal_status_checked_on` و`legal_status_evidence_urls`.
 3. مراجعة بصرية كاملة للدستور (بما في ذلك الأرقام داخل المتن) ولقانون العقوبات HTML، وإزالة المقاطع المرجعية المُعنونة خطأً.
 4. إعادة تشغيل `python -m dz_legal_ai.cli chunk-check` و`python -m dz_legal_ai.cli corpus-check` والتأكد من اختفاء `constitution-amendment-2026-ar` من نتائج الاسترجاع.
-5. إعداد benchmark أسئلة وأجوبة يراجعه محامون أو أساتذة قانون، ثم قياس الامتناع والتغطية قبل أي تدريب LoRA أو استخدام واقعي.
+5. إعداد benchmark أسئلة وأجوبة يراجعه محامون أو أساتذة قانون، ثم قياس الامتناع والتغطية قبل أي تدريب LoRA أو استخدام واقعي. القالب الحالي `data/evaluation/benchmark.jsonl` يعطي `8/8` تطابقًا سلوكيًا لكنه **غير موقّع** (`0/8`)؛ انظر `docs/EVALUATION_BENCHMARK.md`.
+6. التوقيع على كل مستند ثانوي في `docs/HUMAN_REVIEW_CHECKLIST.md` قبل اعتباره صالحًا للاسترشاد الموثّق؛ وإلا يبقى تنبيه المصدر الثانوي إلزاميًا.
 
 إلى أن تكتمل هذه الخطوات، يبقى النظام في وضع المعلومات فقط، ولا تُقدَّم مخرجاته كاستشارة قانونية.

@@ -305,6 +305,7 @@ def chunk_record(record: dict[str, Any]) -> list[dict[str, Any]]:
         "source_url",
         "source_language",
         "source_locator",
+        "source_tier",
         "source_checked_on",
         "legal_status",
         "legal_status_checked_on",

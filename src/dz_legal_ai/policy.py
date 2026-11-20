@@ -54,7 +54,21 @@ _FOREIGN_JURISDICTION_MARKERS = (
     "mauritania",
     "المغرب",
     "تونس",
+    "تونسي",
+    "التونسي",
+    "التونسية",
     "مصر",
+    "مصري",
+    "المصري",
+    "المصرية",
+    "فرنسا",
+    "فرنسي",
+    "الفرنسي",
+    "الفرنسية",
+    "المغرب",
+    "مغربي",
+    "المغربي",
+    "المغربية",
     "بريطانيا",
     "الولايات المتحدة",
     "امريكا",
@@ -113,6 +127,10 @@ ALLOWED_SOURCE_HOSTS = (
     "conseildetat.dz",
     "asjp.cerist.dz",
 )
+# Secondary, non-official publishers. Their texts are technically citable in
+# informational mode only, never as proof of the law currently in force.
+SECONDARY_SOURCE_HOSTS = ("oraconstantine.com",)
+ALL_SOURCE_HOSTS = (*ALLOWED_SOURCE_HOSTS, *SECONDARY_SOURCE_HOSTS)
 ALLOWED_REUSE_BASES = {
     "CC0-1.0",
     "CC-BY-4.0",
@@ -204,6 +222,19 @@ def validate_source_url(url: str) -> None:
     if not _is_https_url_for_allowed_host(url, ALLOWED_SOURCE_HOSTS):
         raise ValueError(
             "source_url must use HTTPS and an explicitly allowed official-source host"
+        )
+
+
+def is_secondary_source_url(url: str) -> bool:
+    """True when the URL belongs to a non-official secondary publisher."""
+    return _is_https_url_for_allowed_host(url, SECONDARY_SOURCE_HOSTS)
+
+
+def validate_secondary_source_url(url: str) -> None:
+    if not _is_https_url_for_allowed_host(url, ALL_SOURCE_HOSTS):
+        raise ValueError(
+            "source_url must use HTTPS and an explicitly allowed official or "
+            "secondary-source host"
         )
 
 

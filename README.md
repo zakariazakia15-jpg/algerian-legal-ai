@@ -6,14 +6,14 @@
 
 ## الحالة والنطاق (نوفمبر 2026)
 
-- يحتوي `data/corpus.jsonl` على **13 مستندًا**: نصوص من بوابة وزارة العدل (الدستور الكامل، القانون المدني، قانون العقوبات، قانون الإجراءات الجزائية، قانون التجارة، قانون الأسرة، قانون الجنسية، قانون المؤسسات العقابية، وقوانين محدّثة) إضافة إلى عينتين تاريخيتين قديمتين. **كلها `legal_status = "unknown"`**.
+- يحتوي `data/corpus.jsonl` على **134 مستندًا**: 13 مستندًا من بوابة وزارة العدل (الدستور الكامل، القانون المدني، قانون العقوبات، قانون الإجراءات الجزائية، قانون التجارة، قانون الأسرة، قانون الجنسية، قانون المؤسسات العقابية، وقوانين محدّثة وعينتين تاريخيتين)، و**121 مستندًا ثانويًا غير رسمي** من موقع نقابة المحامين بالقسطنطة (`oraconstantine.com`) تحمل `source_tier = "secondary"`. **كلها `legal_status = "unknown"`**. المصادر الثانوية تُرفق دائمًا بتنبيه صريح، ولا تُعدّ دليلًا على النفاذ.
 - السلوك الافتراضي هو **الامتناع**: `assist` بدون `--allow-unverified` لا يجيب عن حالة غير موثّقة. الوضع المعلوماتي يتطلب `--allow-unverified`، ويُرفق الإجابة بتنبيه قوي `informational_only = true`.
 - **التوليد مُفعّل محليًا عبر CLI فقط** بنموذج `Qwen/Qwen2.5-1.5B-Instruct` المُنزّل في `models/base/Qwen2.5-1.5B-Instruct/`. الإجابة تمرّ عبر مدقق استناد؛ وعند فشل التحقق أو انتهاء مهلة `timeout_seconds = 180` يعود النظام تلقائيًا إلى **إجابة استخراجية مُسندة** (`mode = extractive-grounded`) ولا يعلّق سطر الأوامر.
 - واجهة HTTP الاختيارية (`api.py`) لا تستدعي المساعد التوليدي؛ `/ask` و`/lookup` يستخدمان الاسترجاع الحرفي لمجموعة `verified_current` فقط. لا يوجد توليد عبر API.
-- الاسترجاع على مستوى **المادة** (`article-based chunking`) مع حفظ `book` و`chapter` و`section`، وترجيح **BM25** مع تضمين كثيف اختياري (FAISS/NumPy). التضمين الكثيف معطّل افتراضيًا (`dense_enabled = false`) حتى تتوفر أوزان `BAAI/bge-m3` محليًا.
+- الاسترجاع على مستوى **المادة** (`article-based chunking`) مع حفظ `book` و`chapter` و`section`، وترجيح **BM25** مع تضمين كثيف اختياري (FAISS/NumPy). أوزان `BAAI/bge-m3` متوفرة محليًا و`dense_enabled = true`، لكن الاسترجاع الكثيف لا يُستخدم إلا بعد بناء الفهرس صراحةً بـ `build-index`؛ قبله يعمل النظام بـ BM25 فقط، ولا يُحمَّل أي نموذج أثناء الإجابة.
 - المتن الذي يتعذّر استخراجه استخراجًا موثوقًا يُحجر عبر `[corpus_quality] excluded_document_ids`؛ حاليًا `constitution-amendment-2026-ar`.
 - `www.joradp.dz` تعذّر الوصول إليه أثناء بناء المتن؛ استُخدمت بوابة `droit.mjustice.gov.dz` كمصدر رسمي بديل مع تسجيل URL وSHA-256 وتاريخ التنزيل. لا يُعدّ هذا دليلًا على النفاذ الحالي.
-- لا توجد بيانات قضايا أو benchmark قانوني مُعتمد، ولا adapter مُدرَّب. انظر `docs/OFFICIAL_CORPUS.md` لجدول المصادر والبصمات والقيود، و`docs/MODEL_CARD.md` لبطاقة النموذج.
+- يوجد قالب `benchmark` سلوكي غير موقّع في `data/evaluation/benchmark.jsonl` يعطي `8/8` تطابقًا استرجاعيًا/سلامة، لكن **`0/8` موقّع من مختص**؛ لا يُعدّ دقة قانونية. انظر `docs/EVALUATION_BENCHMARK.md`، و`docs/HUMAN_REVIEW_CHECKLIST.md`، و`docs/OFFICIAL_CORPUS.md`، و`docs/MODEL_CARD.md`. لا توجد بيانات SFT موافق عليها ولا adapter مُدرَّب.
 
 ## التشغيل
 
@@ -75,10 +75,22 @@ python scripts/ingest_official_sources.py       # corpus.jsonl + السجل وا
 
 ```powershell
 python -m pip install -e ".[retrieval]"
-# بعد توفير أوزان BAAI/bge-m3 محليًا (لا تنزيل تلقائي):
+# الأوزان متوفرة محليًا؛ البناء صريح ولا ينزّل شيئًا:
+$env:HF_HUB_OFFLINE="1"
+$env:USE_TF="0"
 python -m dz_legal_ai.cli build-index
-# ثم اضبط dense_enabled = true في models/model-config.toml للاستخدام
 ```
+
+يُنتج `data/vector_index/embeddings.npy` و`data/vector_index/chunks.json`. على جهاز بلا GPU قد يستغرق بناء `23,239` مقطعًا نحو ساعتين؛ إلى أن يكتمل يبقى الاسترجاع `lexical` فقط. `dense_enabled = true` في `models/model-config.toml`.
+
+### متن نقابة المحامين بالقسطنطة (مصدر ثانوي)
+
+```powershell
+python scripts/fetch_oraconstantine.py --resume --workers 2
+python scripts/ingest_oraconstantine.py
+```
+
+السكربت الأول ينتج `data/oraconstantine_manifest.json` مع URL وSHA-256 لكل صفحة، والثاني يدمج النصوص كـ `source_tier = "secondary"` و`legal_status = "unknown"`. رابطان في فهرس الناشر يُعيدان `404` موثّقان في `unavailable_links`؛ و3 صفحات بلا عناوين مواد لم تُدمج. هذه النصوص للاسترشاد فقط، وليست جهة إصدار.
 
 ## استيراد نص محلي
 
@@ -140,7 +152,7 @@ python -m dz_legal_ai.cli candidate-corpus-check
 ## مبادئ السلامة والتوثيق
 
 - الولاية القضائية الوحيدة هي الجزائر (`DZ`)؛ يُرفض غيرها صراحةً.
-- النطاقات المسموحة في `src/dz_legal_ai/policy.py`: `joradp.dz` (مفضّل) و`droit.mjustice.gov.dz` و`mjustice.gov.dz` و`coursupreme.dz` و`conseildetat.dz` و`asjp.cerist.dz`. تطابق النطاق لا يثبت رسمية الصفحة أو نفاذها.
+- النطاقات الرسمية المسموحة في `src/dz_legal_ai/policy.py`: `joradp.dz` (مفضّل) و`droit.mjustice.gov.dz` و`mjustice.gov.dz` و`coursupreme.dz` و`conseildetat.dz` و`asjp.cerist.dz`. يُسمح إضافةً بـ `oraconstantine.com` كمصدر ثانوي فقط، مع تنبيه إلزامي في كل إجابة تستشهد به. تطابق النطاق لا يثبت رسمية الصفحة أو نفاذها.
 - كل استشهاد يحمل رابط المصدر، والموضع، واللغة، وتاريخ المراجعة، ومعرّف المستند، وبصمة SHA-256 للمحتوى. البصمة تثبت هوية الملف المستورد فقط، لا صدوره أو سلامته القانونية.
 - الإجابة مُقيّدة: اقتباس إلزامي، حد أدنى لتغطية الجمل بالدليل (`minimum_sentence_support = 0.45`)، وإسناد إلى مادة (`require_article_citation = true`)؛ وإلا امتناع أو سقوط استخراجي.
 - التوليد لا ينشئ مصادر أو مواد أو حالة نفاذ؛ `allow_uncited_generation = false`. عند تعذّر التحقق أو انتهاء المهلة لا تُعرض مخرجات النموذج غير المُتحقّق منها.

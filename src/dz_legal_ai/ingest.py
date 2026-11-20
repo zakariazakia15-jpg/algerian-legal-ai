@@ -13,7 +13,9 @@ from .policy import (
     ALLOWED_REUSE_BASES,
     LEGAL_DOMAINS,
     LEGAL_TEXT_TYPES,
+    is_secondary_source_url,
     validate_reuse_evidence_for,
+    validate_secondary_source_url,
     validate_source_url,
 )
 
@@ -155,7 +157,19 @@ def build_record(text: str, metadata: dict[str, Any]) -> dict[str, Any]:
             "The Algerian statutory reuse basis requires a supported legal_text_type"
         )
 
-    validate_source_url(metadata["source_url"])
+    source_url = metadata["source_url"]
+    source_tier = metadata.get("source_tier", "official")
+    if source_tier not in {"official", "secondary"}:
+        raise ValueError("source_tier must be 'official' or 'secondary'")
+    if source_tier == "secondary" or is_secondary_source_url(source_url):
+        validate_secondary_source_url(source_url)
+        source_tier = "secondary"
+        if legal_status != "unknown":
+            raise ValueError(
+                "A secondary, non-official source must always have legal_status='unknown'"
+            )
+    else:
+        validate_source_url(source_url)
     validate_reuse_evidence_for(reuse_basis, metadata["reuse_evidence_url"])
     normalized_text = text.strip()
     record = {
@@ -165,9 +179,10 @@ def build_record(text: str, metadata: dict[str, Any]) -> dict[str, Any]:
         "jurisdiction": "DZ",
         "legal_domain": metadata["legal_domain"],
         "legal_instrument_id": legal_instrument_id,
-        "source_url": metadata["source_url"],
+        "source_url": source_url,
         "source_language": metadata["source_language"],
         "source_locator": metadata["source_locator"].strip(),
+        "source_tier": source_tier,
         "official_source_checked": True,
         "source_checked_on": metadata["source_checked_on"],
         "verification_note": metadata["verification_note"].strip(),

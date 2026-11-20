@@ -17,6 +17,13 @@ from .policy import asks_current_legal_status, is_foreign_jurisdiction_query
 from .service import ABSTENTION, DISCLAIMER, OUTSIDE_JURISDICTION, UNVERIFIED_EVIDENCE_ABSTENTION, UNVERIFIED_STATUS_ABSTENTION
 from .verify import build_extractive_answer, verify_answer
 
+SECONDARY_SOURCE_WARNING = (
+    "تنبيه جوهري: بعض النصوص المستشهد بها مأخوذة من مصدر ثانوي غير رسمي "
+    "(موقع نقابة المحامين بالقسطنطة)، وليس من جهة إصدار رسمية. لم تُطابق هذه "
+    "النصوص مع الجريدة الرسمية، وقد تكون ناقصة أو معدّلة أو ملغاة. لا يجوز "
+    "الاعتماد عليها في واقعة أو قرار شخصي دون مراجعة مختص."
+)
+
 
 def _filter_by_status(evidence: list[ArticleEvidence], require_current: bool) -> list[ArticleEvidence]:
     if require_current:
@@ -116,12 +123,20 @@ def assist_query(
         evidence = eligible
 
     citations = _citation_payload(evidence)
+    secondary_warning = (
+        SECONDARY_SOURCE_WARNING + " "
+        if any(item.get("source_tier") == "secondary" for item in citations)
+        else ""
+    )
     disclaimer = DISCLAIMER
     if informational_only:
         disclaimer = (
             "هذه مقتطفات من نصوص لم تُكتمل مراجعتها الرسمية؛ معلومات استرشادية فقط، "
             "ولا يجوز وصفها بالقانون النافذ. " + DISCLAIMER
         )
+    # Keep the non-official-source warning even in informational mode: it is
+    # the strongest disclaimer and must never be overwritten by a softer one.
+    disclaimer = secondary_warning + disclaimer
     generator = generator_settings(config)
     verification = verification_settings(config)
     full_system = system_prompt(config) + GROUNDED_SYSTEM_PROMPT_SUFFIX

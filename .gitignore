@@ -10,6 +10,7 @@ data/corpus.jsonl
 data/candidate-corpus.jsonl
 data/*.tmp
 data/raw/
+data/vector_index/
 data/raw_sources.zip
 data/training/*.jsonl
 private/
