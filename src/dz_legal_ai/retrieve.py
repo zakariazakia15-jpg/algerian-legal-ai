@@ -81,6 +81,32 @@ _STOPWORDS = {
     "كان",
     "كانت",
     "يكون",
+    "كانوا",
+    "ماهي",
+    "ماهو",
+    "كيف",
+    "كم",
+    "اين",
+    "أين",
+    "متى",
+    "لماذا",
+    "هل",
+    "اي",
+    "أي",
+    "كل",
+    "واحد",
+    "حسب",
+    "فينا",
+    "فيها",
+    "منها",
+    "عليها",
+    "عليه",
+    "له",
+    "لها",
+    "به",
+    "بها",
+    "عنها",
+    "عنه",
     "و",
     "أو",
     "او",
@@ -99,7 +125,17 @@ def tokenize(text: str) -> list[str]:
     normalized = unicodedata.normalize("NFKC", text).casefold()
     normalized = _DIACRITICS.sub("", normalized).translate(_ARABIC_NORMALIZATION)
     normalized = _ABOVE_PHRASE.sub("audessus", normalized)
-    return [token for token in _TOKEN.findall(normalized) if token not in _STOPWORDS]
+    tokens = []
+    for token in _TOKEN.findall(normalized):
+        # Arabic conjunction and definite article are function words, not
+        # legal concepts: "والإرث" must become "ارث" like "الإرث".
+        if token.startswith("و") and len(token) > 5 and token[1:].startswith("ال"):
+            token = token[1:]
+        if token.startswith("ال") and len(token) > 4:
+            token = token[2:]
+        if token not in _STOPWORDS:
+            tokens.append(token)
+    return tokens
 
 
 def split_segments(text: str) -> list[str]:

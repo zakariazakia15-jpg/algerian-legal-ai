@@ -49,8 +49,13 @@ LEGAL_SYNONYMS: dict[str, tuple[str, ...]] = {
     "cassation": ("نقض",),
     "جريمة": ("infraction", "delit", "crime"),
     "infraction": ("جريمة",),
-    "عقوبة": ("peine", "sanction"),
-    "peine": ("عقوبة",),
+    "عقوبة": ("عقوبات", "peine", "peines", "sanction", "sanctions"),
+    "عقوبات": ("عقوبة", "peine", "peines"),
+    "peine": ("عقوبة", "عقوبات"),
+    "سارق": ("سرقة", "سرق", "vol", "voleur", "theft"),
+    "سرقة": ("سارق", "سرق", "vol", "voleur", "theft"),
+    "سرق": ("سرقة", "سارق", "vol", "voleur"),
+    "vol": ("سرقة", "سارق"),
     "سجن": ("emprisonnement", "prison"),
     "غرامة": ("amende",),
     "amende": ("غرامة",),
@@ -58,8 +63,19 @@ LEGAL_SYNONYMS: dict[str, tuple[str, ...]] = {
     "mariage": ("زواج",),
     "طلاق": ("divorce",),
     "divorce": ("طلاق",),
-    "ميراث": ("succession", "heritage"),
-    "succession": ("ميراث",),
+    "ميراث": ("إرث", "ورثة", "وارث", "ورث", "succession", "heritage", "héritage", "héritier"),
+    "إرث": ("ميراث", "ورثة", "وارث", "succession", "heritage"),
+    "ورث": ("ميراث", "إرث", "ورثة", "succession"),
+    "ورثنا": ("ميراث", "إرث", "ورثة", "وارث", "succession", "héritage"),
+    "ورثة": ("ميراث", "إرث", "وارث", "succession", "héritier"),
+    "وارث": ("ميراث", "إرث", "ورثة", "héritier"),
+    "succession": ("ميراث", "إرث", "ورثة"),
+    "حصة": ("أنصبة", "نصيب", "part", "partage"),
+    "نصيب": ("حصة", "أنصبة", "part"),
+    "أخوة": ("أخ", "أخوان", "إخوة", "frère", "freres"),
+    "أخ": ("أخوة", "أخوان", "frère"),
+    "نساء": ("امرأة", "نساء", "femme", "femmes"),
+    "دينار": ("دج",),
     "عمل": ("travail", "emploi"),
     "travail": ("عمل",),
     "عامل": ("salarie", "travailleur"),
@@ -126,13 +142,49 @@ class ArticleEvidence:
     source_tier: str = "official"
 
 
+# Synonym keys are normalized at import time: a query token such as "ارث"
+# must find the entry written as "إرث" in the vocabulary above.
+_NORMALIZED_SYNONYMS: dict[str, tuple[str, ...]] = {}
+for _key, _values in LEGAL_SYNONYMS.items():
+    for _token in tokenize(_key):
+        merged = list(_NORMALIZED_SYNONYMS.get(_token, ()))
+        for _value in _values:
+            merged.extend(tokenize(_value))
+        _NORMALIZED_SYNONYMS[_token] = tuple(dict.fromkeys(merged))
+
+# Words that appear in almost every law but do not identify a legal concept.
+# A chunk matching only these must never be offered as an answer.
+GENERIC_TERMS = frozenset(
+    tokenize(
+        "عقوبة عقوبات peine peines sanction sanctions قانون loi droit "
+        "حكم jugement arret جزائي جزائري الجزائر حالة حكام "
+        "مليار مليون دينار دج اربع خمس وخمس واحد"
+    )
+)
+
+
 def expand_query_tokens(query: str) -> set[str]:
     tokens = set(tokenize(query))
     expanded = set(tokens)
     for token in tokens:
-        for synonym in LEGAL_SYNONYMS.get(token, ()):
-            expanded.update(tokenize(synonym))
+        expanded.update(_NORMALIZED_SYNONYMS.get(token, ()))
     return expanded
+
+
+def query_concept_groups(query: str) -> list[frozenset[str]]:
+    """Group each significant query word with its legal equivalents.
+
+    Relevance is judged per concept, not per raw word: "ورثنا" and "الميراث"
+    are one concept, while "ماهي" and "كم" are not concepts at all.
+    """
+    groups: list[frozenset[str]] = []
+    seen: set[frozenset[str]] = set()
+    for token in tokenize(query):
+        group = frozenset(expand_query_tokens(token))
+        if group and group not in seen:
+            seen.add(group)
+            groups.append(group)
+    return groups
 
 
 def _load_dense(model_name: str) -> Any | None:
@@ -180,8 +232,9 @@ def retrieve_articles(
     quality = corpus_quality_settings(config)
     limit = top_k if top_k is not None else settings["top_k"]
     excluded = set(quality["excluded_document_ids"])
-    query_terms = expand_query_tokens(query)
-    if not query_terms or not documents:
+    query_groups = query_concept_groups(query)
+    query_terms = set().union(*query_groups) if query_groups else set()
+    if not query_groups or not documents:
         return []
 
     encoder = None
@@ -232,12 +285,29 @@ def retrieve_articles(
                 continue
             candidates.append(chunk)
 
-    ranked = [
-        (index, chunk)
-        for index, chunk in enumerate(candidates)
-        if len(query_terms & set(tokenize(chunk["text"]))) / len(query_terms)
-        >= settings["minimum_coverage"]
-    ]
+    # A passage qualifies only if it covers enough *concepts* and at least one
+    # of them is specific. This stops generic words such as "عقوبة" from
+    # pulling unrelated articles about any kind of sentence.
+    has_specific_query = any(not (group <= GENERIC_TERMS) for group in query_groups)
+    ranked = []
+    for index, chunk in enumerate(candidates):
+        chunk_tokens = set(tokenize(chunk["text"]))
+        matched = [group for group in query_groups if group & chunk_tokens]
+        if not matched:
+            continue
+        specific_matched = [
+            group for group in matched if not (group <= GENERIC_TERMS)
+        ]
+        if has_specific_query and not specific_matched:
+            continue
+        # Long natural questions contain many filler words. Two independent
+        # specific concepts are as informative as the configured ratio.
+        if (
+            len(matched) / len(query_groups) < settings["minimum_coverage"]
+            and len(specific_matched) < 2
+        ):
+            continue
+        ranked.append((index, chunk))
     if not ranked:
         return []
     bm25 = BM25Index([tokenize(chunk["text"]) for _, chunk in ranked])
@@ -300,6 +370,13 @@ def retrieve_articles(
             )
         )
     results.sort(key=lambda item: (-item.score, item.document_id, item.chunk_index))
+    # Keep passages that are actually close to the best match. Without this,
+    # a question about inheritance also drags in tax articles merely because
+    # both mention "مليار دينار".
+    if results:
+        top_score = results[0].score
+        if top_score > 0:
+            results = [item for item in results if item.score >= 0.55 * top_score]
     diversified: list[ArticleEvidence] = []
     per_document: dict[str, int] = {}
     for item in results:
