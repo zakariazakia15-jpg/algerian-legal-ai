@@ -134,6 +134,36 @@ def test_unsupported_generation_falls_back_to_extractive_answer(monkeypatch):
     assert "seconde disposition" in result["answer"]
 
 
+def test_extractive_fallback_reads_as_an_advisory_answer():
+    result = assist_query("seconde disposition", [current_record()], prefer_generation=False)
+    assert result["answer"].startswith("الجواب الاسترشادي:")
+    assert result["answer_style"] == "advisory-grounded"
+    assert "حدود هذه الإجابة" in result["answer"]
+    assert "ليست فتوى" in result["answer"]
+
+
+def test_advisory_answer_flags_two_conflicting_versions_of_one_article():
+    from dz_legal_ai.advisory import build_advisory_answer
+
+    first = build_record(
+        "المادة 10: يعد مرتكب جريمة التحرش الجنسي ويعاقب بالحبس من شهرين إلى سنة "
+        "وبغرامة من 50.000 دج إلى 100.000 دج.",
+        metadata(document_id="first-source", legal_domain="criminal", source_language="ar"),
+    )
+    second = build_record(
+        "المادة 10: يعد مرتكب جريمة التحرش الجنسي ويعاقب بالحبس من سنة إلى ثلاث سنوات "
+        "وبغرامة من 100.000 دج إلى 300.000 دج.",
+        metadata(document_id="second-source", legal_domain="criminal", source_language="ar"),
+    )
+    evidence = retrieve_articles("عقوبة التحرش", [first, second])
+    assert len({item.article_label for item in evidence}) == 1
+    answer = build_advisory_answer("ماهي العقوبة", evidence)
+    assert "روايتان مختلفتان" in answer
+    assert "first-source" in answer and "second-source" in answer
+    assert "50.000 دج" in answer and "300.000 دج" in answer
+    assert "(مصدر صنّفه المتن رسمياً)" in answer
+
+
 def test_verifier_rejects_unsupported_answer():
     evidence = retrieve_articles("seconde disposition", [current_record()])
     bad = verify_answer("حكم مختلف تمامًا عن عقد الإيجار [synthetic-assistant]", evidence)

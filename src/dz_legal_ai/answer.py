@@ -10,12 +10,13 @@ from __future__ import annotations
 from dataclasses import asdict
 from typing import Any
 
+from .advisory import build_advisory_answer
 from .config import GROUNDED_SYSTEM_PROMPT_SUFFIX, generator_settings, system_prompt, verification_settings
 from .generate import GenerationUnavailable, generate_text
 from .hybrid import ArticleEvidence, retrieve_articles
 from .policy import asks_current_legal_status, is_foreign_jurisdiction_query
 from .service import ABSTENTION, DISCLAIMER, OUTSIDE_JURISDICTION, UNVERIFIED_EVIDENCE_ABSTENTION, UNVERIFIED_STATUS_ABSTENTION
-from .verify import build_extractive_answer, verify_answer
+from .verify import verify_answer
 
 SECONDARY_SOURCE_WARNING = (
     "تنبيه جوهري: بعض النصوص المستشهد بها مأخوذة من مصدر ثانوي غير رسمي "
@@ -161,6 +162,7 @@ def assist_query(
                     "answer": generated.text,
                     "abstained": False,
                     "mode": "generated-grounded",
+                    "answer_style": "generated-grounded",
                     "verification": {
                         "supported": report.supported,
                         "reason": report.reason,
@@ -175,11 +177,12 @@ def assist_query(
         except GenerationUnavailable:
             pass
 
-    extractive = build_extractive_answer(evidence)
+    advisory = build_advisory_answer(query, evidence)
     return {
-        "answer": extractive,
+        "answer": advisory,
         "abstained": False,
         "mode": "extractive-grounded",
+        "answer_style": "advisory-grounded",
         "verification": {"supported": True, "reason": "extractive-fallback", "support_ratio": 1.0},
         "citations": citations,
         "informational_only": informational_only,
