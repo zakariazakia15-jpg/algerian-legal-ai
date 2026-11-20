@@ -9,11 +9,13 @@ import sys
 from pathlib import Path
 from typing import Sequence
 
+from .answer import assist_query
 from .candidate_corpus import (
     DEFAULT_CANDIDATE_CORPUS,
     build_candidate_corpus,
     candidate_corpus_status,
 )
+from .chunking import chunk_record
 from .evaluation import evaluate_cases
 from .ingest import build_seed_corpus, ingest_files, read_corpus
 from .service import answer_query, lookup_source_text
@@ -36,6 +38,34 @@ def _parser() -> argparse.ArgumentParser:
     ask = commands.add_parser("ask", help="Ask using the local verified corpus")
     ask.add_argument("query")
     ask.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+
+    assist = commands.add_parser(
+        "assist",
+        help="Grounded legal assistant: cite articles, verify support, then answer",
+    )
+    assist.add_argument("query")
+    assist.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+    assist.add_argument(
+        "--allow-unverified",
+        action="store_true",
+        help="Informational-only mode for texts whose current status is not yet reviewed",
+    )
+    assist.add_argument(
+        "--extractive-only",
+        action="store_true",
+        help="Skip the local model and return verbatim cited passages only",
+    )
+
+    chunks = commands.add_parser(
+        "chunk-check", help="Audit article-level chunking of the local corpus"
+    )
+    chunks.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+
+    build_index = commands.add_parser(
+        "build-index",
+        help="Build a local dense vector index over article chunks (requires a local embedding model)",
+    )
+    build_index.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
 
     lookup = commands.add_parser(
         "lookup",
@@ -127,6 +157,48 @@ def main(argv: Sequence[str] | None = None) -> int:
                 ensure_ascii=False,
             )
         )
+        return 0
+
+    if args.command == "assist":
+        result = assist_query(
+            args.query,
+            read_corpus(args.corpus),
+            prefer_generation=not args.extractive_only,
+            allow_unverified=args.allow_unverified,
+        )
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return 0
+
+    if args.command == "chunk-check":
+        documents = read_corpus(args.corpus)
+        report = [
+            {
+                "document_id": document["document_id"],
+                "source_language": document["source_language"],
+                "chunks": len(chunk_record(document)),
+                "articles": len(
+                    {
+                        chunk["article_label"]
+                        for chunk in chunk_record(document)
+                        if chunk["article_label"]
+                    }
+                ),
+                "legal_status": document["legal_status"],
+            }
+            for document in documents
+        ]
+        print(json.dumps({"documents": report}, ensure_ascii=False, indent=2))
+        return 0
+
+    if args.command == "build-index":
+        from .indexer import IndexUnavailable, build_vector_index
+
+        try:
+            report = build_vector_index(read_corpus(args.corpus))
+        except IndexUnavailable as exc:
+            print(json.dumps({"built": False, "error": str(exc)}, ensure_ascii=False), file=sys.stderr)
+            return 2
+        print(json.dumps(report, ensure_ascii=False, indent=2))
         return 0
 
     if args.command == "lookup":

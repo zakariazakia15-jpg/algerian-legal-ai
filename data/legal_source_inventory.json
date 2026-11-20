@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "jurisdiction": "DZ",
-  "checked_on": "2026-11-09",
-  "notice": "Discovery and extraction log, not a declaration of current law or a license to republish Gazette files. Only records marked included_seed have text in data/seed/; files under data/candidates/ are unreviewed and excluded from corpus and SFT.",
+  "checked_on": "2026-11-20",
+  "notice": "Discovery and extraction log, not a declaration of current law or a license to republish Gazette files. Records marked included_official_text_unverified have text in data/extracted/ and are in data/corpus.jsonl with legal_status=unknown; files under data/candidates/ are unreviewed and excluded from corpus and SFT. See docs/OFFICIAL_CORPUS.md.",
   "sources": [
     {
       "source_id": "algerian-ord-03-05-fr",
@@ -171,6 +171,138 @@
       "candidate_text_sha256": "e080056f6c4dde5ad6cf9ef91c6c200457ec1e8f5dff656a5ec2194533e61cbc",
       "observation": "Official 48-page PDF. The decree title and signature were located on PDF pages 3 and 41; a text-layer candidate for those pages was extracted, excluding visible Gazette headers and the printer footer.",
       "not_included_reason": "The two-column extraction order and full text have not been visually checked; amendments, repeal, current force, and instrument-specific reuse review are incomplete."
+    },
+    {
+      "source_id": "civil-code-ar",
+      "reference": "القانون المدني الجزائري (نص مجمّع)",
+      "source_url": "https://droit.mjustice.gov.dz/sites/default/files/ACivil.pdf",
+      "source_document_sha256": "17a555bf81d5b99bf67417f3d42c157fd5df69499d6190cffbf182bc3566b573",
+      "status": "included_official_text_unverified",
+      "legal_status": "unknown",
+      "legal_domain": "civil",
+      "extracted_text_file": "data\\extracted\\civil-code-ar.txt",
+      "limitations": "Text-layer extraction from the Ministry of Justice portal; not visually proofread, amendments and current force unverified.",
+      "not_included_reason": "مُدرج في الـ corpus المحلي بحالة legal_status=unknown فقط؛ الاستجابة عبر الوضع المعلوماتي إلى حين مراجعة النص وحالة نفاذه من قِبل مختص."
+    },
+    {
+      "source_id": "commercial-code-ar",
+      "reference": "قانون التجارة الجزائري",
+      "source_url": "https://droit.mjustice.gov.dz/sites/default/files/code_commerce_ar.pdf",
+      "source_document_sha256": "6cbd82998bf64e79d5d0a003cda2a543e13b60b167622463d692a392589dca32",
+      "status": "included_official_text_unverified",
+      "legal_status": "unknown",
+      "legal_domain": "commercial",
+      "extracted_text_file": "data\\extracted\\commercial-code-ar.txt",
+      "limitations": "Text-layer extraction from the Ministry of Justice portal; not visually proofread, amendments and current force unverified.",
+      "not_included_reason": "مُدرج في الـ corpus المحلي بحالة legal_status=unknown فقط؛ الاستجابة عبر الوضع المعلوماتي إلى حين مراجعة النص وحالة نفاذه من قِبل مختص."
+    },
+    {
+      "source_id": "constitution-amendment-2026-ar",
+      "reference": "قانون رقم 26-04 يتضمن التعديل الدستوري - الجريدة الرسمية عدد 22 لسنة 2026",
+      "source_url": "https://droit.mjustice.gov.dz/sites/default/files/revision_Constitution_jo_22_2026_ar.pdf",
+      "source_document_sha256": "aeef8f68e0ad93f747388c81f2f247fd799f019ff8fea0a3c8fdfa020afa9ab2",
+      "status": "included_official_text_unverified",
+      "legal_status": "unknown",
+      "legal_domain": "constitutional",
+      "extracted_text_file": "data\\extracted\\constitution-amendment-2026-ar.txt",
+      "limitations": "Text-layer extraction from the Ministry of Justice portal; not visually proofread, amendments and current force unverified.",
+      "not_included_reason": "مُدرج في الـ corpus المحلي بحالة legal_status=unknown فقط؛ الاستجابة عبر الوضع المعلوماتي إلى حين مراجعة النص وحالة نفاذه من قِبل مختص."
+    },
+    {
+      "source_id": "criminal-procedure-code-2025-ar",
+      "reference": "قانون رقم 25-14 المتعلق بقانون الإجراءات الجزائية",
+      "source_url": "https://droit.mjustice.gov.dz/sites/default/files/loi-25-14-code-proc-penale-ar.pdf",
+      "source_document_sha256": "eaadfd10a10944e0b4e31469a9a64160fd2ee7058ca91bf25a15f65abe0317a0",
+      "status": "included_official_text_unverified",
+      "legal_status": "unknown",
+      "legal_domain": "criminal_procedure",
+      "extracted_text_file": "data\\extracted\\criminal-procedure-code-2025-ar.txt",
+      "limitations": "Text-layer extraction from the Ministry of Justice portal; not visually proofread, amendments and current force unverified.",
+      "not_included_reason": "مُدرج في الـ corpus المحلي بحالة legal_status=unknown فقط؛ الاستجابة عبر الوضع المعلوماتي إلى حين مراجعة النص وحالة نفاذه من قِبل مختص."
+    },
+    {
+      "source_id": "family-code-fr",
+      "reference": "Code de la famille algérien",
+      "source_url": "https://droit.mjustice.gov.dz/sites/default/files/code_famille.pdf",
+      "source_document_sha256": "662d81783f6c0547a0e20b1387199a63dd8ddf5a21fe50d26fe9b0cc0d6f96d8",
+      "status": "included_official_text_unverified",
+      "legal_status": "unknown",
+      "legal_domain": "family",
+      "extracted_text_file": "data\\extracted\\family-code-fr.txt",
+      "limitations": "Text-layer extraction from the Ministry of Justice portal; not visually proofread, amendments and current force unverified.",
+      "not_included_reason": "مُدرج في الـ corpus المحلي بحالة legal_status=unknown فقط؛ الاستجابة عبر الوضع المعلوماتي إلى حين مراجعة النص وحالة نفاذه من قِبل مختص."
+    },
+    {
+      "source_id": "law-24-01-ar",
+      "reference": "قانون رقم 24-01 (تحديث بوابة القانون الجزائري)",
+      "source_url": "https://droit.mjustice.gov.dz/sites/default/files/Loi-24-01-ar.pdf",
+      "source_document_sha256": "087f260d4f8e24447489599c6ef285f4517c142c294b321e77f077e44ed94fd8",
+      "status": "included_official_text_unverified",
+      "legal_status": "unknown",
+      "legal_domain": "other_algerian_law",
+      "extracted_text_file": "data\\extracted\\law-24-01-ar.txt",
+      "limitations": "Text-layer extraction from the Ministry of Justice portal; not visually proofread, amendments and current force unverified.",
+      "not_included_reason": "مُدرج في الـ corpus المحلي بحالة legal_status=unknown فقط؛ الاستجابة عبر الوضع المعلوماتي إلى حين مراجعة النص وحالة نفاذه من قِبل مختص."
+    },
+    {
+      "source_id": "law-25-03-ar",
+      "reference": "قانون رقم 25-03 (تحديث بوابة القانون الجزائري)",
+      "source_url": "https://droit.mjustice.gov.dz/sites/default/files/loi_25_03_ar.pdf",
+      "source_document_sha256": "446e723a0e7f3a9907bf2fec8c3aa9a12b4fe9269e86e3fee9957827071f7325",
+      "status": "included_official_text_unverified",
+      "legal_status": "unknown",
+      "legal_domain": "other_algerian_law",
+      "extracted_text_file": "data\\extracted\\law-25-03-ar.txt",
+      "limitations": "Text-layer extraction from the Ministry of Justice portal; not visually proofread, amendments and current force unverified.",
+      "not_included_reason": "مُدرج في الـ corpus المحلي بحالة legal_status=unknown فقط؛ الاستجابة عبر الوضع المعلوماتي إلى حين مراجعة النص وحالة نفاذه من قِبل مختص."
+    },
+    {
+      "source_id": "nationality-code-ar",
+      "reference": "قانون الجنسية الجزائري",
+      "source_url": "https://droit.mjustice.gov.dz/sites/default/files/code_nation_alger.pdf",
+      "source_document_sha256": "aa341a8de51841b184982b99b07f5c74c04b152b1fdb194bb8c9078db4dbf78f",
+      "status": "included_official_text_unverified",
+      "legal_status": "unknown",
+      "legal_domain": "nationality",
+      "extracted_text_file": "data\\extracted\\nationality-code-ar.txt",
+      "limitations": "Text-layer extraction from the Ministry of Justice portal; not visually proofread, amendments and current force unverified.",
+      "not_included_reason": "مُدرج في الـ corpus المحلي بحالة legal_status=unknown فقط؛ الاستجابة عبر الوضع المعلوماتي إلى حين مراجعة النص وحالة نفاذه من قِبل مختص."
+    },
+    {
+      "source_id": "penitentiary-code-ar",
+      "reference": "قانون تنظيم المؤسسات العقابية وإعادة الإدماج الاجتماعي للمحبوسين",
+      "source_url": "https://droit.mjustice.gov.dz/sites/default/files/code_organisation_penitent_reinsert_sociale_detenus.pdf",
+      "source_document_sha256": "787e454228de504147ec5d2693065b89058f48bc1b5f8e9620fd8a0d42d3a39c",
+      "status": "included_official_text_unverified",
+      "legal_status": "unknown",
+      "legal_domain": "other_algerian_law",
+      "extracted_text_file": "data\\extracted\\penitentiary-code-ar.txt",
+      "limitations": "Text-layer extraction from the Ministry of Justice portal; not visually proofread, amendments and current force unverified.",
+      "not_included_reason": "مُدرج في الـ corpus المحلي بحالة legal_status=unknown فقط؛ الاستجابة عبر الوضع المعلوماتي إلى حين مراجعة النص وحالة نفاذه من قِبل مختص."
+    },
+    {
+      "source_id": "constitution-ar-full",
+      "reference": "دستور الجمهورية الجزائرية الديمقراطية الشعبية (الجريدة الرسمية عدد 28 لسنة 2020)",
+      "source_url": "https://droit.mjustice.gov.dz/sites/default/files/AConsti.pdf",
+      "source_document_sha256": "6b4914ae40e3f5778e392f498e5423f08863c25ce3674ac812ea1c540a2c231f",
+      "status": "included_official_text_unverified",
+      "legal_status": "unknown",
+      "legal_domain": "constitutional",
+      "extracted_text_file": "data\\extracted\\constitution-ar-full.txt",
+      "limitations": "PDF text layer from a Ministry of Justice mirror of the 2020 Gazette (44/44 pages). Multi-digit article numbers are reversed by RTL extraction; only article headings were corrected. Not visually proofread; amendments and current force unverified.",
+      "not_included_reason": "Included in the local corpus as legal_status=unknown only; answer use requires informational mode until a qualified reviewer verifies the text and its current force."
+    },
+    {
+      "source_id": "penal-code-ar-portal",
+      "reference": "قانون العقوبات الجزائري (نسخة بوابة وزارة العدل HTML)",
+      "source_url": "https://droit.mjustice.gov.dz/sites/default/files/portail/legisl_nouveau/code_penal_2010/ar/",
+      "source_document_sha256": "abf58ddaaab08824ec5d903922732258dd548abbbd2944033d56e2bd5753d090",
+      "status": "included_official_text_unverified",
+      "legal_status": "unknown",
+      "legal_domain": "criminal",
+      "extracted_text_file": "data\\extracted\\penal-code-ar-portal.txt",
+      "limitations": "Official HTML portal reconstruction (no OCR). Not visually proofread; some short cross-reference chunks may be mislabelled; current force and amendments unverified.",
+      "not_included_reason": "Included in the local corpus as legal_status=unknown only; answer use requires informational mode until a qualified reviewer verifies the text and its current force."
     }
   ]
 }

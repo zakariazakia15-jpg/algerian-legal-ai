@@ -1,12 +1,19 @@
 # المساعد القانوني الجزائري
 
-أساس مفتوح المصدر لمساعد معلوماتي يقتصر على القانون الجزائري، ويجيب بالاستناد إلى مقاطع مستوردة محليًا من مصادر رسمية موثّقة. يحتوي `data/seed/` على نصين فرنسيين محدودين: الأمر 03-05 لعام 2003 والنص الدستوري المنشور سنة 2020. كلاهما غير متحقق من حيث التعديلات والنفاذ الحالي؛ كما أن استخراج الدستور لم يُراجع بصريًا مادةً مادة. توجد أيضًا 3 تفريغات مرشحة غير مفعّلة في `data/candidates/`، ولا تُستخدم للإجابة أو التدريب. يمكن تجميعها محليًا في ملف candidate منفصل للفحص، ولا يقبله corpus الإجابة. لا يشكل أي منها corpus عامًا ولا يغطي بقية الفروع. لا تُقبل إجابة بلا دليل قابل للتتبع؛ وعند غياب النص أو ضعف التطابق يمتنع النظام عن الإجابة.
+أساس مفتوح المصدر لمساعد **معلوماتي** يقتصر على القانون الجزائري. يجيب محليًا بالاستناد إلى مقاطع مُقطّعة حسب المادة من متون رسمية، مع استشهاد برابط المصدر والمادة والكتاب/الباب/الفصل، ويمتنع عند غياب الدليل. لا يوجد أي اتصال سحابي أو تنزيل تلقائي أثناء التشغيل.
 
-> **تنبيه:** هذه الأداة للمعلومات العامة وليست استشارة قانونية ولا تنشئ علاقة محامٍ بموكل. لا تعتمد عليها لاتخاذ قرار أو لحساب أجل أو لتفسير وضع شخصي. راجع النص الرسمي الساري واستشر محاميًا جزائريًا مؤهلًا.
+> **تنبيه:** هذه الأداة للمعلومات العامة وليست استشارة قانونية، ولا تنشئ علاقة محامٍ بموكل. لا تعتمد عليها لاتخاذ قرار أو لحساب أجل أو لتفسير وضع شخصي. راجع النص الرسمي الساري واستشر محاميًا جزائريًا مؤهلًا. **لا يجوز وصف أي متن بأنه نافذ حاليًا** قبل مراجعة بشرية ضد الجريدة الرسمية.
 
-## الحالة والنطاق
+## الحالة والنطاق (نوفمبر 2026)
 
-يوفّر الإصدار استرجاعًا محليًا بسيطًا، وإجابات مقتبسة مع بيانات المصدر، وواجهة CLI وواجهة HTTP اختيارية. يقتصر النظام على الجزائر ويرفض الأسئلة التي تحدد ولاية أجنبية؛ ويمتنع عند غياب دعم موثق. لا يولّد النظام أحكامًا أو تفسيرات قانونية، ولا يدّعي التحقق من حداثة النص أو نفاذه. لا يتجاوز corpus النصين الفرنسيين المحدودين في `data/seed/`، دون بيانات قضايا أو نتائج تقييم معيارية؛ ولا يغطي بقية فروع القانون الجزائري. توجد نسخة محلية اختيارية من أوزان Qwen في `models/base/Qwen2.5-1.5B-Instruct/` في نسخة العمل التي نزّلتها، لكنها مستثناة من Git وليست جزءًا من clone، ولا يستخدمها التطبيق أو يفعّل التوليد. تجربة الاستخدام الحالية استرجاع حرفي محلي، و`ask` يمتنع حتى تتوفر مصادر نافذة موثقة. راجع `docs/MODEL_CARD.md` لتفاصيل النموذج المحلي، وسجل التغطية والمصادر، و`data/candidates/README.md` للمواد التي جُمعت لكنها غير مؤهلة للإجابة أو التدريب.
+- يحتوي `data/corpus.jsonl` على **13 مستندًا**: نصوص من بوابة وزارة العدل (الدستور الكامل، القانون المدني، قانون العقوبات، قانون الإجراءات الجزائية، قانون التجارة، قانون الأسرة، قانون الجنسية، قانون المؤسسات العقابية، وقوانين محدّثة) إضافة إلى عينتين تاريخيتين قديمتين. **كلها `legal_status = "unknown"`**.
+- السلوك الافتراضي هو **الامتناع**: `assist` بدون `--allow-unverified` لا يجيب عن حالة غير موثّقة. الوضع المعلوماتي يتطلب `--allow-unverified`، ويُرفق الإجابة بتنبيه قوي `informational_only = true`.
+- **التوليد مُفعّل محليًا عبر CLI فقط** بنموذج `Qwen/Qwen2.5-1.5B-Instruct` المُنزّل في `models/base/Qwen2.5-1.5B-Instruct/`. الإجابة تمرّ عبر مدقق استناد؛ وعند فشل التحقق أو انتهاء مهلة `timeout_seconds = 180` يعود النظام تلقائيًا إلى **إجابة استخراجية مُسندة** (`mode = extractive-grounded`) ولا يعلّق سطر الأوامر.
+- واجهة HTTP الاختيارية (`api.py`) لا تستدعي المساعد التوليدي؛ `/ask` و`/lookup` يستخدمان الاسترجاع الحرفي لمجموعة `verified_current` فقط. لا يوجد توليد عبر API.
+- الاسترجاع على مستوى **المادة** (`article-based chunking`) مع حفظ `book` و`chapter` و`section`، وترجيح **BM25** مع تضمين كثيف اختياري (FAISS/NumPy). التضمين الكثيف معطّل افتراضيًا (`dense_enabled = false`) حتى تتوفر أوزان `BAAI/bge-m3` محليًا.
+- المتن الذي يتعذّر استخراجه استخراجًا موثوقًا يُحجر عبر `[corpus_quality] excluded_document_ids`؛ حاليًا `constitution-amendment-2026-ar`.
+- `www.joradp.dz` تعذّر الوصول إليه أثناء بناء المتن؛ استُخدمت بوابة `droit.mjustice.gov.dz` كمصدر رسمي بديل مع تسجيل URL وSHA-256 وتاريخ التنزيل. لا يُعدّ هذا دليلًا على النفاذ الحالي.
+- لا توجد بيانات قضايا أو benchmark قانوني مُعتمد، ولا adapter مُدرَّب. انظر `docs/OFFICIAL_CORPUS.md` لجدول المصادر والبصمات والقيود، و`docs/MODEL_CARD.md` لبطاقة النموذج.
 
 ## التشغيل
 
@@ -15,23 +22,67 @@
 ```powershell
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install -e ".[api,dev]"
-dz-legal-ai ask "اكتب سؤالًا قانونيًا"
+python -m pip install -e ".[dev]"
 ```
 
-حمّل العينتين المتاحتين محليًا، ثم جرّب البحث النصي الحرفي:
+من نسخة المصدر بدون تثبيت الحزمة، استخدم `PYTHONPATH`:
 
 ```powershell
-dz-legal-ai seed-corpus
-dz-legal-ai lookup "La Constitution est au-dessus de tous"
-dz-legal-ai ask "La Constitution est au-dessus de tous"
+$env:PYTHONPATH="src"
+$env:PYTHONIOENCODING="utf-8"
+python -m pytest -q
+python -m dz_legal_ai.cli chunk-check
 ```
 
-`lookup` يعرض مقتطفًا مطابقًا مع إحالة وبصمة المصدر، لكنه يصرح بأنه ليس إجابة قانونية وبأن نفاذ النص غير متحقق. `ask` يمتنع عن نفس السؤال ما دامت حالة المصدر `unknown`. هذا السلوك مقصود: وجود الأوزان محليًا لا يدمجها بالتطبيق، ولا يُستخدم توليد غير موصول بمصادر. لا تُضف نصوصًا قانونية إلى corpus النشط قبل مراجعة `docs/DATA_POLICY.md`.
+### استخدام المساعد
 
-### استيراد نص محلي
+```powershell
+# استخراجي فقط، سريع، دون تحميل النموذج — موصى به للفحص الأولي
+python -m dz_legal_ai.cli assist "مدة العهدة الرئاسية في الدستور الجزائري" --allow-unverified --extractive-only
 
-جهّز ملف UTF-8 للنص وملف JSON للبيانات الوصفية، مثل:
+# مع التوليد المحلي المُقيّد (قد يستغرق وقتًا على CPU؛ مهلة 180 ثانية ثم سقوط استخراجي)
+python -m dz_legal_ai.cli assist "مدة العهدة الرئاسية في الدستور الجزائري" --allow-unverified
+
+# بدون --allow-unverified: يمتنع لأن كل الحالات unknown
+python -m dz_legal_ai.cli assist "مدة العهدة الرئاسية في الدستور الجزائري"
+```
+
+الاستجابة JSON تحتوي على `mode` و`abstained` و`answer` و`citations` و`verification` و`informational_only`. كل استشهاد يحمل `document_id` و`article_label` و`book` و`chapter` و`section` و`source_url` و`content_sha256`.
+
+أوامر مفيدة أخرى:
+
+```powershell
+python -m dz_legal_ai.cli lookup "لا جريمة ولا عقوبة بغير قانون"
+python -m dz_legal_ai.cli corpus-check
+python -m dz_legal_ai.cli ask "..."            # مجموعة verified_current فقط؛ تمتنع حاليًا
+```
+
+## إعادة بناء المتن الرسمي محليًا
+
+السكربتات قابلة للتكرار وتسجّل البصمات؛ لا يُنزَّل أي شيء أثناء الإجابة:
+
+```powershell
+python -m pip install -e ".[corpus]"
+python scripts/fetch_official_sources.py       # PDFs من بوابة العدل + data/raw/manifest.json
+python scripts/extract_pdfs.py                  # طبقة نصية عبر PyMuPDF + data/extracted/manifest.json
+python scripts/fetch_html_portal.py             # قانون العقوبات من نسخة HTML (لا OCR)
+python scripts/ingest_official_sources.py       # corpus.jsonl + السجل والتقرير
+```
+
+قانون العقوبات العربي يُؤخذ من نسخة بوابة العدل HTML لأن PDF الممسوح لا يحتوي طبقة نصية صالحة؛ استُخرجت 944 صفحة من 945 دون OCR. الدستور الكامل من مرآة البوابة `AConsti.pdf`؛ أرقام المواد متعددة الخانات معكوسة في طبقة PDF، وقد صُحّحت عناوين المواد فقط عبر `reverse_article_digits`. المتون التي تحتاج OCR ما زالت خارج الـ corpus: `penal-code-fr` و`penal-code-amendment-2026-ar` و`civil-status-code-fr` و`law-25-10-ar` و`law-26-01-ar`.
+
+### فهرس التضمين الاختياري
+
+```powershell
+python -m pip install -e ".[retrieval]"
+# بعد توفير أوزان BAAI/bge-m3 محليًا (لا تنزيل تلقائي):
+python -m dz_legal_ai.cli build-index
+# ثم اضبط dense_enabled = true في models/model-config.toml للاستخدام
+```
+
+## استيراد نص محلي
+
+جهّز ملف UTF-8 وملف بيانات وصفية بالحقول التالية (القيم شكلية وليست مصدرًا قانونيًا):
 
 ```json
 {
@@ -43,14 +94,14 @@ dz-legal-ai ask "La Constitution est au-dessus de tous"
   "legal_domain": "constitutional",
   "source_url": "https://www.joradp.dz/...",
   "source_language": "ar",
-  "source_locator": "الجريدة الرسمية رقم ...، الصفحة ...، القانون/النص ...",
+  "source_locator": "الجريدة الرسمية رقم ...، الصفحة ...",
   "official_source_checked": true,
-  "source_checked_on": "2026-11-09",
+  "source_checked_on": "2026-11-20",
   "verification_note": "تمت مراجعة صفحة المصدر يدويًا بواسطة مراجع مخوّل",
   "reuse_basis": "DZ-ORD-03-05-ART-11",
   "legal_text_type": "law",
   "reuse_evidence_url": "https://www.joradp.dz/FTP/jo-francais/2003/F2003044.pdf",
-  "rights_checked_on": "2026-11-09",
+  "rights_checked_on": "2026-11-20",
   "rights_verification_note": "تمت مراجعة الفئة القانونية واستخراج النص القانوني فقط",
   "legal_status": "unknown",
   "legal_status_checked_on": null,
@@ -62,65 +113,50 @@ dz-legal-ai ask "La Constitution est au-dessus de tous"
 ثم:
 
 ```powershell
-dz-legal-ai ingest --text .\private\law.txt --metadata .\private\metadata.json
-dz-legal-ai ask "..."
+python -m dz_legal_ai.cli ingest --text .\private\law.txt --metadata .\private\metadata.json
+python -m dz_legal_ai.cli corpus-check
 ```
 
-يُحفظ corpus محليًا في `data/corpus.jsonl` ويُستبعد من Git. القيم في المثال شكلية وليست مصدرًا قانونيًا أو ترخيصًا. `DZ-ORD-03-05-ART-11` أساس استثناء محدد لفئات النصوص القانونية الواردة بالمادة 11، وليس رخصة لنشر عدد الجريدة كاملًا أو كل محتوى حكومي. راجع `docs/CORPUS_REUSE_RESEARCH.md`. لا تستخدم `permission-granted` أو `public-domain-verified` إلا بعد مراجعة بشرية موثقة لأساس الإتاحة. قبول النظام للبيانات الوصفية لا يثبت صحة المصدر أو الترخيص.
+قبول النظام للبيانات الوصفية لا يثبت صحة المصدر أو الترخيص. `DZ-ORD-03-05-ART-11` أساس استثناء محدد لفئات النصوص القانونية الواردة بالمادة 11 من الأمر 03-05، وليس رخصة لنشر أعداد الجريدة كاملة أو كل محتوى حكومي. راجع `docs/DATA_POLICY.md` و`docs/CORPUS_REUSE_RESEARCH.md`.
 
-تتطلب النسخ الحالية أيضًا `legal_domain` و`legal_instrument_id` وحقول حالة النفاذ الظاهرة في المثال؛ corpus محلي أُنشئ بإصدار أقدم لا يحمل سجل النفاذ والمجال، لذا أعد إدخاله من الملفات الأصلية بعد استكمال metadata بدل اعتباره صالحًا تلقائيًا.
-
-يوفر المشروع نصين تجريبيين محدودين مستخرجين من صفحات نصوص قانونية رسمية، لا أعداد الجريدة كاملة. لإدخالهما محليًا:
-
-```powershell
-dz-legal-ai ingest --text .\data\seed\ordinance-03-05-fr.txt --metadata .\data\seed\ordinance-03-05-fr.metadata.json
-dz-legal-ai ingest --text .\data\seed\constitution-2020-fr.txt --metadata .\data\seed\constitution-2020-fr.metadata.json
-dz-legal-ai corpus-check
-```
-
-الاستيراد لا يثبت صحة الاستخراج أو النفاذ. راجع المصدر الرسمي والنص النافذ؛ كلا السجلين يصرّح بأن الحالة الحالية غير متحققة. وصف استخراج الدستور وحدوده وبصمة PDF في ملف metadata.
-
-### واجهة HTTP اختيارية
+### واجهة HTTP اختيارية (بدون توليد)
 
 ```powershell
 python -m pip install -e ".[api]"
 dz-legal-ai-api
 ```
 
-الخادم يستمع افتراضيًا على `127.0.0.1:8000`. لا تعرضه على شبكة عامة: لا توجد مصادقة أو ضوابط متعددة المستخدمين. المسار `POST /ask` يقبل `{"query":"..."}`، والمسار `POST /lookup` يعرض مقتطفات حرفية لا إجابة قانونية، والمسار `GET /health` لا يكشف محتوى corpus. المسار `GET /candidate-corpus/status` يعرض عدد المرشحات وتقرير سلامة النص فقط، ولا يقدم نصوصًا للإجابة.
+تستمع افتراضيًا على `127.0.0.1:8000`؛ لا تعرضها على شبكة عامة (لا مصادقة). `POST /ask` و`POST /lookup` يستخدمان الاسترجاع الحرفي فقط، و`GET /health` لا يكشف محتوى corpus.
 
 ### تجميع المواد المرشحة
 
-يمكن إنشاء ملف محلي منفصل يجمع النصوص المرشحة الموثقة في سجل المصادر، مع التحقق من UTF-8 وبصمة المصدر والنص وبيانات metadata وإحصاءات العناوين/مراجع المواد:
-
 ```powershell
-dz-legal-ai candidate-corpus-build
-dz-legal-ai candidate-corpus-check
+python -m dz_legal_ai.cli candidate-corpus-build
+python -m dz_legal_ai.cli candidate-corpus-check
 ```
 
-ينتج الأمر `data/candidate-corpus.jsonl` محليًا، وهو مستثنى من Git. كل سجل يثبت `candidate_only=true` و`answer_eligible=false` و`training_eligible=false` و`legal_status=unknown`. لا يقبله قارئ corpus النشط؛ ومسار `/ask` لا يقرأ ملف المرشحين. تقرير الفحص مؤشرات آلية وليست مراجعة قانونية أو إثباتًا لاكتمال التفريغ.
+ينتج `data/candidate-corpus.jsonl` بصفات `answer_eligible=false` و`training_eligible=false`؛ لا يقبله قارئ corpus النشط.
 
 ## مبادئ السلامة والتوثيق
 
-- الولاية القضائية الوحيدة هي الجزائر (`DZ`)؛ يُرفض غيرها.
-- تُقيّد روابط المصدر بنطاقات مدرجة صراحة في `src/dz_legal_ai/policy.py`؛ نطاق الجريدة الرسمية المسموح حاليًا هو `joradp.dz`. لا يعني تطابق النطاق أن الصفحة أو النص رسمي أو ساري، لذا يلزم تحقق بشري وتسجيله.
-- كل مقطع يعيد رابط المصدر، وموضع النص في العدد واللغة وتاريخ مراجعة المصدر ومعرّف المستند وبصمة SHA-256 للنص المستورد. البصمة تثبت هوية الملف المستورد فقط، ولا تثبت صدوره أو سلامته القانونية.
-- عند توفر بصمة ملف المصدر الرسمي، تُسجل `source_document_sha256` وطريقة الاستخراج في metadata وتظهر بصمة PDF ضمن إحالة المصدر.
-- تسجل metadata المجال (`legal_domain`) والمعرّف الثابت للصك (`legal_instrument_id`) وحالة النفاذ. الإجابات النشطة تقتصر على المصادر `verified_current`؛ مصادر `unknown` أو التاريخية تبقى خارج corpus القانون النافذ، ولا تظهر في الإجابات. لذلك يمتنع النظام عن الإجابة من عينتي seed الحاليتين حتى يراجع مختص تعديلاتهما ونفاذهما.
-- الاسترجاع يقتبس أسطر النص غير الفارغة المطابقة؛ رقم «المقطع المستورد» هو موضعه في النص بعد الاستخراج وليس رقم مادة قانونية.
-- لا تقبل عملية الإدخال أساس إعادة الاستخدام المجهول أو غير المدعوم، وتشترط رابط دليل وملاحظة تحقق بشرية.
-- لا يوجد توليد حر في هذا الإصدار: الإجابة إما مقتطفات حرفية من corpus مع إحالاتها أو امتناع.
-- لا تستورد ملفات قضايا شخصية أو أسرارًا أو بيانات حساسة.
+- الولاية القضائية الوحيدة هي الجزائر (`DZ`)؛ يُرفض غيرها صراحةً.
+- النطاقات المسموحة في `src/dz_legal_ai/policy.py`: `joradp.dz` (مفضّل) و`droit.mjustice.gov.dz` و`mjustice.gov.dz` و`coursupreme.dz` و`conseildetat.dz` و`asjp.cerist.dz`. تطابق النطاق لا يثبت رسمية الصفحة أو نفاذها.
+- كل استشهاد يحمل رابط المصدر، والموضع، واللغة، وتاريخ المراجعة، ومعرّف المستند، وبصمة SHA-256 للمحتوى. البصمة تثبت هوية الملف المستورد فقط، لا صدوره أو سلامته القانونية.
+- الإجابة مُقيّدة: اقتباس إلزامي، حد أدنى لتغطية الجمل بالدليل (`minimum_sentence_support = 0.45`)، وإسناد إلى مادة (`require_article_citation = true`)؛ وإلا امتناع أو سقوط استخراجي.
+- التوليد لا ينشئ مصادر أو مواد أو حالة نفاذ؛ `allow_uncited_generation = false`. عند تعذّر التحقق أو انتهاء المهلة لا تُعرض مخرجات النموذج غير المُتحقّق منها.
+- لا تُستورد ملفات قضايا شخصية أو أسرار أو بيانات حساسة.
 
 ## التقييم والتطوير
 
 ```powershell
-python -m pytest
-dz-legal-ai corpus-check
+$env:PYTHONPATH="src"
+python -m pytest -q                       # 59 اختبارًا حاليًا
+python -m dz_legal_ai.cli chunk-check
+python -m dz_legal_ai.cli evaluate --cases .\private\evaluation.jsonl
 ```
 
-يمكن تقييم حالات محلية من إعداد ومراجعة بشرية باستخدام `dz-legal-ai evaluate --cases .\private\evaluation.jsonl`. كل سطر JSON يتضمن `query` و`expected_abstained` و`expected_document_ids`. الاختبارات تستخدم بيانات اصطناعية موسومة بوضوح على أنها ليست قانونًا. لا تمثل نتائجها دقة قانونية أو تغطيةً للمتن الجزائري. قبل أي استخدام واقعي، يلزم corpus مرخّص ومراجع قانونيًا، واختبار مستقل للحداثة والتغطية والامتناع، ومراجعة قانونية وأمنية.
+الحالات المحلية تحتاج إعدادًا ومراجعة بشرية؛ كل سطر JSON يتضمن `query` و`expected_abstained` و`expected_document_ids`. اختبارات المشروع تستخدم بيانات اصطناعية موسومة بأنها ليست قانونًا، ونتائجها ليست دقة قانونية. قبل أي استخدام واقعي يلزم corpus مرخّص ومراجع قانونيًا، واختبار مستقل للحداثة والتغطية والامتناع، ومراجعة قانونية وأمنية.
 
-لتدقيق بيانات SFT محليًا، استخدم `dz-legal-ai training-check` كما هو موضح في `docs/TRAINING.md`. لا توجد حاليًا مجموعة تدريب/تحقق/اختبار قانونية أو نتائج fine-tuning. الرخصة البرمجية MIT لا تمنح حق إعادة نشر محتوى غير قانوني أو قواعد بيانات أو أوزان نماذج.
+راجع أيضًا: `docs/OFFICIAL_CORPUS.md` (المصادر والبصمات والقيود)، `docs/MODEL_CARD.md` (النموذج والتوليد والـ LoRA)، `docs/TRAINING.md` (إعداد SFT)، `docs/EVALUATION.md`، `docs/DATA_POLICY.md`، `docs/CORPUS_EXPANSION.md`، `docs/COMPUTE.md`.
 
-راجع `docs/DATA_POLICY.md` و`docs/CORPUS_REUSE_RESEARCH.md` لحدود استخدام المتون، و`docs/CORPUS_EXPANSION.md` لبوابة قبول المصادر، و`docs/TRAINING.md` لإعداد LoRA والتقييم و`docs/COMPUTE.md` للموارد. يظل النطاق المستهدف شاملًا لمجالات القانون الجزائري، لكن التغطية الفعلية حاليًا محدودة جدًا ولا يجوز وصفها بالشمول.
+الرخصة البرمجية MIT لا تمنح حق إعادة نشر محتوى غير قانوني أو قواعد بيانات أو أوزان نماذج.

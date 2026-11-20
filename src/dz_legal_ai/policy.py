@@ -101,7 +101,18 @@ _CURRENT_STATUS_MARKERS = (
     "سريان",
 )
 
-ALLOWED_SOURCE_HOSTS = ("joradp.dz",)
+# JORADP stays the preferred official publisher; the other hosts are official
+# Ministry of Justice / high-court portals used when JORADP endpoints are
+# unreachable or when the portal provides a consolidated, updated text.
+PREFERRED_SOURCE_HOST = "joradp.dz"
+ALLOWED_SOURCE_HOSTS = (
+    "joradp.dz",
+    "droit.mjustice.gov.dz",
+    "mjustice.gov.dz",
+    "coursupreme.dz",
+    "conseildetat.dz",
+    "asjp.cerist.dz",
+)
 ALLOWED_REUSE_BASES = {
     "CC0-1.0",
     "CC-BY-4.0",

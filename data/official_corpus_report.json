@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "ingested_on": "2026-11-20",
+  "note": "All texts are legal_status=unknown and answer-eligible only in informational mode.",
+  "documents": {
+    "constitution-ar-full": {
+      "document_id": "constitution-ar-full",
+      "title": "دستور الجمهورية الجزائرية الديمقراطية الشعبية (الجريدة الرسمية عدد 28 لسنة 2020)",
+      "legal_domain": "constitutional",
+      "source_language": "ar",
+      "source_url": "https://droit.mjustice.gov.dz/sites/default/files/AConsti.pdf",
+      "source_document_sha256": "6b4914ae40e3f5778e392f498e5423f08863c25ce3674ac812ea1c540a2c231f",
+      "content_sha256": "5f7a749ba2d4129a572c1cdefef3f130b7b5d85ecf2f6aafb5f4b866673429b5",
+      "pages": 44,
+      "pages_with_text": 44,
+      "low_text_pages": [],
+      "legal_status": "unknown"
+    },
+    "penal-code-ar-portal": {
+      "document_id": "penal-code-ar-portal",
+      "title": "قانون العقوبات الجزائري (نسخة بوابة وزارة العدل HTML)",
+      "legal_domain": "criminal",
+      "source_language": "ar",
+      "source_url": "https://droit.mjustice.gov.dz/sites/default/files/portail/legisl_nouveau/code_penal_2010/ar/",
+      "source_document_sha256": "abf58ddaaab08824ec5d903922732258dd548abbbd2944033d56e2bd5753d090",
+      "content_sha256": "9f28e2ab401bccaf4c682a70e7376659fa09129fdeaae11f35bcc576965666b5",
+      "pages": 945,
+      "pages_with_text": 944,
+      "low_text_pages": [],
+      "legal_status": "unknown",
+      "note": "HTML portal reconstruction; no OCR involved."
+    }
+  },
+  "added": 2,
+  "skipped_existing": 0,
+  "corpus_documents": 13
+}

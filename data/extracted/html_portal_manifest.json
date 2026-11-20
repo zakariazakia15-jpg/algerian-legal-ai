@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "source": "Algerian Ministry of Justice HTML portal, Penal Code Arabic edition",
+  "base_url": "https://droit.mjustice.gov.dz/sites/default/files/portail/legisl_nouveau/code_penal_2010/ar/",
+  "page_list_url": "https://droit.mjustice.gov.dz/sites/default/files/portail/legisl_nouveau/code_penal_2010/ar/scripts/HelpCommonData.js",
+  "page_list_sha256": "abf58ddaaab08824ec5d903922732258dd548abbbd2944033d56e2bd5753d090",
+  "encoding": "windows-1256",
+  "fetched_at": "2026-11-20T16:10:34.491649+00:00",
+  "page_count": 945,
+  "extracted_page_count": 944,
+  "failed_pages": [],
+  "text_file": "data\\extracted\\penal-code-ar-portal.txt",
+  "text_sha256": "9f28e2ab401bccaf4c682a70e7376659fa09129fdeaae11f35bcc576965666b5",
+  "characters": 270306,
+  "note": "Official portal HTML reconstruction, not a scan or OCR. Current force and amendments still require qualified human review."
+}

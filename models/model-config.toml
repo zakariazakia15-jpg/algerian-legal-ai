@@ -1,16 +1,48 @@
-# Candidate profile only. Fine-tuning is not implemented in the app runtime.
+# Grounded assistant profile. Fine-tuning remains a separate, unverified pipeline.
 [generator]
-enabled = false
+enabled = true
 provider = "transformers"
+runtime = "local-only-cli"
 model_id = "Qwen/Qwen2.5-1.5B-Instruct"
+model_path = "models/base/Qwen2.5-1.5B-Instruct"
 model_revision = "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
 model_license = "Apache-2.0"
 model_card_url = "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/tree/989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
 license_url = "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/raw/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/LICENSE"
 license_review_required_before_use = true
-generation_status = "not-trained-not-integrated"
+generation_status = "grounded-rag-local-model"
 fine_tuning_method = "LoRA SFT pipeline in scripts/train_lora.py"
 fine_tuning_status = "pipeline-unverified-no-training-data"
+temperature = 0.2
+top_p = 0.9
+top_k = 20
+repetition_penalty = 1.05
+max_new_tokens = 512
+# Hard cap for local CPU generation; on timeout answer.py falls back to a
+# fully cited extractive answer instead of blocking the CLI.
+timeout_seconds = 180
+
+[retrieval]
+top_k = 8
+minimum_coverage = 0.3
+# Dense retrieval stays off until the BGE-M3 weights are downloaded locally.
+dense_enabled = false
+dense_model = "BAAI/bge-m3"
+index_dir = "data/vector_index"
+lexical_weight = 0.7
+dense_weight = 0.3
+structural_weight = 0.05
+
+# Texts whose PDF text layer is confirmed unreliable are quarantined here until
+# they can be re-extracted with OCR and proofread by a qualified reviewer.
+[corpus_quality]
+excluded_document_ids = "constitution-amendment-2026-ar"
+max_chunks_per_document = 3
+
+[verification]
+require_quote = true
+minimum_sentence_support = 0.45
+require_article_citation = true
 
 [policy]
 jurisdiction = "DZ"

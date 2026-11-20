@@ -14,6 +14,13 @@ dependencies = []
 [project.optional-dependencies]
 api = ["fastapi>=0.110,<1", "uvicorn[standard]>=0.27,<1"]
 dev = ["pytest>=8,<9"]
+# Reproducible corpus building: PDF text layer + local vector index math.
+corpus = ["pymupdf>=1.24", "pypdf>=4", "numpy>=1.26"]
+# Optional dense retrieval. Heavy: sentence-transformers pulls PyTorch.
+# Weights are never downloaded automatically; use build-index after a local download.
+retrieval = ["numpy>=1.26", "sentence-transformers>=3,<6", "faiss-cpu>=1.8"]
+# Local Qwen generation used only by the CLI assist path.
+generate = ["torch>=2.2", "transformers>=4.46,<5", "accelerate>=1,<2"]
 finetune = [
     "torch>=2.2",
     "transformers>=4.46,<5",
