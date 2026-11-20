@@ -82,6 +82,7 @@ def assist_query(
             "abstained": True,
             "mode": "policy",
             "citations": [],
+            "informational_only": False,
             "disclaimer": DISCLAIMER,
         }
 
@@ -92,6 +93,7 @@ def assist_query(
             "abstained": True,
             "mode": "no-evidence",
             "citations": [],
+            "informational_only": False,
             "disclaimer": DISCLAIMER,
         }
 
@@ -104,6 +106,7 @@ def assist_query(
             "abstained": True,
             "mode": "status-unverified",
             "citations": [],
+            "informational_only": False,
             "disclaimer": DISCLAIMER,
         }
     if not eligible:
@@ -114,6 +117,7 @@ def assist_query(
                 "abstained": True,
                 "mode": "status-unverified",
                 "citations": [],
+                "informational_only": False,
                 "disclaimer": DISCLAIMER,
             }
         # Draft corpus mode: useful while building the corpus, never presented as current law.

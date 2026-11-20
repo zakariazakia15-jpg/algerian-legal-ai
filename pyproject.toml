@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dz-legal-ai"
-version = "0.1.7"
+version = "0.1.8"
 description = "Local, citation-first retrieval foundation for Algerian legal information"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -34,6 +34,9 @@ dz-legal-ai-api = "dz_legal_ai.api:run"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+dz_legal_ai = ["static/*.html"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

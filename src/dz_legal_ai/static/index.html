@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>المساعد القانوني الجزائري</title>
+<style>
+  body { font-family: Tahoma, Arial, sans-serif; color: #000; background: #fff; margin: 0; padding: 24px; line-height: 1.8; }
+  main { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 22px; margin: 0 0 8px; }
+  .note { border: 1px solid #000; padding: 12px; margin: 12px 0 20px; font-size: 14px; }
+  label { display: block; margin-bottom: 6px; }
+  textarea { width: 100%; min-height: 90px; font-family: inherit; font-size: 16px; padding: 10px; box-sizing: border-box; border: 1px solid #000; }
+  button { font-family: inherit; font-size: 16px; padding: 8px 18px; border: 1px solid #000; background: #fff; color: #000; cursor: pointer; margin: 10px 6px 0 0; }
+  button:disabled { cursor: default; }
+  #result { margin-top: 24px; }
+  .box { border: 1px solid #000; padding: 14px; margin-bottom: 14px; white-space: pre-wrap; }
+  .warn { border: 1px solid #000; padding: 12px; font-size: 14px; }
+  .cite { border-bottom: 1px solid #ccc; padding: 8px 0; font-size: 14px; }
+  .cite:last-child { border-bottom: 0; }
+  a { color: #000; }
+  .muted { font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>المساعد القانوني الجزائري</h1>
+  <div class="note">
+    معلومات استرشادية فقط من نصوص محلية، وليست استشارة قانونية. لا تصف الإجابة أي نص بأنه نافذ حاليًا.
+    تحقّق من الجريدة الرسمية واستشر محاميًا جزائريًا مؤهلًا قبل أي إجراء.
+    قد يستغرق السؤال الأول نحو دقيقة عند بدء التشغيل، ثم تصبح الإجابات أسرع.
+  </div>
+
+  <label for="query">اكتب سؤالك بالعربية:</label>
+  <textarea id="query" placeholder="مثال: لا جريمة ولا عقوبة بغير قانون في قانون العقوبات الجزائري"></textarea>
+  <div>
+    <button id="ask">اسأل</button>
+    <button id="clear">مسح</button>
+  </div>
+
+  <div id="result"></div>
+</main>
+
+<script>
+const result = document.getElementById('result');
+const query = document.getElementById('query');
+const ask = document.getElementById('ask');
+
+document.getElementById('clear').onclick = () => {
+  query.value = '';
+  result.innerHTML = '';
+};
+
+ask.onclick = async () => {
+  const text = query.value.trim();
+  if (!text) { return; }
+  ask.disabled = true;
+  result.innerHTML = '<div class="box">جارٍ البحث في المتن المحلي...</div>';
+  try {
+    const response = await fetch('/assist', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({query: text})
+    });
+    if (!response.ok) { throw new Error('تعذّر الاتصال بالخادم المحلي'); }
+    const data = await response.json();
+    let html = '<div class="warn">' + escapeHtml(data.disclaimer || '') + '</div>';
+    html += '<div class="box">' + escapeHtml(data.answer || '') + '</div>';
+    if ((data.citations || []).length) {
+      html += '<div class="muted">المصادر المستشهد بها:</div>';
+      for (const c of data.citations) {
+        html += '<div class="cite">'
+          + escapeHtml(c.document_id || '') + ' — '
+          + escapeHtml(c.article_label || 'مقتطف')
+          + (c.book ? ' — ' + escapeHtml(c.book) : '')
+          + (c.chapter ? ' — ' + escapeHtml(c.chapter) : '')
+          + (c.section ? ' — ' + escapeHtml(c.section) : '')
+          + '<br><a href="' + escapeAttr(c.url || c.source_url || '') + '" target="_blank" rel="noopener">'
+          + escapeHtml(c.url || c.source_url || '') + '</a></div>';
+      }
+    }
+    result.innerHTML = html;
+  } catch (error) {
+    result.innerHTML = '<div class="box">لم أستطع الإجابة الآن: ' + escapeHtml(error.message) + '</div>';
+  } finally {
+    ask.disabled = false;
+  }
+};
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+function escapeAttr(value) { return escapeHtml(value); }
+</script>
+</body>
+</html>
