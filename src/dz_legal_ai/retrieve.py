@@ -135,12 +135,19 @@ def tokenize(text: str) -> list[str]:
     normalized = _ABOVE_PHRASE.sub("audessus", normalized)
     tokens = []
     for token in _TOKEN.findall(normalized):
+        # Attached prepositions are function words too: "بالعقار" and
+        # "وبالديون" must not hide the concepts "عقار" and "ديون".
+        for prefix, minimum in (("وبال", 6), ("بال", 5)):
+            if token.startswith(prefix) and len(token) > minimum:
+                token = token[len(prefix) :]
+                break
         # Arabic conjunction and definite article are function words, not
         # legal concepts: "والإرث" must become "ارث" like "الإرث".
         if token.startswith("و") and len(token) > 5 and token[1:].startswith("ال"):
             token = token[1:]
-        # A prefixed lam must not hide the concept: "للالتزامات" -> "تزامات".
-        if token.startswith("لل") and len(token) > 5:
+        # A prefixed lam must not hide the concept: "للذكر" -> "ذكر",
+        # "للالتزامات" -> "تزامات".
+        if token.startswith("لل") and len(token) >= 5:
             token = token[2:]
         if token.startswith("ال") and len(token) > 4:
             token = token[2:]

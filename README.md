@@ -143,6 +143,30 @@ dz-legal-ai-api
 
 الخادم يستمع محليًا فقط على `127.0.0.1:8000`؛ لا تعرضه على شبكة عامة (لا مصادقة). `POST /assist` يستدعي المساعد المُقيّد بصيغة استخراجية فقط (`prefer_generation=false`، `allow_unverified=true`) ويعيد `answer` و`citations` و`disclaimer` و`mode` و`abstained` و`informational_only`. `POST /ask` و`POST /lookup` يستخدمان الاسترجاع الحرفي لمجموعة `verified_current` فقط، و`GET /health` لا يكشف محتوى corpus.
 
+### أدوات المستشار (اختيارية، لا تغيّر السلوك الافتراضي)
+
+أُضيفت ست أدوات منفصلة تمامًا عن `assist`: حساب حصص توضيحي، عشر مسوّدات بفراغات، فحص شكلي لعقد، تحديد مسائل تحتاج تحققًا، مواضع ورود مصطلح، وقائمة تحقق من الكلمات. كل نتيجة تحمل استشهادًا و`informational_only = true` وتنبيهات صريحة بأن النصوص `legal_status = unknown` وبأن مراجعة مختص إلزامية. لا تُصدر هذه الأدوات فتوى ولا حكمًا قضائيًا ولا عقدًا نافذًا.
+
+في الواجهة: افتح `/ui`، ثم فعّل مربع «أدوات المستشار (اختيارية)» واختر الأداة. قبل التفعيل لا تعمل أي أداة، ولا يمكن استدعاؤها عبر HTTP دون الرأس `X-DZ-LEGAL-AI-OPT-IN: advisory-tools` (وإلا `403`).
+
+من السطرية:
+
+```powershell
+python -m dz_legal_ai.cli toolbox
+python -m dz_legal_ai.cli compute-inheritance --sons 4 --daughters 2 --estate 10000000000
+python -m dz_legal_ai.cli draft-contract --type sale --set "اسم البائع=أحمد"
+python -m dz_legal_ai.cli review-contract --text-file path\to\contract.txt
+python -m dz_legal_ai.cli analyze-issue "توفي والدي وترك تركة"
+python -m dz_legal_ai.cli explain-term "الذكر"
+python -m dz_legal_ai.cli risk-flags --text "ورثة وعقار وديون"
+```
+
+نقاط HTTP (كلها تتطلب رأس التفعيل):
+
+`GET /tools`، `POST /compute/inheritance`، `POST /drafts/contract`، `POST /reviews/contract`، `POST /analysis/issue`، `POST /terms/explain`، `POST /risks/flags`.
+
+التفاصيل والحدود في `docs/OPT_IN_TOOLBOX.md`.
+
 ### تجميع المواد المرشحة
 
 ```powershell
@@ -165,7 +189,7 @@ python -m dz_legal_ai.cli candidate-corpus-check
 
 ```powershell
 $env:PYTHONPATH="src"
-python -m pytest -q                       # 59 اختبارًا حاليًا
+python -m pytest -q                       # 85 اختبارًا حاليًا
 python -m dz_legal_ai.cli chunk-check
 python -m dz_legal_ai.cli evaluate --cases .\private\evaluation.jsonl
 ```

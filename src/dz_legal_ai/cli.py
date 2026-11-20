@@ -28,6 +28,14 @@ from .training_data import (
 DEFAULT_CORPUS = Path("data/corpus.jsonl")
 
 
+def _tool_text(text: str | None, path: Path | None) -> str:
+    if bool(text) == bool(path):
+        raise ValueError("provide exactly one of --text or --text-file")
+    if path is not None:
+        return path.read_text(encoding="utf-8")
+    return text or ""
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="dz-legal-ai",
@@ -55,6 +63,60 @@ def _parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Skip the local model and return verbatim cited passages only",
     )
+
+    # ---- Opt-in advisory toolbox: never reached by `ask` or `assist` ----
+    tools = commands.add_parser("toolbox", help="List the opt-in advisory tools (no legal output)")
+    tools.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+
+    compute = commands.add_parser(
+        "compute-inheritance",
+        help="OPT-IN arithmetic only: illustrative shares from explicit heir counts",
+    )
+    compute.add_argument("--sons", type=int, required=True)
+    compute.add_argument("--daughters", type=int, required=True)
+    compute.add_argument("--estate", type=float, required=True)
+    compute.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+
+    draft = commands.add_parser(
+        "draft-contract", help="OPT-IN fill-in contract draft with citations; not a signed contract"
+    )
+    draft.add_argument("--type", dest="contract_type", required=True)
+    draft.add_argument("--values-json", default="{}", help="JSON object mapping field names to values")
+    draft.add_argument(
+        "--set",
+        dest="set_values",
+        action="append",
+        default=[],
+        metavar="FIELD=VALUE",
+        help="Fill one template field; repeat as needed (easier than JSON in shells)",
+    )
+    draft.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+
+    review = commands.add_parser(
+        "review-contract", help="OPT-IN keyword checklist only; not a legal review"
+    )
+    review.add_argument("--text")
+    review.add_argument("--text-file", type=Path)
+    review.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+
+    issues = commands.add_parser(
+        "analyze-issue", help="OPT-IN verification topics and cited passages; no conclusion"
+    )
+    issues.add_argument("question")
+    issues.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+
+    term = commands.add_parser(
+        "explain-term", help="OPT-IN literal occurrences of a term; not a legal definition"
+    )
+    term.add_argument("term")
+    term.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
+
+    flags = commands.add_parser(
+        "risk-flags", help="OPT-IN generic verification checklist from keywords"
+    )
+    flags.add_argument("--text")
+    flags.add_argument("--text-file", type=Path)
+    flags.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
 
     chunks = commands.add_parser(
         "chunk-check", help="Audit article-level chunking of the local corpus"
@@ -166,6 +228,73 @@ def main(argv: Sequence[str] | None = None) -> int:
             prefer_generation=not args.extractive_only,
             allow_unverified=args.allow_unverified,
         )
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return 0
+
+    if args.command in {
+        "toolbox",
+        "compute-inheritance",
+        "draft-contract",
+        "review-contract",
+        "analyze-issue",
+        "explain-term",
+        "risk-flags",
+    }:
+        from .assistive import (
+            analyze_issue,
+            compute_inheritance,
+            draft_contract,
+            explain_term,
+            list_tools,
+            risk_flags,
+            review_contract,
+        )
+
+        documents = read_corpus(args.corpus)
+        try:
+            if args.command == "toolbox":
+                result = list_tools()
+            elif args.command == "compute-inheritance":
+                result = compute_inheritance(
+                    sons=args.sons,
+                    daughters=args.daughters,
+                    estate=args.estate,
+                    documents=documents,
+                )
+            elif args.command == "draft-contract":
+                try:
+                    values = json.loads(args.values_json)
+                except json.JSONDecodeError as exc:
+                    raise ValueError("--values-json must be a valid JSON object") from exc
+                if not isinstance(values, dict):
+                    raise ValueError("--values-json must be a valid JSON object")
+                for item in args.set_values:
+                    if "=" not in item:
+                        raise ValueError("--set expects FIELD=VALUE")
+                    field, value = item.split("=", 1)
+                    if not field.strip():
+                        raise ValueError("--set field name cannot be empty")
+                    values[field.strip()] = value
+                result = draft_contract(
+                    contract_type=args.contract_type,
+                    documents=documents,
+                    values=values,
+                )
+            elif args.command == "review-contract":
+                result = review_contract(
+                    text=_tool_text(args.text, args.text_file), documents=documents
+                )
+            elif args.command == "analyze-issue":
+                result = analyze_issue(question=args.question, documents=documents)
+            elif args.command == "explain-term":
+                result = explain_term(term=args.term, documents=documents)
+            else:
+                result = risk_flags(
+                    text=_tool_text(args.text, args.text_file), documents=documents
+                )
+        except ValueError as exc:
+            print(json.dumps({"error": str(exc)}, ensure_ascii=False), file=sys.stderr)
+            return 2
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0
 

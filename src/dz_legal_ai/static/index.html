@@ -8,18 +8,24 @@
   body { font-family: Tahoma, Arial, sans-serif; color: #000; background: #fff; margin: 0; padding: 24px; line-height: 1.8; }
   main { max-width: 760px; margin: 0 auto; }
   h1 { font-size: 22px; margin: 0 0 8px; }
+  h2 { font-size: 18px; margin: 28px 0 8px; border-bottom: 1px solid #000; padding-bottom: 4px; }
   .note { border: 1px solid #000; padding: 12px; margin: 12px 0 20px; font-size: 14px; }
   label { display: block; margin-bottom: 6px; }
-  textarea { width: 100%; min-height: 90px; font-family: inherit; font-size: 16px; padding: 10px; box-sizing: border-box; border: 1px solid #000; }
+  textarea, input[type="text"], input[type="number"], select { width: 100%; font-family: inherit; font-size: 16px; padding: 10px; box-sizing: border-box; border: 1px solid #000; background: #fff; color: #000; }
+  textarea { min-height: 90px; }
+  input[type="checkbox"] { width: 18px; height: 18px; vertical-align: middle; }
   button { font-family: inherit; font-size: 16px; padding: 8px 18px; border: 1px solid #000; background: #fff; color: #000; cursor: pointer; margin: 10px 6px 0 0; }
   button:disabled { cursor: default; }
-  #result { margin-top: 24px; }
+  #result, #tool-result { margin-top: 24px; }
   .box { border: 1px solid #000; padding: 14px; margin-bottom: 14px; white-space: pre-wrap; }
-  .warn { border: 1px solid #000; padding: 12px; font-size: 14px; }
+  .warn { border: 1px solid #000; padding: 12px; font-size: 14px; margin-bottom: 12px; }
   .cite { border-bottom: 1px solid #ccc; padding: 8px 0; font-size: 14px; }
   .cite:last-child { border-bottom: 0; }
   a { color: #000; }
   .muted { font-size: 13px; }
+  .row { display: flex; gap: 12px; }
+  .row > div { flex: 1; }
+  ul { margin: 6px 0 12px; padding-inline-start: 22px; }
 </style>
 </head>
 <body>
@@ -39,12 +45,176 @@
   </div>
 
   <div id="result"></div>
+
+  <h2>أدوات المستشار (اختيارية)</h2>
+  <div class="note">
+    هذه الأدوات لا تعمل إلا بعد تفعيلك الصريح. هي حسابات توضيحية أو مسوّدات بفراغات أو قوائم تحقق،
+    وليست فتوى ولا حكمًا قضائيًا ولا عقدًا نافذًا. كل نتيجة تحمل المادة المستشهد بها والتنبيهات.
+  </div>
+  <label>
+    <input type="checkbox" id="optin">
+    أُقرّ بأن هذه أدوات اختيارية وأنني سأراجع النتيجة مع مختص قبل أي تصرف
+  </label>
+  <label for="tool" style="margin-top:12px;">اختر الأداة:</label>
+  <select id="tool">
+    <option value="compute-inheritance">حساب حصص الميراث التوضيحي</option>
+    <option value="draft-contract">مسوّدة عقد أو وثيقة</option>
+    <option value="review-contract">فحص شكلي لنص عقد</option>
+    <option value="analyze-issue">تحديد مسائل تحتاج تحققًا</option>
+    <option value="explain-term">مواضع ورود مصطلح في المتن</option>
+    <option value="risk-flags">قائمة تحقق من كلمات النص</option>
+  </select>
+  <div id="tool-fields" style="margin-top:12px;"></div>
+  <button id="tool-run" disabled>تشغيل الأداة</button>
+  <div id="tool-result"></div>
 </main>
 
 <script>
 const result = document.getElementById('result');
 const query = document.getElementById('query');
 const ask = document.getElementById('ask');
+const optin = document.getElementById('optin');
+const tool = document.getElementById('tool');
+const toolFields = document.getElementById('tool-fields');
+const toolRun = document.getElementById('tool-run');
+const toolResult = document.getElementById('tool-result');
+
+const CONTRACT_TYPES = [
+  ['sale', 'عقد بيع'], ['lease', 'عقد إيجار'], ['employment', 'عقد عمل'],
+  ['partnership', 'عقد شركة'], ['agency', 'عقد وكالة'], ['service', 'عقد مقاولة'],
+  ['will', 'وصية'], ['acknowledgment', 'إقرار'], ['petition', 'عريضة دعوى'],
+  ['settlement', 'عقد صلح']
+];
+
+function field(label, id, type, placeholder) {
+  return '<label for="' + id + '">' + label + '</label><' + (type === 'textarea' ? 'textarea' : 'input')
+    + ' id="' + id + '"' + (type === 'textarea' ? '' : ' type="' + type + '"')
+    + ' placeholder="' + placeholder + '"></' + (type === 'textarea' ? 'textarea' : 'input') + '>';
+}
+
+function renderFields() {
+  const value = tool.value;
+  let html = '';
+  if (value === 'compute-inheritance') {
+    html = '<div class="row"><div>' + field('عدد الأبناء', 'f-sons', 'number', '4') + '</div><div>'
+      + field('عدد البنات', 'f-daughters', 'number', '2') + '</div></div>'
+      + field('مبلغ التركة بالأرقام', 'f-estate', 'number', '10000000000');
+  } else if (value === 'draft-contract') {
+    html = '<label for="f-type">نوع الوثيقة</label><select id="f-type">'
+      + CONTRACT_TYPES.map(pair => '<option value="' + pair[0] + '">' + pair[1] + '</option>').join('')
+      + '</select>'
+      + field('البيانات المعروفة بصيغة JSON اختياريًا', 'f-values', 'textarea', '{"اسم البائع": "..."}');
+  } else if (value === 'review-contract') {
+    html = field('الصق نص العقد هنا', 'f-text', 'textarea', 'انسخ نص العقد أو مسودته');
+  } else if (value === 'analyze-issue') {
+    html = field('اشرح المسألة دون طلب حكم', 'f-question', 'textarea', 'ما الوقائع والمسألة المطلوبة؟');
+  } else if (value === 'explain-term') {
+    html = field('المصطلح', 'f-term', 'text', 'مثال: مقاولة');
+  } else {
+    html = field('الصق النص هنا', 'f-text', 'textarea', 'نص يحتوي كلمات مثل ورثة، عقار، أجل، توقيع');
+  }
+  toolFields.innerHTML = html;
+}
+
+function bodyForTool() {
+  const value = tool.value;
+  const val = id => document.getElementById(id).value.trim();
+  if (value === 'compute-inheritance') {
+    return {sons: Number(val('f-sons')), daughters: Number(val('f-daughters')), estate: Number(val('f-estate'))};
+  }
+  if (value === 'draft-contract') {
+    let values = {};
+    const raw = val('f-values');
+    if (raw) {
+      try { values = JSON.parse(raw); } catch (error) { throw new Error('صيغة JSON غير صحيحة'); }
+    }
+    return {contract_type: val('f-type'), values: values};
+  }
+  if (value === 'review-contract') { return {text: val('f-text')}; }
+  if (value === 'analyze-issue') { return {question: val('f-question')}; }
+  if (value === 'explain-term') { return {term: val('f-term')}; }
+  return {text: val('f-text')};
+}
+
+const ENDPOINTS = {
+  'compute-inheritance': '/compute/inheritance',
+  'draft-contract': '/drafts/contract',
+  'review-contract': '/reviews/contract',
+  'analyze-issue': '/analysis/issue',
+  'explain-term': '/terms/explain',
+  'risk-flags': '/risks/flags'
+};
+
+optin.onchange = () => {
+  toolRun.disabled = !optin.checked;
+  if (!optin.checked) { toolResult.innerHTML = ''; }
+};
+tool.onchange = () => { toolFields.innerHTML = ''; renderFields(); toolResult.innerHTML = ''; };
+
+toolRun.onclick = async () => {
+  try {
+    const body = bodyForTool();
+    toolRun.disabled = true;
+    toolResult.innerHTML = '<div class="box">جارٍ التشغيل...</div>';
+    const response = await fetch(ENDPOINTS[tool.value], {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'X-DZ-LEGAL-AI-OPT-IN': 'advisory-tools'},
+      body: JSON.stringify(body)
+    });
+    const data = await response.json();
+    if (!response.ok) { throw new Error(data.detail || 'تعذّر الاتصال بالخادم المحلي'); }
+    toolResult.innerHTML = renderTool(data);
+  } catch (error) {
+    toolResult.innerHTML = '<div class="box">لم أستطع تشغيل الأداة: ' + escapeHtml(error.message) + '</div>';
+  } finally {
+    toolRun.disabled = !optin.checked;
+  }
+};
+
+function renderTool(data) {
+  let html = '';
+  for (const warning of (data.warnings || [])) {
+    html += '<div class="warn">' + escapeHtml(warning) + '</div>';
+  }
+  if (data.disclaimer) { html += '<div class="note">' + escapeHtml(data.disclaimer) + '</div>'; }
+  if (data.draft) { html += '<div class="box">' + escapeHtml(data.draft) + '</div>'; }
+  if (data.shares) {
+    html += '<div class="box">'
+      + 'نصيب كل ابن: ' + escapeHtml(data.shares.each_son) + '\n'
+      + 'نصيب كل بنت: ' + escapeHtml(data.shares.each_daughter) + '\n'
+      + 'مجموع الأبناء: ' + escapeHtml(data.shares.total_sons) + '\n'
+      + 'مجموع البنات: ' + escapeHtml(data.shares.total_daughters) + '</div>';
+  }
+  if (data.missing_fields) {
+    html += '<div class="muted">الحقول الناقصة: ' + escapeHtml(data.missing_fields.join('، ')) + '</div>';
+  }
+  for (const key of ['mentioned', 'not_mentioned', 'topics_to_verify', 'questions_for_lawyer', 'flags']) {
+    if (data[key]) {
+      html += '<div class="muted">' + escapeHtml(key) + ':</div><ul>'
+        + data[key].map(item => '<li>' + escapeHtml(typeof item === 'string' ? item : (item.label || JSON.stringify(item))) + '</li>').join('')
+        + '</ul>';
+    }
+  }
+  if (data.occurrences) {
+    html += '<ul>' + data.occurrences.map(item => '<li>'
+      + escapeHtml(item.document_id) + ' — ' + escapeHtml(item.article_label || 'مقتطف')
+      + '<br>' + escapeHtml(item.excerpt) + '</li>').join('') + '</ul>';
+  }
+  if ((data.citations || []).length) {
+    html += '<div class="muted">المصادر المستشهد بها:</div>';
+    for (const c of data.citations) {
+      html += '<div class="cite">'
+        + escapeHtml(c.document_id || '') + ' — '
+        + escapeHtml(c.article_label || 'مقتطف')
+        + (c.book ? ' — ' + escapeHtml(c.book) : '')
+        + (c.chapter ? ' — ' + escapeHtml(c.chapter) : '')
+        + (c.section ? ' — ' + escapeHtml(c.section) : '')
+        + '<br><a href="' + escapeAttr(c.url || c.source_url || '') + '" target="_blank" rel="noopener">'
+        + escapeHtml(c.url || c.source_url || '') + '</a></div>';
+    }
+  }
+  return html;
+}
 
 document.getElementById('clear').onclick = () => {
   query.value = '';
@@ -91,6 +261,7 @@ function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
 function escapeAttr(value) { return escapeHtml(value); }
+renderFields();
 </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-20T21:34:06",
+  "generated_at": "2026-11-20T21:53:40",
   "total": 100,
   "passed": 100,
   "failed": 0,
@@ -24,8 +24,16 @@
       ],
       "retrieved_articles": [
         {
+          "document_id": "civil-code-ar",
+          "article_label": "المادة 168"
+        },
+        {
           "document_id": "family-code-fr",
           "article_label": "Article 160"
+        },
+        {
+          "document_id": "orac-006-law",
+          "article_label": "المادة 168"
         },
         {
           "document_id": "family-code-fr",
@@ -34,19 +42,11 @@
         {
           "document_id": "civil-code-ar",
           "article_label": "المادة 160"
-        },
-        {
-          "document_id": "family-code-fr",
-          "article_label": "Article 159"
-        },
-        {
-          "document_id": "civil-code-ar",
-          "article_label": "المادة 168"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 25.33,
+      "seconds": 23.43,
       "approved_by": null
     },
     {
@@ -89,7 +89,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.67,
+      "seconds": 4.33,
       "approved_by": null
     },
     {
@@ -131,7 +131,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.75,
+      "seconds": 4.1,
       "approved_by": null
     },
     {
@@ -174,7 +174,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.68,
+      "seconds": 5.14,
       "approved_by": null
     },
     {
@@ -191,7 +191,6 @@
       "retrieved_document_ids": [
         "commercial-code-ar",
         "orac-005-law",
-        "orac-081-law",
         "orac-090-law",
         "orac-121-law"
       ],
@@ -202,24 +201,24 @@
         },
         {
           "document_id": "commercial-code-ar",
-          "article_label": "المادة 3"
+          "article_label": "المادة 4"
+        },
+        {
+          "document_id": "orac-121-law",
+          "article_label": "المادة 25"
+        },
+        {
+          "document_id": "commercial-code-ar",
+          "article_label": "المادة 381"
         },
         {
           "document_id": "orac-121-law",
           "article_label": "المادة 14"
-        },
-        {
-          "document_id": "commercial-code-ar",
-          "article_label": "المادة 4"
-        },
-        {
-          "document_id": "orac-005-law",
-          "article_label": "المادة 5"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.79,
+      "seconds": 4.5,
       "approved_by": null
     },
     {
@@ -262,7 +261,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.59,
+      "seconds": 6.14,
       "approved_by": null
     },
     {
@@ -296,17 +295,17 @@
           "article_label": "Article 6"
         },
         {
-          "document_id": "orac-006-law",
-          "article_label": "المادة 9 مكرر"
-        },
-        {
           "document_id": "family-code-fr",
           "article_label": "Article 11"
+        },
+        {
+          "document_id": "orac-006-law",
+          "article_label": "المادة 9 مكرر"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.55,
+      "seconds": 5.09,
       "approved_by": null
     },
     {
@@ -350,7 +349,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.68,
+      "seconds": 5.04,
       "approved_by": null
     },
     {
@@ -377,11 +376,11 @@
         },
         {
           "document_id": "orac-095-law",
-          "article_label": "المادة 24"
+          "article_label": "المادة 122"
         },
         {
           "document_id": "orac-095-law",
-          "article_label": "المادة 126"
+          "article_label": "المادة 24"
         },
         {
           "document_id": "penitentiary-code-ar",
@@ -394,7 +393,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.73,
+      "seconds": 5.5,
       "approved_by": null
     },
     {
@@ -438,7 +437,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.64,
+      "seconds": 5.11,
       "approved_by": null
     },
     {
@@ -482,7 +481,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.82,
+      "seconds": 5.16,
       "approved_by": null
     },
     {
@@ -496,7 +495,8 @@
       "actual_decision": "answer",
       "actual_mode": "extractive-grounded",
       "retrieved_document_ids": [
-        "orac-007-law"
+        "orac-007-law",
+        "orac-051-law"
       ],
       "retrieved_articles": [
         {
@@ -505,16 +505,20 @@
         },
         {
           "document_id": "orac-007-law",
-          "article_label": "المادة 19"
+          "article_label": "المادة 5 مكرر 2"
         },
         {
           "document_id": "orac-007-law",
-          "article_label": "المادة 5 مكرر 2"
+          "article_label": "المادة 19"
+        },
+        {
+          "document_id": "orac-051-law",
+          "article_label": "المادة 423"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.09,
+      "seconds": 5.4,
       "approved_by": null
     },
     {
@@ -531,7 +535,6 @@
         "orac-008-law",
         "orac-051-law",
         "orac-052-law",
-        "orac-058-law",
         "orac-093-law"
       ],
       "retrieved_articles": [
@@ -558,7 +561,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.47,
+      "seconds": 3.79,
       "approved_by": null
     },
     {
@@ -572,7 +575,6 @@
       "actual_decision": "answer",
       "actual_mode": "extractive-grounded",
       "retrieved_document_ids": [
-        "criminal-procedure-code-2025-ar",
         "orac-009-law"
       ],
       "retrieved_articles": [
@@ -587,15 +589,11 @@
         {
           "document_id": "orac-009-law",
           "article_label": "المادة 5"
-        },
-        {
-          "document_id": "criminal-procedure-code-2025-ar",
-          "article_label": "المادة 50"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.12,
+      "seconds": 4.82,
       "approved_by": null
     },
     {
@@ -637,7 +635,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.61,
+      "seconds": 4.05,
       "approved_by": null
     },
     {
@@ -664,12 +662,12 @@
         },
         {
           "document_id": "orac-012-law",
-          "article_label": "المادة 45"
+          "article_label": "المادة 42"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.05,
+      "seconds": 4.06,
       "approved_by": null
     },
     {
@@ -693,11 +691,11 @@
         },
         {
           "document_id": "orac-013-law",
-          "article_label": "المادة 9"
+          "article_label": "المادة 5"
         },
         {
           "document_id": "orac-013-law",
-          "article_label": "المادة 35"
+          "article_label": "المادة 22"
         },
         {
           "document_id": "orac-015-law",
@@ -710,7 +708,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.76,
+      "seconds": 4.12,
       "approved_by": null
     },
     {
@@ -742,7 +740,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.74,
+      "seconds": 4.18,
       "approved_by": null
     },
     {
@@ -780,12 +778,12 @@
         },
         {
           "document_id": "orac-013-law",
-          "article_label": "المادة 31"
+          "article_label": "المادة 24"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.69,
+      "seconds": 3.94,
       "approved_by": null
     },
     {
@@ -827,7 +825,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.51,
+      "seconds": 4.4,
       "approved_by": null
     },
     {
@@ -859,7 +857,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.94,
+      "seconds": 4.66,
       "approved_by": null
     },
     {
@@ -901,7 +899,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.67,
+      "seconds": 4.37,
       "approved_by": null
     },
     {
@@ -943,7 +941,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.47,
+      "seconds": 3.98,
       "approved_by": null
     },
     {
@@ -961,10 +959,9 @@
         "orac-021-law",
         "orac-022-law",
         "orac-044-law",
-        "orac-052-law",
-        "orac-089-law",
         "orac-095-law",
-        "orac-116-law"
+        "orac-116-law",
+        "orac-122-law"
       ],
       "retrieved_articles": [
         {
@@ -990,7 +987,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.49,
+      "seconds": 4.14,
       "approved_by": null
     },
     {
@@ -1033,7 +1030,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.87,
+      "seconds": 4.52,
       "approved_by": null
     },
     {
@@ -1075,7 +1072,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.31,
+      "seconds": 5.07,
       "approved_by": null
     },
     {
@@ -1118,7 +1115,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.75,
+      "seconds": 4.25,
       "approved_by": null
     },
     {
@@ -1160,7 +1157,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.58,
+      "seconds": 5.7,
       "approved_by": null
     },
     {
@@ -1202,7 +1199,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.55,
+      "seconds": 5.15,
       "approved_by": null
     },
     {
@@ -1243,7 +1240,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.72,
+      "seconds": 4.95,
       "approved_by": null
     },
     {
@@ -1275,7 +1272,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.67,
+      "seconds": 5.24,
       "approved_by": null
     },
     {
@@ -1317,7 +1314,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.54,
+      "seconds": 5.12,
       "approved_by": null
     },
     {
@@ -1349,7 +1346,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.81,
+      "seconds": 5.38,
       "approved_by": null
     },
     {
@@ -1381,7 +1378,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.55,
+      "seconds": 5.52,
       "approved_by": null
     },
     {
@@ -1413,7 +1410,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.62,
+      "seconds": 4.08,
       "approved_by": null
     },
     {
@@ -1450,7 +1447,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.73,
+      "seconds": 4.45,
       "approved_by": null
     },
     {
@@ -1492,7 +1489,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.73,
+      "seconds": 4.54,
       "approved_by": null
     },
     {
@@ -1534,7 +1531,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.72,
+      "seconds": 5.28,
       "approved_by": null
     },
     {
@@ -1565,7 +1562,7 @@
         },
         {
           "document_id": "orac-038-law",
-          "article_label": "المادة 68"
+          "article_label": "المادة 4"
         },
         {
           "document_id": "orac-084-law",
@@ -1578,7 +1575,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.55,
+      "seconds": 5.13,
       "approved_by": null
     },
     {
@@ -1619,7 +1616,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.59,
+      "seconds": 6.58,
       "approved_by": null
     },
     {
@@ -1651,7 +1648,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.01,
+      "seconds": 5.29,
       "approved_by": null
     },
     {
@@ -1696,7 +1693,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.67,
+      "seconds": 5.23,
       "approved_by": null
     },
     {
@@ -1715,20 +1712,20 @@
       "retrieved_articles": [
         {
           "document_id": "orac-042-law",
-          "article_label": "المادة 8"
-        },
-        {
-          "document_id": "orac-042-law",
-          "article_label": "المادة 3"
-        },
-        {
-          "document_id": "orac-042-law",
           "article_label": "المادة 6"
+        },
+        {
+          "document_id": "orac-042-law",
+          "article_label": "المادة 10"
+        },
+        {
+          "document_id": "orac-042-law",
+          "article_label": "المادة 1"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.69,
+      "seconds": 5.51,
       "approved_by": null
     },
     {
@@ -1771,7 +1768,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.43,
+      "seconds": 5.39,
       "approved_by": null
     },
     {
@@ -1796,11 +1793,11 @@
         },
         {
           "document_id": "orac-045-law",
-          "article_label": "المادة 9"
+          "article_label": "المادة 157"
         },
         {
           "document_id": "orac-045-law",
-          "article_label": "المادة 128"
+          "article_label": "المادة 9"
         },
         {
           "document_id": "orac-113-law",
@@ -1813,7 +1810,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.53,
+      "seconds": 5.35,
       "approved_by": null
     },
     {
@@ -1856,7 +1853,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.79,
+      "seconds": 5.46,
       "approved_by": null
     },
     {
@@ -1879,16 +1876,16 @@
         },
         {
           "document_id": "orac-047-law",
-          "article_label": "المادة 45"
+          "article_label": "المادة 20"
         },
         {
           "document_id": "orac-047-law",
-          "article_label": "المادة 8"
+          "article_label": "المادة 43"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.46,
+      "seconds": 5.18,
       "approved_by": null
     },
     {
@@ -1909,11 +1906,11 @@
       "retrieved_articles": [
         {
           "document_id": "orac-048-law",
-          "article_label": "المادة 1"
+          "article_label": "المادة 162"
         },
         {
           "document_id": "orac-048-law",
-          "article_label": "المادة 162"
+          "article_label": "المادة 1"
         },
         {
           "document_id": "orac-048-law",
@@ -1925,12 +1922,12 @@
         },
         {
           "document_id": "orac-049-law",
-          "article_label": "المادة 2"
+          "article_label": "المادة 96"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.71,
+      "seconds": 5.31,
       "approved_by": null
     },
     {
@@ -1953,16 +1950,16 @@
         },
         {
           "document_id": "orac-049-law",
-          "article_label": "المادة 2"
+          "article_label": "المادة 96"
         },
         {
           "document_id": "orac-049-law",
-          "article_label": "المادة 80"
+          "article_label": "المادة 2"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.76,
+      "seconds": 5.78,
       "approved_by": null
     },
     {
@@ -2003,7 +2000,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.55,
+      "seconds": 5.34,
       "approved_by": null
     },
     {
@@ -2024,15 +2021,15 @@
       "retrieved_articles": [
         {
           "document_id": "orac-051-law",
+          "article_label": "المادة 176"
+        },
+        {
+          "document_id": "orac-051-law",
           "article_label": "المادة 331"
         },
         {
           "document_id": "orac-051-law",
-          "article_label": "المادة 345"
-        },
-        {
-          "document_id": "orac-051-law",
-          "article_label": "المادة 100"
+          "article_label": "المادة 101"
         },
         {
           "document_id": "orac-078-law",
@@ -2045,7 +2042,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.61,
+      "seconds": 5.4,
       "approved_by": null
     },
     {
@@ -2087,7 +2084,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.1,
+      "seconds": 5.41,
       "approved_by": null
     },
     {
@@ -2104,9 +2101,14 @@
         "civil-code-ar",
         "orac-003-law",
         "orac-051-law",
-        "orac-053-law"
+        "orac-053-law",
+        "orac-118-law"
       ],
       "retrieved_articles": [
+        {
+          "document_id": "orac-053-law",
+          "article_label": "المادة 33"
+        },
         {
           "document_id": "orac-053-law",
           "article_label": "المادة 35"
@@ -2116,21 +2118,17 @@
           "article_label": "المادة 15"
         },
         {
-          "document_id": "orac-053-law",
-          "article_label": "المادة 40"
+          "document_id": "orac-051-law",
+          "article_label": "المادة 69"
         },
         {
           "document_id": "civil-code-ar",
           "article_label": "المادة 13\nمكرر"
-        },
-        {
-          "document_id": "orac-051-law",
-          "article_label": "المادة 70"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.01,
+      "seconds": 5.45,
       "approved_by": null
     },
     {
@@ -2174,7 +2172,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.08,
+      "seconds": 5.59,
       "approved_by": null
     },
     {
@@ -2206,7 +2204,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.58,
+      "seconds": 4.26,
       "approved_by": null
     },
     {
@@ -2238,7 +2236,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.62,
+      "seconds": 4.1,
       "approved_by": null
     },
     {
@@ -2280,7 +2278,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.78,
+      "seconds": 4.8,
       "approved_by": null
     },
     {
@@ -2317,7 +2315,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.64,
+      "seconds": 4.54,
       "approved_by": null
     },
     {
@@ -2349,7 +2347,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.62,
+      "seconds": 3.83,
       "approved_by": null
     },
     {
@@ -2381,7 +2379,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.83,
+      "seconds": 4.3,
       "approved_by": null
     },
     {
@@ -2425,7 +2423,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.65,
+      "seconds": 4.07,
       "approved_by": null
     },
     {
@@ -2440,6 +2438,7 @@
       "actual_mode": "extractive-grounded",
       "retrieved_document_ids": [
         "civil-code-ar",
+        "orac-056-law",
         "orac-062-law",
         "orac-091-law",
         "penitentiary-code-ar"
@@ -2468,7 +2467,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.01,
+      "seconds": 4.63,
       "approved_by": null
     },
     {
@@ -2500,7 +2499,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.64,
+      "seconds": 4.26,
       "approved_by": null
     },
     {
@@ -2543,7 +2542,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.77,
+      "seconds": 5.62,
       "approved_by": null
     },
     {
@@ -2566,16 +2565,16 @@
         },
         {
           "document_id": "orac-065-law",
-          "article_label": "المادة 27"
+          "article_label": "المادة 23"
         },
         {
           "document_id": "orac-065-law",
-          "article_label": "المادة 23"
+          "article_label": "المادة 6"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.83,
+      "seconds": 4.08,
       "approved_by": null
     },
     {
@@ -2617,7 +2616,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.56,
+      "seconds": 3.99,
       "approved_by": null
     },
     {
@@ -2649,7 +2648,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.5,
+      "seconds": 4.24,
       "approved_by": null
     },
     {
@@ -2664,7 +2663,7 @@
       "retrieved_articles": [],
       "ok": true,
       "problems": [],
-      "seconds": 3.61,
+      "seconds": 5.43,
       "approved_by": null
     },
     {
@@ -2703,7 +2702,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.47,
+      "seconds": 4.24,
       "approved_by": null
     },
     {
@@ -2741,12 +2740,12 @@
         },
         {
           "document_id": "orac-073-law",
-          "article_label": "المادة 8"
+          "article_label": "المادة 4"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.24,
+      "seconds": 4.69,
       "approved_by": null
     },
     {
@@ -2789,7 +2788,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.56,
+      "seconds": 3.78,
       "approved_by": null
     },
     {
@@ -2826,7 +2825,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.5,
+      "seconds": 4.35,
       "approved_by": null
     },
     {
@@ -2868,7 +2867,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.81,
+      "seconds": 4.15,
       "approved_by": null
     },
     {
@@ -2883,7 +2882,7 @@
       "retrieved_articles": [],
       "ok": true,
       "problems": [],
-      "seconds": 3.73,
+      "seconds": 4.15,
       "approved_by": null
     },
     {
@@ -2925,7 +2924,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.53,
+      "seconds": 3.83,
       "approved_by": null
     },
     {
@@ -2991,20 +2990,20 @@
       "retrieved_articles": [
         {
           "document_id": "orac-080-law",
-          "article_label": "المادة 16 مكرر"
-        },
-        {
-          "document_id": "orac-080-law",
-          "article_label": "المادة 178"
-        },
-        {
-          "document_id": "orac-080-law",
           "article_label": "المادة 17"
+        },
+        {
+          "document_id": "orac-080-law",
+          "article_label": "المادة 180 مكرر 1"
+        },
+        {
+          "document_id": "orac-080-law",
+          "article_label": "المادة 16 مكرر"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.19,
+      "seconds": 4.53,
       "approved_by": null
     },
     {
@@ -3047,7 +3046,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.58,
+      "seconds": 3.92,
       "approved_by": null
     },
     {
@@ -3068,6 +3067,10 @@
       "retrieved_articles": [
         {
           "document_id": "orac-082-law",
+          "article_label": "المادة 24"
+        },
+        {
+          "document_id": "orac-082-law",
           "article_label": "المادة 5"
         },
         {
@@ -3075,21 +3078,17 @@
           "article_label": "المادة 18"
         },
         {
-          "document_id": "orac-082-law",
-          "article_label": "المادة 21"
+          "document_id": "orac-012-law",
+          "article_label": "المادة 22"
         },
         {
           "document_id": "orac-101-law",
           "article_label": "المادة 2"
-        },
-        {
-          "document_id": "orac-012-law",
-          "article_label": "المادة 22"
         }
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.62,
+      "seconds": 4.52,
       "approved_by": null
     },
     {
@@ -3132,7 +3131,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.63,
+      "seconds": 4.01,
       "approved_by": null
     },
     {
@@ -3169,7 +3168,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.74,
+      "seconds": 4.26,
       "approved_by": null
     },
     {
@@ -3201,7 +3200,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.67,
+      "seconds": 3.85,
       "approved_by": null
     },
     {
@@ -3216,7 +3215,7 @@
       "retrieved_articles": [],
       "ok": true,
       "problems": [],
-      "seconds": 3.46,
+      "seconds": 3.93,
       "approved_by": null
     },
     {
@@ -3237,12 +3236,12 @@
       ],
       "retrieved_articles": [
         {
-          "document_id": "orac-087-law",
-          "article_label": "المادة 173"
-        },
-        {
           "document_id": "orac-001-law",
           "article_label": "المادة 948"
+        },
+        {
+          "document_id": "orac-087-law",
+          "article_label": "المادة 173"
         },
         {
           "document_id": "orac-087-law",
@@ -3259,7 +3258,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.96,
+      "seconds": 5.0,
       "approved_by": null
     },
     {
@@ -3301,7 +3300,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 4.14,
+      "seconds": 4.46,
       "approved_by": null
     },
     {
@@ -3344,7 +3343,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.71,
+      "seconds": 4.0,
       "approved_by": null
     },
     {
@@ -3387,7 +3386,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.62,
+      "seconds": 3.73,
       "approved_by": null
     },
     {
@@ -3419,7 +3418,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.85,
+      "seconds": 4.11,
       "approved_by": null
     },
     {
@@ -3438,11 +3437,11 @@
       "retrieved_articles": [
         {
           "document_id": "orac-096-law",
-          "article_label": "المادة 89"
+          "article_label": "المادة 83"
         },
         {
           "document_id": "orac-096-law",
-          "article_label": "المادة 83"
+          "article_label": "المادة 89"
         },
         {
           "document_id": "orac-096-law",
@@ -3451,7 +3450,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.84,
+      "seconds": 3.93,
       "approved_by": null
     },
     {
@@ -3483,7 +3482,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.8,
+      "seconds": 4.32,
       "approved_by": null
     },
     {
@@ -3527,7 +3526,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.79,
+      "seconds": 3.94,
       "approved_by": null
     },
     {
@@ -3623,7 +3622,7 @@
       ],
       "ok": true,
       "problems": [],
-      "seconds": 3.53,
+      "seconds": 4.18,
       "approved_by": null
     },
     {
@@ -3638,7 +3637,7 @@
       "retrieved_articles": [],
       "ok": true,
       "problems": [],
-      "seconds": 3.62,
+      "seconds": 4.23,
       "approved_by": null
     },
     {
@@ -3668,7 +3667,7 @@
       "retrieved_articles": [],
       "ok": true,
       "problems": [],
-      "seconds": 3.99,
+      "seconds": 4.44,
       "approved_by": null
     },
     {
@@ -3683,7 +3682,7 @@
       "retrieved_articles": [],
       "ok": true,
       "problems": [],
-      "seconds": 0.0,
+      "seconds": 0.02,
       "approved_by": null
     }
   ]
