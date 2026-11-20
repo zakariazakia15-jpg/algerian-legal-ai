@@ -1,0 +1,3690 @@
+{
+  "generated_at": "2026-11-20T21:34:06",
+  "total": 100,
+  "passed": 100,
+  "failed": 0,
+  "approved_by_reviewer": 0,
+  "measurement": "retrieval and abstention behaviour only, no legal accuracy",
+  "details": [
+    {
+      "case_id": "c001",
+      "domain": "الميراث",
+      "query": "نحن 6 أشخاص توفي والدنا في حادث مرور مروع وترك 10 مليار دينار جزائري ونحن 4 أبناء رجال وبنتان كم نصيب كل واحد منا؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "family-code-fr",
+        "orac-006-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "civil-code-ar",
+        "family-code-fr",
+        "orac-006-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "family-code-fr",
+          "article_label": "Article 160"
+        },
+        {
+          "document_id": "family-code-fr",
+          "article_label": "Article 173"
+        },
+        {
+          "document_id": "civil-code-ar",
+          "article_label": "المادة 160"
+        },
+        {
+          "document_id": "family-code-fr",
+          "article_label": "Article 159"
+        },
+        {
+          "document_id": "civil-code-ar",
+          "article_label": "المادة 168"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 25.33,
+      "approved_by": null
+    },
+    {
+      "case_id": "c002",
+      "domain": "حقوق المؤلف",
+      "query": "ما الذي تنص عليه الوثيقة المتعلقة بـ droits d'auteur وحقوق المؤلف في الجزائر؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "algerian-ord-03-05-fr"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "algerian-ord-03-05-fr",
+        "orac-029-law",
+        "orac-088-law",
+        "orac-122-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-088-law",
+          "article_label": "المادة 33"
+        },
+        {
+          "document_id": "orac-122-law",
+          "article_label": "المادة 8"
+        },
+        {
+          "document_id": "orac-088-law",
+          "article_label": "المادة 93"
+        },
+        {
+          "document_id": "orac-088-law",
+          "article_label": "المادة 22"
+        },
+        {
+          "document_id": "algerian-ord-03-05-fr",
+          "article_label": "Article 145"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.67,
+      "approved_by": null
+    },
+    {
+      "case_id": "c003",
+      "domain": "الدستور",
+      "query": "ما هي مبادئ الجمهورية الجزائرية الديمقراطية الشعبية المنصوص عليها في الدستور؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "constitution-ar-full",
+        "orac-043-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "constitution-ar-full",
+        "orac-043-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "constitution-ar-full",
+          "article_label": "المادة 81"
+        },
+        {
+          "document_id": "constitution-ar-full",
+          "article_label": "المادة 561"
+        },
+        {
+          "document_id": "constitution-ar-full",
+          "article_label": "المادة 7"
+        },
+        {
+          "document_id": "orac-043-law",
+          "article_label": "المادة 18"
+        },
+        {
+          "document_id": "orac-043-law",
+          "article_label": "المادة 16"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.75,
+      "approved_by": null
+    },
+    {
+      "case_id": "c004",
+      "domain": "القانون المدني",
+      "query": "ما هي القواعد العامة للالتزامات في القانون المدني الجزائري؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "civil-code-ar",
+        "orac-004-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "civil-code-ar",
+        "orac-004-law",
+        "orac-070-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "civil-code-ar",
+          "article_label": "المادة 360"
+        },
+        {
+          "document_id": "civil-code-ar",
+          "article_label": "المادة 3"
+        },
+        {
+          "document_id": "civil-code-ar",
+          "article_label": "المادة 606"
+        },
+        {
+          "document_id": "orac-004-law",
+          "article_label": "المادة 360"
+        },
+        {
+          "document_id": "orac-004-law",
+          "article_label": "المادة 557"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.68,
+      "approved_by": null
+    },
+    {
+      "case_id": "c005",
+      "domain": "قانون التجارة",
+      "query": "ما هي القواعد المتعلقة بالتجار والأعمال التجارية في قانون التجارة؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "commercial-code-ar",
+        "orac-005-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "commercial-code-ar",
+        "orac-005-law",
+        "orac-081-law",
+        "orac-090-law",
+        "orac-121-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "commercial-code-ar",
+          "article_label": "المادة 13"
+        },
+        {
+          "document_id": "commercial-code-ar",
+          "article_label": "المادة 3"
+        },
+        {
+          "document_id": "orac-121-law",
+          "article_label": "المادة 14"
+        },
+        {
+          "document_id": "commercial-code-ar",
+          "article_label": "المادة 4"
+        },
+        {
+          "document_id": "orac-005-law",
+          "article_label": "المادة 5"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.79,
+      "approved_by": null
+    },
+    {
+      "case_id": "c006",
+      "domain": "الإجراءات الجزائية",
+      "query": "ما هي قواعد التحقيق الابتدائي في قانون الإجراءات الجزائية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "criminal-procedure-code-2025-ar",
+        "orac-002-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "criminal-procedure-code-2025-ar",
+        "orac-001-law",
+        "orac-002-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "criminal-procedure-code-2025-ar",
+          "article_label": "المادة 100"
+        },
+        {
+          "document_id": "criminal-procedure-code-2025-ar",
+          "article_label": "المادة 309"
+        },
+        {
+          "document_id": "criminal-procedure-code-2025-ar",
+          "article_label": "المادة 95"
+        },
+        {
+          "document_id": "orac-002-law",
+          "article_label": "المادة 95"
+        },
+        {
+          "document_id": "orac-002-law",
+          "article_label": "المادة 100"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.59,
+      "approved_by": null
+    },
+    {
+      "case_id": "c007",
+      "domain": "الزواج في قانون الأسرة",
+      "query": "ما هي أحكام الزواج في قانون الأسرة الجزائري؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "family-code-fr",
+        "orac-006-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "civil-code-ar",
+        "family-code-fr",
+        "nationality-code-ar",
+        "orac-006-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "family-code-fr",
+          "article_label": "Article 40"
+        },
+        {
+          "document_id": "nationality-code-ar",
+          "article_label": "المادة 6"
+        },
+        {
+          "document_id": "family-code-fr",
+          "article_label": "Article 6"
+        },
+        {
+          "document_id": "orac-006-law",
+          "article_label": "المادة 9 مكرر"
+        },
+        {
+          "document_id": "family-code-fr",
+          "article_label": "Article 11"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.55,
+      "approved_by": null
+    },
+    {
+      "case_id": "c008",
+      "domain": "الجنسية",
+      "query": "ما هي شروط اكتساب الجنسية الجزائرية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "nationality-code-ar",
+        "orac-119-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "constitution-ar-full",
+        "orac-043-law",
+        "orac-076-law",
+        "orac-119-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-119-law",
+          "article_label": "المادة 8"
+        },
+        {
+          "document_id": "orac-119-law",
+          "article_label": "المادة 2"
+        },
+        {
+          "document_id": "orac-119-law",
+          "article_label": "المادة 25"
+        },
+        {
+          "document_id": "constitution-ar-full",
+          "article_label": "المادة 63"
+        },
+        {
+          "document_id": "orac-043-law",
+          "article_label": "المادة 36"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.68,
+      "approved_by": null
+    },
+    {
+      "case_id": "c009",
+      "domain": "المؤسسات العقابية",
+      "query": "كيف ينظّم قانون المؤسسات العقابية إعادة الإدماج الاجتماعي للمحبوسين؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "penitentiary-code-ar",
+        "orac-095-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-052-law",
+        "orac-092-law",
+        "orac-095-law",
+        "penitentiary-code-ar"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-095-law",
+          "article_label": "المادة 87"
+        },
+        {
+          "document_id": "orac-095-law",
+          "article_label": "المادة 24"
+        },
+        {
+          "document_id": "orac-095-law",
+          "article_label": "المادة 126"
+        },
+        {
+          "document_id": "penitentiary-code-ar",
+          "article_label": "المادة 115"
+        },
+        {
+          "document_id": "penitentiary-code-ar",
+          "article_label": "المادة 86"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.73,
+      "approved_by": null
+    },
+    {
+      "case_id": "c010",
+      "domain": "قانون العقوبات",
+      "query": "ما هي العقوبات المقررة في قانون العقوبات الجزائري؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "penal-code-ar-portal",
+        "orac-003-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "civil-code-ar",
+        "commercial-code-ar",
+        "orac-003-law",
+        "penal-code-ar-portal"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "penal-code-ar-portal",
+          "article_label": "المادة 54 مكرر"
+        },
+        {
+          "document_id": "penal-code-ar-portal",
+          "article_label": "المادة 53"
+        },
+        {
+          "document_id": "orac-003-law",
+          "article_label": "المادة 53"
+        },
+        {
+          "document_id": "penal-code-ar-portal",
+          "article_label": "المادة 53 مكرر"
+        },
+        {
+          "document_id": "orac-003-law",
+          "article_label": "المادة 54 مكرر"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.64,
+      "approved_by": null
+    },
+    {
+      "case_id": "c011",
+      "domain": "الإجراءات المدنية والإدارية",
+      "query": "ما هي قواعد التقاضي أمام المحاكم الإدارية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-001-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "criminal-procedure-code-2025-ar",
+        "orac-001-law",
+        "orac-002-law",
+        "orac-024-law",
+        "orac-067-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-001-law",
+          "article_label": "المادة 9"
+        },
+        {
+          "document_id": "orac-001-law",
+          "article_label": "المادة 6"
+        },
+        {
+          "document_id": "orac-001-law",
+          "article_label": "المادة 46"
+        },
+        {
+          "document_id": "orac-002-law",
+          "article_label": "المادة 576"
+        },
+        {
+          "document_id": "orac-067-law",
+          "article_label": "المادة 52"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.82,
+      "approved_by": null
+    },
+    {
+      "case_id": "c012",
+      "domain": "المخدرات",
+      "query": "كيف يعاقب قانون الوقاية من المخدرات والمؤثرات العقلية على الاتجار؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-007-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-007-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-007-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-007-law",
+          "article_label": "المادة 19"
+        },
+        {
+          "document_id": "orac-007-law",
+          "article_label": "المادة 5 مكرر 2"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.09,
+      "approved_by": null
+    },
+    {
+      "case_id": "c013",
+      "domain": "عصابات الأحياء",
+      "query": "ما التدابير المتخذة لمكافحة عصابات الأحياء؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-008-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-008-law",
+        "orac-051-law",
+        "orac-052-law",
+        "orac-058-law",
+        "orac-093-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-008-law",
+          "article_label": "المادة 8"
+        },
+        {
+          "document_id": "orac-008-law",
+          "article_label": "المادة 12"
+        },
+        {
+          "document_id": "orac-008-law",
+          "article_label": "المادة 7"
+        },
+        {
+          "document_id": "orac-093-law",
+          "article_label": "المادة 8"
+        },
+        {
+          "document_id": "orac-052-law",
+          "article_label": "المادة 62"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.47,
+      "approved_by": null
+    },
+    {
+      "case_id": "c014",
+      "domain": "اختطاف الأشخاص",
+      "query": "كيف يواجه القانون جرائم اختطاف الأشخاص؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-009-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "criminal-procedure-code-2025-ar",
+        "orac-009-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-009-law",
+          "article_label": "المادة 7"
+        },
+        {
+          "document_id": "orac-009-law",
+          "article_label": "المادة 6"
+        },
+        {
+          "document_id": "orac-009-law",
+          "article_label": "المادة 5"
+        },
+        {
+          "document_id": "criminal-procedure-code-2025-ar",
+          "article_label": "المادة 50"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.12,
+      "approved_by": null
+    },
+    {
+      "case_id": "c015",
+      "domain": "حركة المرور",
+      "query": "ما هي قواعد حركة المرور عبر الطرق؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-010-law",
+        "orac-011-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-010-law",
+        "orac-011-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-011-law",
+          "article_label": "المادة 236"
+        },
+        {
+          "document_id": "orac-011-law",
+          "article_label": "المادة 3"
+        },
+        {
+          "document_id": "orac-011-law",
+          "article_label": "المادة 4"
+        },
+        {
+          "document_id": "orac-010-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-010-law",
+          "article_label": "المادة 9"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.61,
+      "approved_by": null
+    },
+    {
+      "case_id": "c016",
+      "domain": "النقل البري",
+      "query": "كيف ينظّم القانون توجيه النقل البري؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-012-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-012-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-012-law",
+          "article_label": "المادة 41"
+        },
+        {
+          "document_id": "orac-012-law",
+          "article_label": "المادة 16"
+        },
+        {
+          "document_id": "orac-012-law",
+          "article_label": "المادة 45"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.05,
+      "approved_by": null
+    },
+    {
+      "case_id": "c017",
+      "domain": "التأمين على السيارات",
+      "query": "ما نظام التعويض عن الأضرار في إلزامية التأمين على السيارات؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-013-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-013-law",
+        "orac-015-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-013-law",
+          "article_label": "المادة 3"
+        },
+        {
+          "document_id": "orac-013-law",
+          "article_label": "المادة 9"
+        },
+        {
+          "document_id": "orac-013-law",
+          "article_label": "المادة 35"
+        },
+        {
+          "document_id": "orac-015-law",
+          "article_label": "المادة 13"
+        },
+        {
+          "document_id": "orac-015-law",
+          "article_label": "المادة 1"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.76,
+      "approved_by": null
+    },
+    {
+      "case_id": "c018",
+      "domain": "حوادث العمل",
+      "query": "ما هي أحكام حوادث العمل والأمراض المهنية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-014-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-014-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-014-law",
+          "article_label": "المادة 88"
+        },
+        {
+          "document_id": "orac-014-law",
+          "article_label": "المادة 82"
+        },
+        {
+          "document_id": "orac-014-law",
+          "article_label": "المادة 70"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.74,
+      "approved_by": null
+    },
+    {
+      "case_id": "c019",
+      "domain": "الكوارث الطبيعية",
+      "query": "ما نظام التعويض عن الأضرار الناتجة عن الكوارث الطبيعية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-015-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-013-law",
+        "orac-015-law",
+        "orac-072-law",
+        "orac-103-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-015-law",
+          "article_label": "المادة 11"
+        },
+        {
+          "document_id": "orac-015-law",
+          "article_label": "المادة 13"
+        },
+        {
+          "document_id": "orac-015-law",
+          "article_label": "المادة 12"
+        },
+        {
+          "document_id": "orac-103-law",
+          "article_label": "المادة 63"
+        },
+        {
+          "document_id": "orac-013-law",
+          "article_label": "المادة 31"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.69,
+      "approved_by": null
+    },
+    {
+      "case_id": "c020",
+      "domain": "علاقات العمل",
+      "query": "ما هي أحكام علاقات العمل في الجزائر؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-017-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-017-law",
+        "orac-045-law",
+        "orac-081-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-017-law",
+          "article_label": "المادة 74"
+        },
+        {
+          "document_id": "orac-017-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-017-law",
+          "article_label": "المادة 64"
+        },
+        {
+          "document_id": "orac-045-law",
+          "article_label": "المادة 8"
+        },
+        {
+          "document_id": "orac-081-law",
+          "article_label": "المادة 746"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.51,
+      "approved_by": null
+    },
+    {
+      "case_id": "c021",
+      "domain": "الحفاظ على الشغل",
+      "query": "كيف يحمي القانون الأجراء الذين قد يفقدون عملهم بصفة لا إرادية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-018-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-018-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-018-law",
+          "article_label": "المادة 3"
+        },
+        {
+          "document_id": "orac-018-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-018-law",
+          "article_label": "المادة 21"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.94,
+      "approved_by": null
+    },
+    {
+      "case_id": "c022",
+      "domain": "النزاعات الفردية في العمل",
+      "query": "كيف تُسوَّى النزاعات الفردية في العمل؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-019-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-014-law",
+        "orac-019-law",
+        "orac-089-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-014-law",
+          "article_label": "المادة 48"
+        },
+        {
+          "document_id": "orac-089-law",
+          "article_label": "المادة 498"
+        },
+        {
+          "document_id": "orac-019-law",
+          "article_label": "المادة 3"
+        },
+        {
+          "document_id": "orac-019-law",
+          "article_label": "المادة 5"
+        },
+        {
+          "document_id": "orac-019-law",
+          "article_label": "المادة 1"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.67,
+      "approved_by": null
+    },
+    {
+      "case_id": "c023",
+      "domain": "العمال الأجانب",
+      "query": "ما شروط تشغيل العمال الأجانب؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-021-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-021-law",
+        "orac-022-law",
+        "orac-094-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-021-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-021-law",
+          "article_label": "المادة 26"
+        },
+        {
+          "document_id": "orac-021-law",
+          "article_label": "المادة 8"
+        },
+        {
+          "document_id": "orac-022-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-022-law",
+          "article_label": "المادة 15"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.47,
+      "approved_by": null
+    },
+    {
+      "case_id": "c024",
+      "domain": "تنصيب العمال",
+      "query": "كيف تتم مراقبة التشغيل وتنصيب العمال؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-022-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-011-law",
+        "orac-021-law",
+        "orac-022-law",
+        "orac-044-law",
+        "orac-052-law",
+        "orac-089-law",
+        "orac-095-law",
+        "orac-116-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-021-law",
+          "article_label": "المادة 9"
+        },
+        {
+          "document_id": "orac-095-law",
+          "article_label": "المادة 150 مكرر"
+        },
+        {
+          "document_id": "orac-022-law",
+          "article_label": "المادة 14"
+        },
+        {
+          "document_id": "orac-044-law",
+          "article_label": "المادة 210"
+        },
+        {
+          "document_id": "orac-011-law",
+          "article_label": "المادة 83"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.49,
+      "approved_by": null
+    },
+    {
+      "case_id": "c025",
+      "domain": "مفتشية العمل",
+      "query": "ما دور مفتشية العمل؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-023-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "algerian-constitution-2020-fr",
+        "orac-023-law",
+        "orac-113-law",
+        "penitentiary-code-ar"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "algerian-constitution-2020-fr",
+          "article_label": "Article 66"
+        },
+        {
+          "document_id": "orac-023-law",
+          "article_label": "المادة 4"
+        },
+        {
+          "document_id": "orac-023-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "penitentiary-code-ar",
+          "article_label": "المادة 100"
+        },
+        {
+          "document_id": "orac-023-law",
+          "article_label": "المادة 20"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.87,
+      "approved_by": null
+    },
+    {
+      "case_id": "c026",
+      "domain": "الوظيفة العمومية",
+      "query": "ما هو القانون الأساسي العام للوظيفة العمومية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-024-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-024-law",
+        "orac-044-law",
+        "orac-051-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-024-law",
+          "article_label": "المادة 55"
+        },
+        {
+          "document_id": "orac-024-law",
+          "article_label": "المادة 57"
+        },
+        {
+          "document_id": "orac-024-law",
+          "article_label": "المادة 58"
+        },
+        {
+          "document_id": "orac-051-law",
+          "article_label": "المادة 299"
+        },
+        {
+          "document_id": "orac-051-law",
+          "article_label": "المادة 303"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.31,
+      "approved_by": null
+    },
+    {
+      "case_id": "c027",
+      "domain": "التقاعد",
+      "query": "ما هي أحكام قانون التقاعد؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-025-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-025-law",
+        "orac-026-law",
+        "orac-049-law",
+        "orac-091-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-025-law",
+          "article_label": "المادة 27"
+        },
+        {
+          "document_id": "orac-025-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-025-law",
+          "article_label": "المادة 16"
+        },
+        {
+          "document_id": "orac-026-law",
+          "article_label": "المادة 63"
+        },
+        {
+          "document_id": "orac-091-law",
+          "article_label": "المادة 188"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.75,
+      "approved_by": null
+    },
+    {
+      "case_id": "c028",
+      "domain": "المعاشات العسكرية",
+      "query": "ما هي أحكام المعاشات العسكرية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-026-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-025-law",
+        "orac-026-law",
+        "orac-049-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-026-law",
+          "article_label": "المادة 101"
+        },
+        {
+          "document_id": "orac-026-law",
+          "article_label": "المادة 45 مكرر"
+        },
+        {
+          "document_id": "orac-026-law",
+          "article_label": "المادة 117"
+        },
+        {
+          "document_id": "orac-025-law",
+          "article_label": "المادة 27"
+        },
+        {
+          "document_id": "orac-025-law",
+          "article_label": "المادة 43"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.58,
+      "approved_by": null
+    },
+    {
+      "case_id": "c029",
+      "domain": "مسح الأراضي",
+      "query": "كيف يتم إعداد مسح الأراضي العام؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-027-law",
+        "orac-028-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-027-law",
+        "orac-028-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-028-law",
+          "article_label": "المادة 4"
+        },
+        {
+          "document_id": "orac-027-law",
+          "article_label": "المادة 27"
+        },
+        {
+          "document_id": "orac-028-law",
+          "article_label": "المادة 8"
+        },
+        {
+          "document_id": "orac-027-law",
+          "article_label": "المادة 16"
+        },
+        {
+          "document_id": "orac-027-law",
+          "article_label": "المادة 19"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.55,
+      "approved_by": null
+    },
+    {
+      "case_id": "c030",
+      "domain": "السجل العقاري",
+      "query": "كيف يتم تأسيس السجل العقاري؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-029-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-028-law",
+        "orac-029-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-029-law",
+          "article_label": "المادة 69"
+        },
+        {
+          "document_id": "orac-029-law",
+          "article_label": "المادة 82"
+        },
+        {
+          "document_id": "orac-028-law",
+          "article_label": "المادة 4"
+        },
+        {
+          "document_id": "orac-028-law",
+          "article_label": "المادة 12"
+        },
+        {
+          "document_id": "orac-029-law",
+          "article_label": "المادة 72"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.72,
+      "approved_by": null
+    },
+    {
+      "case_id": "c031",
+      "domain": "نزع الملكية",
+      "query": "ما هي القواعد المتعلقة بنزع الملكية من أجل المنفعة العمومية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-030-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-030-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-030-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-030-law",
+          "article_label": "المادة 42"
+        },
+        {
+          "document_id": "orac-030-law",
+          "article_label": "المادة 43"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.67,
+      "approved_by": null
+    },
+    {
+      "case_id": "c032",
+      "domain": "الوساطة العقارية",
+      "query": "ما دور الوكالة الوطنية للوساطة والضبط العقاري؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-031-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-029-law",
+        "orac-031-law",
+        "orac-113-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-031-law",
+          "article_label": "المادة 3"
+        },
+        {
+          "document_id": "orac-031-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-031-law",
+          "article_label": "المادة 3"
+        },
+        {
+          "document_id": "orac-029-law",
+          "article_label": "المادة 2"
+        },
+        {
+          "document_id": "orac-113-law",
+          "article_label": "المادة 167"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.54,
+      "approved_by": null
+    },
+    {
+      "case_id": "c033",
+      "domain": "التسيير العقاري",
+      "query": "كيف تُنشأ وكالات محلية للتسيير والتنظيم العقاريين؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-032-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-032-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-032-law",
+          "article_label": "المادة 28"
+        },
+        {
+          "document_id": "orac-032-law",
+          "article_label": "المادة 27 مكرر"
+        },
+        {
+          "document_id": "orac-032-law",
+          "article_label": "المادة 1"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.81,
+      "approved_by": null
+    },
+    {
+      "case_id": "c034",
+      "domain": "الترقية العقارية",
+      "query": "ما القواعد التي تنظم نشاط الترقية العقارية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-033-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-033-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-033-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-033-law",
+          "article_label": "المادة 13"
+        },
+        {
+          "document_id": "orac-033-law",
+          "article_label": "المادة 19"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.55,
+      "approved_by": null
+    },
+    {
+      "case_id": "c035",
+      "domain": "تحقيق الملكية العقارية",
+      "query": "كيف تتم معاينة حق الملكية العقارية وتسليم سندات الملكية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-034-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-034-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-034-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-034-law",
+          "article_label": "المادة 13"
+        },
+        {
+          "document_id": "orac-034-law",
+          "article_label": "المادة 5"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.62,
+      "approved_by": null
+    },
+    {
+      "case_id": "c036",
+      "domain": "الملكية العقارية الفلاحية",
+      "query": "ما أحكام حيازة الملكية العقارية الفلاحية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-035-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-034-law",
+        "orac-035-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-035-law",
+          "article_label": "المادة 7"
+        },
+        {
+          "document_id": "orac-035-law",
+          "article_label": "المادة 15"
+        },
+        {
+          "document_id": "orac-035-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-034-law",
+          "article_label": "المادة 14"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.73,
+      "approved_by": null
+    },
+    {
+      "case_id": "c037",
+      "domain": "التوجيه العقاري",
+      "query": "ما هو قانون التوجيه العقاري؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-036-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-012-law",
+        "orac-036-law",
+        "orac-074-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-036-law",
+          "article_label": "المادة 79"
+        },
+        {
+          "document_id": "orac-036-law",
+          "article_label": "المادة 84"
+        },
+        {
+          "document_id": "orac-036-law",
+          "article_label": "المادة 29"
+        },
+        {
+          "document_id": "orac-074-law",
+          "article_label": "المادة 7"
+        },
+        {
+          "document_id": "orac-074-law",
+          "article_label": "المادة 8"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.73,
+      "approved_by": null
+    },
+    {
+      "case_id": "c038",
+      "domain": "الاستثمار",
+      "query": "ما هي أحكام قانون الاستثمار؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-037-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "commercial-code-ar",
+        "orac-005-law",
+        "orac-037-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-037-law",
+          "article_label": "المادة 16"
+        },
+        {
+          "document_id": "orac-037-law",
+          "article_label": "المادة 17"
+        },
+        {
+          "document_id": "orac-037-law",
+          "article_label": "المادة 3"
+        },
+        {
+          "document_id": "orac-005-law",
+          "article_label": "المادة 715 مكرر"
+        },
+        {
+          "document_id": "orac-005-law",
+          "article_label": "المادة 715 مكرر"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.72,
+      "approved_by": null
+    },
+    {
+      "case_id": "c039",
+      "domain": "المنافسة",
+      "query": "كيف يضمن قانون المنافسة حرية المنافسة؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-038-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-037-law",
+        "orac-038-law",
+        "orac-048-law",
+        "orac-084-law",
+        "orac-092-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-038-law",
+          "article_label": "المادة 37"
+        },
+        {
+          "document_id": "orac-038-law",
+          "article_label": "المادة 64"
+        },
+        {
+          "document_id": "orac-038-law",
+          "article_label": "المادة 68"
+        },
+        {
+          "document_id": "orac-084-law",
+          "article_label": "المادة 6"
+        },
+        {
+          "document_id": "orac-048-law",
+          "article_label": "المادة 228"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.55,
+      "approved_by": null
+    },
+    {
+      "case_id": "c040",
+      "domain": "المضاربة غير المشروعة",
+      "query": "كيف يكافح القانون المضاربة غير المشروعة؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-039-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-003-law",
+        "orac-039-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-039-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-039-law",
+          "article_label": "المادة 12"
+        },
+        {
+          "document_id": "orac-039-law",
+          "article_label": "المادة 3"
+        },
+        {
+          "document_id": "orac-003-law",
+          "article_label": "المادة 174"
+        },
+        {
+          "document_id": "orac-003-law",
+          "article_label": "المادة 172"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.59,
+      "approved_by": null
+    },
+    {
+      "case_id": "c041",
+      "domain": "توريق القروض الرهنية",
+      "query": "ما أحكام توريق القروض الرهنية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-040-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-040-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-040-law",
+          "article_label": "المادة 13"
+        },
+        {
+          "document_id": "orac-040-law",
+          "article_label": "المادة 8"
+        },
+        {
+          "document_id": "orac-040-law",
+          "article_label": "المادة 1"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.01,
+      "approved_by": null
+    },
+    {
+      "case_id": "c042",
+      "domain": "بورصة القيم المنقولة",
+      "query": "كيف ينظّم قانون بورصة القيم المنقولة؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-041-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "civil-code-ar",
+        "orac-004-law",
+        "orac-041-law",
+        "orac-092-law",
+        "orac-096-law",
+        "orac-113-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-041-law",
+          "article_label": "المادة 14"
+        },
+        {
+          "document_id": "orac-041-law",
+          "article_label": "المادة 15"
+        },
+        {
+          "document_id": "orac-041-law",
+          "article_label": "المادة 18"
+        },
+        {
+          "document_id": "orac-004-law",
+          "article_label": "المادة 30"
+        },
+        {
+          "document_id": "civil-code-ar",
+          "article_label": "المادة 30"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.67,
+      "approved_by": null
+    },
+    {
+      "case_id": "c043",
+      "domain": "الصرف",
+      "query": "ما هي قواعد الصرف وحركة رؤوس الأموال من وإلى الخارج؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-042-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-042-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-042-law",
+          "article_label": "المادة 8"
+        },
+        {
+          "document_id": "orac-042-law",
+          "article_label": "المادة 3"
+        },
+        {
+          "document_id": "orac-042-law",
+          "article_label": "المادة 6"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.69,
+      "approved_by": null
+    },
+    {
+      "case_id": "c044",
+      "domain": "البلدية",
+      "query": "ما هي أحكام قانون البلدية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-044-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-044-law",
+        "orac-066-law",
+        "orac-089-law",
+        "orac-113-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-044-law",
+          "article_label": "المادة 133"
+        },
+        {
+          "document_id": "orac-044-law",
+          "article_label": "المادة 10"
+        },
+        {
+          "document_id": "orac-044-law",
+          "article_label": "المادة 176"
+        },
+        {
+          "document_id": "orac-113-law",
+          "article_label": "المادة 265"
+        },
+        {
+          "document_id": "orac-113-law",
+          "article_label": "المادة 264"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.43,
+      "approved_by": null
+    },
+    {
+      "case_id": "c045",
+      "domain": "الولاية",
+      "query": "ما هي أحكام قانون الولاية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-045-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-001-law",
+        "orac-045-law",
+        "orac-113-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-045-law",
+          "article_label": "المادة 171"
+        },
+        {
+          "document_id": "orac-045-law",
+          "article_label": "المادة 9"
+        },
+        {
+          "document_id": "orac-045-law",
+          "article_label": "المادة 128"
+        },
+        {
+          "document_id": "orac-113-law",
+          "article_label": "المادة 199"
+        },
+        {
+          "document_id": "orac-113-law",
+          "article_label": "المادة 190"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.53,
+      "approved_by": null
+    },
+    {
+      "case_id": "c046",
+      "domain": "الأملاك الوطنية",
+      "query": "كيف يُدار قانون الأملاك الوطنية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-046-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-036-law",
+        "orac-043-law",
+        "orac-046-law",
+        "orac-051-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-046-law",
+          "article_label": "المادة 14"
+        },
+        {
+          "document_id": "orac-046-law",
+          "article_label": "المادة 40"
+        },
+        {
+          "document_id": "orac-046-law",
+          "article_label": "المادة 41"
+        },
+        {
+          "document_id": "orac-036-law",
+          "article_label": "المادة 23"
+        },
+        {
+          "document_id": "orac-036-law",
+          "article_label": "المادة 24"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.79,
+      "approved_by": null
+    },
+    {
+      "case_id": "c047",
+      "domain": "الأوقاف",
+      "query": "ما أحكام قانون الأوقاف؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-047-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-047-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-047-law",
+          "article_label": "المادة 46"
+        },
+        {
+          "document_id": "orac-047-law",
+          "article_label": "المادة 45"
+        },
+        {
+          "document_id": "orac-047-law",
+          "article_label": "المادة 8"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.46,
+      "approved_by": null
+    },
+    {
+      "case_id": "c048",
+      "domain": "التأمينات",
+      "query": "ما هي أحكام قانون التأمينات؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-048-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-004-law",
+        "orac-048-law",
+        "orac-049-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-048-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-048-law",
+          "article_label": "المادة 162"
+        },
+        {
+          "document_id": "orac-048-law",
+          "article_label": "المادة 233"
+        },
+        {
+          "document_id": "orac-049-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-049-law",
+          "article_label": "المادة 2"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.71,
+      "approved_by": null
+    },
+    {
+      "case_id": "c049",
+      "domain": "التأمينات الاجتماعية",
+      "query": "ما نظام التأمينات الاجتماعية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-049-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-049-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-049-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-049-law",
+          "article_label": "المادة 2"
+        },
+        {
+          "document_id": "orac-049-law",
+          "article_label": "المادة 80"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.76,
+      "approved_by": null
+    },
+    {
+      "case_id": "c050",
+      "domain": "الضمان الاجتماعي",
+      "query": "ما التزامات المكلفين في مجال الضمان الاجتماعي؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-050-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-050-law",
+        "orac-116-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-050-law",
+          "article_label": "المادة 31"
+        },
+        {
+          "document_id": "orac-050-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-050-law",
+          "article_label": "المادة 33"
+        },
+        {
+          "document_id": "orac-116-law",
+          "article_label": "المادة 12"
+        },
+        {
+          "document_id": "orac-116-law",
+          "article_label": "المادة 3"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.55,
+      "approved_by": null
+    },
+    {
+      "case_id": "c051",
+      "domain": "الصحة",
+      "query": "ما هي أحكام قانون الصحة؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-051-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-051-law",
+        "orac-077-law",
+        "orac-078-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-051-law",
+          "article_label": "المادة 331"
+        },
+        {
+          "document_id": "orac-051-law",
+          "article_label": "المادة 345"
+        },
+        {
+          "document_id": "orac-051-law",
+          "article_label": "المادة 100"
+        },
+        {
+          "document_id": "orac-078-law",
+          "article_label": "المادة 6"
+        },
+        {
+          "document_id": "orac-078-law",
+          "article_label": "المادة 4"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.61,
+      "approved_by": null
+    },
+    {
+      "case_id": "c052",
+      "domain": "حماية البيئة",
+      "query": "ما هي أحكام قانون حماية البيئة في إطار التنمية المستدامة؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-052-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-052-law",
+        "orac-102-law",
+        "orac-103-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-052-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-052-law",
+          "article_label": "المادة 35"
+        },
+        {
+          "document_id": "orac-052-law",
+          "article_label": "المادة 13"
+        },
+        {
+          "document_id": "orac-103-law",
+          "article_label": "المادة 39"
+        },
+        {
+          "document_id": "orac-103-law",
+          "article_label": "المادة 2"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.1,
+      "approved_by": null
+    },
+    {
+      "case_id": "c053",
+      "domain": "حماية الطفل",
+      "query": "ما هي أحكام قانون حماية الطفل؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-053-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "civil-code-ar",
+        "orac-003-law",
+        "orac-051-law",
+        "orac-053-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-053-law",
+          "article_label": "المادة 35"
+        },
+        {
+          "document_id": "orac-053-law",
+          "article_label": "المادة 15"
+        },
+        {
+          "document_id": "orac-053-law",
+          "article_label": "المادة 40"
+        },
+        {
+          "document_id": "civil-code-ar",
+          "article_label": "المادة 13\nمكرر"
+        },
+        {
+          "document_id": "orac-051-law",
+          "article_label": "المادة 70"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.01,
+      "approved_by": null
+    },
+    {
+      "case_id": "c054",
+      "domain": "حماية المسنين",
+      "query": "كيف يحمي القانون الأشخاص المسنين؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-054-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "constitution-ar-full",
+        "orac-023-law",
+        "orac-025-law",
+        "orac-043-law",
+        "orac-054-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-054-law",
+          "article_label": "المادة 13"
+        },
+        {
+          "document_id": "orac-054-law",
+          "article_label": "المادة 22"
+        },
+        {
+          "document_id": "orac-054-law",
+          "article_label": "المادة 19"
+        },
+        {
+          "document_id": "orac-043-law",
+          "article_label": "المادة 174"
+        },
+        {
+          "document_id": "constitution-ar-full",
+          "article_label": "المادة 471"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.08,
+      "approved_by": null
+    },
+    {
+      "case_id": "c055",
+      "domain": "ذوو الاحتياجات الخاصة",
+      "query": "ما أحكام حماية الأشخاص ذوي الاحتياجات الخاصة وترقيتهم؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-055-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-055-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-055-law",
+          "article_label": "المادة 4"
+        },
+        {
+          "document_id": "orac-055-law",
+          "article_label": "المادة 51"
+        },
+        {
+          "document_id": "orac-055-law",
+          "article_label": "المادة 1"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.58,
+      "approved_by": null
+    },
+    {
+      "case_id": "c056",
+      "domain": "حماية المستهلك",
+      "query": "ما أحكام قانون حماية المستهلك وقمع الغش؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-056-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-056-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-056-law",
+          "article_label": "المادة 35"
+        },
+        {
+          "document_id": "orac-056-law",
+          "article_label": "المادة 55"
+        },
+        {
+          "document_id": "orac-056-law",
+          "article_label": "المادة 1"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.62,
+      "approved_by": null
+    },
+    {
+      "case_id": "c057",
+      "domain": "مكافحة الفساد",
+      "query": "ما هي أحكام قانون الوقاية من الفساد ومكافحته؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-057-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-003-law",
+        "orac-057-law",
+        "penal-code-ar-portal"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-057-law",
+          "article_label": "المادة 17"
+        },
+        {
+          "document_id": "orac-057-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-057-law",
+          "article_label": "المادة 16"
+        },
+        {
+          "document_id": "penal-code-ar-portal",
+          "article_label": "المادة 17"
+        },
+        {
+          "document_id": "penal-code-ar-portal",
+          "article_label": "المادة 1"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.78,
+      "approved_by": null
+    },
+    {
+      "case_id": "c058",
+      "domain": "تبييض الأموال",
+      "query": "كيف يكافح القانون تبييض الأموال وتمويل الإرهاب؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-058-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "criminal-procedure-code-2025-ar",
+        "orac-058-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-058-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-058-law",
+          "article_label": "المادة 10 مكرر"
+        },
+        {
+          "document_id": "orac-058-law",
+          "article_label": "المادة 10 مكرر"
+        },
+        {
+          "document_id": "criminal-procedure-code-2025-ar",
+          "article_label": "المادة 51"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.64,
+      "approved_by": null
+    },
+    {
+      "case_id": "c059",
+      "domain": "التمييز وخطاب الكراهية",
+      "query": "كيف يواجه القانون التمييز وخطاب الكراهية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-059-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-059-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-059-law",
+          "article_label": "المادة 10"
+        },
+        {
+          "document_id": "orac-059-law",
+          "article_label": "المادة 8"
+        },
+        {
+          "document_id": "orac-059-law",
+          "article_label": "المادة 6"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.62,
+      "approved_by": null
+    },
+    {
+      "case_id": "c060",
+      "domain": "الأسلحة والذخيرة",
+      "query": "ما أحكام قانون العتاد الحربي والأسلحة والذخيرة؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-060-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-060-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-060-law",
+          "article_label": "المادة 44"
+        },
+        {
+          "document_id": "orac-060-law",
+          "article_label": "المادة 10"
+        },
+        {
+          "document_id": "orac-060-law",
+          "article_label": "المادة 17"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.83,
+      "approved_by": null
+    },
+    {
+      "case_id": "c061",
+      "domain": "القضاء العسكري",
+      "query": "ما اختصاصات القضاء العسكري؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-061-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-024-law",
+        "orac-038-law",
+        "orac-061-law",
+        "orac-096-law",
+        "orac-099-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-061-law",
+          "article_label": "المادة 77"
+        },
+        {
+          "document_id": "orac-061-law",
+          "article_label": "المادة 78"
+        },
+        {
+          "document_id": "orac-061-law",
+          "article_label": "المادة 48"
+        },
+        {
+          "document_id": "orac-038-law",
+          "article_label": "المادة 43"
+        },
+        {
+          "document_id": "orac-096-law",
+          "article_label": "المادة 9"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.65,
+      "approved_by": null
+    },
+    {
+      "case_id": "c062",
+      "domain": "المساعدة القضائية",
+      "query": "ما أحكام قانون المساعدة القضائية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-062-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "civil-code-ar",
+        "orac-062-law",
+        "orac-091-law",
+        "penitentiary-code-ar"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-062-law",
+          "article_label": "المادة 5"
+        },
+        {
+          "document_id": "orac-062-law",
+          "article_label": "المادة 12"
+        },
+        {
+          "document_id": "orac-062-law",
+          "article_label": "المادة 27 مكرر"
+        },
+        {
+          "document_id": "civil-code-ar",
+          "article_label": "المادة 12"
+        },
+        {
+          "document_id": "orac-091-law",
+          "article_label": "المادة 155"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.01,
+      "approved_by": null
+    },
+    {
+      "case_id": "c063",
+      "domain": "الاجتماعات والتظاهرات",
+      "query": "ما شروط الاجتماعات والتظاهرات العمومية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-063-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-063-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-063-law",
+          "article_label": "المادة 14"
+        },
+        {
+          "document_id": "orac-063-law",
+          "article_label": "المادة 3"
+        },
+        {
+          "document_id": "orac-063-law",
+          "article_label": "المادة 8"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.64,
+      "approved_by": null
+    },
+    {
+      "case_id": "c064",
+      "domain": "الإعلام",
+      "query": "ما أحكام قانون الإعلام؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-064-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-002-law",
+        "orac-051-law",
+        "orac-064-law",
+        "orac-102-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-064-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-064-law",
+          "article_label": "المادة 4"
+        },
+        {
+          "document_id": "orac-064-law",
+          "article_label": "المادة 12"
+        },
+        {
+          "document_id": "orac-051-law",
+          "article_label": "المادة 319"
+        },
+        {
+          "document_id": "orac-051-law",
+          "article_label": "المادة 320"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.77,
+      "approved_by": null
+    },
+    {
+      "case_id": "c065",
+      "domain": "اللغة العربية",
+      "query": "ما أحكام تعميم استعمال اللغة العربية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-065-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-065-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-065-law",
+          "article_label": "المادة 24"
+        },
+        {
+          "document_id": "orac-065-law",
+          "article_label": "المادة 27"
+        },
+        {
+          "document_id": "orac-065-law",
+          "article_label": "المادة 23"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.83,
+      "approved_by": null
+    },
+    {
+      "case_id": "c066",
+      "domain": "التهيئة والتعمير",
+      "query": "ما هي أحكام قانون التهيئة والتعمير؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-066-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-036-law",
+        "orac-066-law",
+        "orac-068-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-066-law",
+          "article_label": "المادة 2"
+        },
+        {
+          "document_id": "orac-066-law",
+          "article_label": "المادة 3"
+        },
+        {
+          "document_id": "orac-066-law",
+          "article_label": "المادة 10"
+        },
+        {
+          "document_id": "orac-068-law",
+          "article_label": "المادة 5"
+        },
+        {
+          "document_id": "orac-068-law",
+          "article_label": "المادة 4"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.56,
+      "approved_by": null
+    },
+    {
+      "case_id": "c067",
+      "domain": "مطابقة البنايات",
+      "query": "ما قواعد مطابقة البنايات وإتمام إنجازها؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-067-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-067-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-067-law",
+          "article_label": "المادة 14"
+        },
+        {
+          "document_id": "orac-067-law",
+          "article_label": "المادة 18"
+        },
+        {
+          "document_id": "orac-067-law",
+          "article_label": "المادة 32"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.5,
+      "approved_by": null
+    },
+    {
+      "case_id": "c068",
+      "domain": "نفاذ قانون التوسع",
+      "query": "هل قانون مناطق التوسع والمواقع السياحية نافذ حالياً في الجزائر؟",
+      "expected_decision": "abstain",
+      "expected_document_ids": [],
+      "actual_decision": "abstain",
+      "actual_mode": "status-unverified",
+      "retrieved_document_ids": [],
+      "retrieved_articles": [],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.61,
+      "approved_by": null
+    },
+    {
+      "case_id": "c069",
+      "domain": "القانون التونسي للشواطئ",
+      "query": "ما حكم استغلال الشواطئ في القانون التونسي؟",
+      "expected_decision": "abstain",
+      "expected_document_ids": [],
+      "actual_decision": "abstain",
+      "actual_mode": "policy",
+      "retrieved_document_ids": [],
+      "retrieved_articles": [],
+      "ok": true,
+      "problems": [],
+      "seconds": 0.0,
+      "approved_by": null
+    },
+    {
+      "case_id": "c070",
+      "domain": "حماية الساحل",
+      "query": "كيف تحمي القوانين الساحل وتثمينه؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-071-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-071-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-071-law",
+          "article_label": "المادة 26"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.47,
+      "approved_by": null
+    },
+    {
+      "case_id": "c071",
+      "domain": "الغابات",
+      "query": "ما هو النظام العام للغابات؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-072-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-046-law",
+        "orac-072-law",
+        "orac-073-law",
+        "orac-103-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-072-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-072-law",
+          "article_label": "المادة 3"
+        },
+        {
+          "document_id": "orac-072-law",
+          "article_label": "المادة 6"
+        },
+        {
+          "document_id": "orac-046-law",
+          "article_label": "المادة 37"
+        },
+        {
+          "document_id": "orac-073-law",
+          "article_label": "المادة 8"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.24,
+      "approved_by": null
+    },
+    {
+      "case_id": "c072",
+      "domain": "حرائق الغابات",
+      "query": "كيف تُنظَّم أعمال الوقاية من حرائق الغابات؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-073-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-072-law",
+        "orac-073-law",
+        "orac-102-law",
+        "orac-103-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-073-law",
+          "article_label": "المادة 8"
+        },
+        {
+          "document_id": "orac-073-law",
+          "article_label": "المادة 6"
+        },
+        {
+          "document_id": "orac-073-law",
+          "article_label": "المادة 4"
+        },
+        {
+          "document_id": "orac-103-law",
+          "article_label": "المادة 35"
+        },
+        {
+          "document_id": "orac-103-law",
+          "article_label": "المادة 69"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.56,
+      "approved_by": null
+    },
+    {
+      "case_id": "c073",
+      "domain": "التوجيه الفلاحي",
+      "query": "ما هو قانون التوجيه الفلاحي؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-074-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-036-law",
+        "orac-074-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-074-law",
+          "article_label": "المادة 7"
+        },
+        {
+          "document_id": "orac-074-law",
+          "article_label": "المادة 6"
+        },
+        {
+          "document_id": "orac-074-law",
+          "article_label": "المادة 63"
+        },
+        {
+          "document_id": "orac-036-law",
+          "article_label": "المادة 53"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.5,
+      "approved_by": null
+    },
+    {
+      "case_id": "c074",
+      "domain": "التعاونيات الفلاحية",
+      "query": "ما القواعد المطبقة على التعاونيات الفلاحية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-075-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-074-law",
+        "orac-075-law",
+        "orac-121-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-075-law",
+          "article_label": "المادة 101"
+        },
+        {
+          "document_id": "orac-075-law",
+          "article_label": "المادة 14"
+        },
+        {
+          "document_id": "orac-075-law",
+          "article_label": "المادة 13"
+        },
+        {
+          "document_id": "orac-121-law",
+          "article_label": "المادة 2"
+        },
+        {
+          "document_id": "orac-074-law",
+          "article_label": "المادة 56"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.81,
+      "approved_by": null
+    },
+    {
+      "case_id": "c075",
+      "domain": "نفاذ استغلال الأراضي الفلاحية",
+      "query": "هل قانون استغلال الأراضي الفلاحية ساري حالياً؟",
+      "expected_decision": "abstain",
+      "expected_document_ids": [],
+      "actual_decision": "abstain",
+      "actual_mode": "status-unverified",
+      "retrieved_document_ids": [],
+      "retrieved_articles": [],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.73,
+      "approved_by": null
+    },
+    {
+      "case_id": "c076",
+      "domain": "الصحة النباتية",
+      "query": "ما أحكام حماية الصحة النباتية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-077-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-051-law",
+        "orac-074-law",
+        "orac-077-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-077-law",
+          "article_label": "المادة 23"
+        },
+        {
+          "document_id": "orac-077-law",
+          "article_label": "المادة 16"
+        },
+        {
+          "document_id": "orac-077-law",
+          "article_label": "المادة 40"
+        },
+        {
+          "document_id": "orac-051-law",
+          "article_label": "المادة 111"
+        },
+        {
+          "document_id": "orac-074-law",
+          "article_label": "المادة 34"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.53,
+      "approved_by": null
+    },
+    {
+      "case_id": "c077",
+      "domain": "الطب البيطري",
+      "query": "ما أحكام نشاطات الطب البيطري وحماية الصحة الحيوانية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-078-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-078-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-078-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-078-law",
+          "article_label": "المادة 59"
+        },
+        {
+          "document_id": "orac-078-law",
+          "article_label": "المادة 19"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.9,
+      "approved_by": null
+    },
+    {
+      "case_id": "c078",
+      "domain": "القانون الفرنسي للحيوانات",
+      "query": "كيف تحمي فرنسا الأنواع الحيوانية المهددة بالانقراض؟",
+      "expected_decision": "abstain",
+      "expected_document_ids": [],
+      "actual_decision": "abstain",
+      "actual_mode": "policy",
+      "retrieved_document_ids": [],
+      "retrieved_articles": [],
+      "ok": true,
+      "problems": [],
+      "seconds": 0.0,
+      "approved_by": null
+    },
+    {
+      "case_id": "c079",
+      "domain": "الطيران المدني",
+      "query": "ما أحكام الطيران المدني؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-080-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-080-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-080-law",
+          "article_label": "المادة 16 مكرر"
+        },
+        {
+          "document_id": "orac-080-law",
+          "article_label": "المادة 178"
+        },
+        {
+          "document_id": "orac-080-law",
+          "article_label": "المادة 17"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.19,
+      "approved_by": null
+    },
+    {
+      "case_id": "c080",
+      "domain": "القانون البحري",
+      "query": "ما أهم أحكام القانون البحري؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-081-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-048-law",
+        "orac-081-law",
+        "orac-091-law",
+        "orac-103-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-081-law",
+          "article_label": "المادة 366"
+        },
+        {
+          "document_id": "orac-081-law",
+          "article_label": "المادة 373"
+        },
+        {
+          "document_id": "orac-081-law",
+          "article_label": "المادة 603"
+        },
+        {
+          "document_id": "orac-091-law",
+          "article_label": "المادة 135 مكرر"
+        },
+        {
+          "document_id": "orac-048-law",
+          "article_label": "المادة 136"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.58,
+      "approved_by": null
+    },
+    {
+      "case_id": "c081",
+      "domain": "السكك الحديدية",
+      "query": "كيف تضمن القوانين الأمن والسلامة في النقل بالسكك الحديدية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-082-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-012-law",
+        "orac-082-law",
+        "orac-101-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-082-law",
+          "article_label": "المادة 5"
+        },
+        {
+          "document_id": "orac-082-law",
+          "article_label": "المادة 18"
+        },
+        {
+          "document_id": "orac-082-law",
+          "article_label": "المادة 21"
+        },
+        {
+          "document_id": "orac-101-law",
+          "article_label": "المادة 2"
+        },
+        {
+          "document_id": "orac-012-law",
+          "article_label": "المادة 22"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.62,
+      "approved_by": null
+    },
+    {
+      "case_id": "c082",
+      "domain": "المحروقات",
+      "query": "ما أحكام قانون نشاطات المحروقات؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-083-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-052-law",
+        "orac-083-law",
+        "orac-088-law",
+        "orac-092-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-083-law",
+          "article_label": "المادة 177"
+        },
+        {
+          "document_id": "orac-083-law",
+          "article_label": "المادة 224"
+        },
+        {
+          "document_id": "orac-083-law",
+          "article_label": "المادة 23"
+        },
+        {
+          "document_id": "orac-052-law",
+          "article_label": "المادة 58"
+        },
+        {
+          "document_id": "orac-092-law",
+          "article_label": "المادة 215"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.63,
+      "approved_by": null
+    },
+    {
+      "case_id": "c083",
+      "domain": "الكهرباء والغاز",
+      "query": "كيف ينظّم القانون الكهرباء وتوزيع الغاز بواسطة القنوات؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-084-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-052-law",
+        "orac-084-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-052-law",
+          "article_label": "المادة 47"
+        },
+        {
+          "document_id": "orac-084-law",
+          "article_label": "المادة 0"
+        },
+        {
+          "document_id": "orac-084-law",
+          "article_label": "المادة 6"
+        },
+        {
+          "document_id": "orac-084-law",
+          "article_label": "المادة 27"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.74,
+      "approved_by": null
+    },
+    {
+      "case_id": "c084",
+      "domain": "النفايات",
+      "query": "ما أحكام قانون تسيير النفايات ومراقبتها وإزالتها؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-085-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-085-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-085-law",
+          "article_label": "المادة 17"
+        },
+        {
+          "document_id": "orac-085-law",
+          "article_label": "المادة 12"
+        },
+        {
+          "document_id": "orac-085-law",
+          "article_label": "المادة 29"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.67,
+      "approved_by": null
+    },
+    {
+      "case_id": "c085",
+      "domain": "نفاذ المساحات الخضراء",
+      "query": "هل قانون حماية المساحات الخضراء نافذ حالياً في الجزائر؟",
+      "expected_decision": "abstain",
+      "expected_document_ids": [],
+      "actual_decision": "abstain",
+      "actual_mode": "status-unverified",
+      "retrieved_document_ids": [],
+      "retrieved_articles": [],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.46,
+      "approved_by": null
+    },
+    {
+      "case_id": "c086",
+      "domain": "الإجراءات الجبائية",
+      "query": "ما أحكام قانون الإجراءات الجبائية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-087-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-001-law",
+        "orac-087-law",
+        "orac-088-law",
+        "orac-092-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-087-law",
+          "article_label": "المادة 173"
+        },
+        {
+          "document_id": "orac-001-law",
+          "article_label": "المادة 948"
+        },
+        {
+          "document_id": "orac-087-law",
+          "article_label": "المادة 52"
+        },
+        {
+          "document_id": "orac-087-law",
+          "article_label": "المادة 179"
+        },
+        {
+          "document_id": "orac-001-law",
+          "article_label": "المادة 947"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.96,
+      "approved_by": null
+    },
+    {
+      "case_id": "c087",
+      "domain": "الضرائب المباشرة",
+      "query": "ما أحكام قانون الضرائب المباشرة والرسوم المماثلة؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-088-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-088-law",
+        "orac-089-law",
+        "orac-090-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-088-law",
+          "article_label": "المادة 354"
+        },
+        {
+          "document_id": "orac-088-law",
+          "article_label": "المادة 281 مكرر 15"
+        },
+        {
+          "document_id": "orac-088-law",
+          "article_label": "المادة 371 مكرر"
+        },
+        {
+          "document_id": "orac-089-law",
+          "article_label": "المادة 492"
+        },
+        {
+          "document_id": "orac-089-law",
+          "article_label": "المادة 128"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 4.14,
+      "approved_by": null
+    },
+    {
+      "case_id": "c088",
+      "domain": "الجمارك",
+      "query": "ما أحكام قانون الجمارك؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-092-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-089-law",
+        "orac-090-law",
+        "orac-091-law",
+        "orac-092-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-092-law",
+          "article_label": "المادة 33"
+        },
+        {
+          "document_id": "orac-092-law",
+          "article_label": "المادة 34"
+        },
+        {
+          "document_id": "orac-092-law",
+          "article_label": "المادة 31"
+        },
+        {
+          "document_id": "orac-089-law",
+          "article_label": "المادة 556"
+        },
+        {
+          "document_id": "orac-090-law",
+          "article_label": "المادة 14"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.71,
+      "approved_by": null
+    },
+    {
+      "case_id": "c089",
+      "domain": "التهريب",
+      "query": "كيف يكافح القانون التهريب؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-093-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "criminal-procedure-code-2025-ar",
+        "orac-002-law",
+        "orac-092-law",
+        "orac-093-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-093-law",
+          "article_label": "المادة 14"
+        },
+        {
+          "document_id": "orac-093-law",
+          "article_label": "المادة 7"
+        },
+        {
+          "document_id": "orac-093-law",
+          "article_label": "المادة 11"
+        },
+        {
+          "document_id": "orac-002-law",
+          "article_label": "المادة 310"
+        },
+        {
+          "document_id": "criminal-procedure-code-2025-ar",
+          "article_label": "المادة 310"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.62,
+      "approved_by": null
+    },
+    {
+      "case_id": "c090",
+      "domain": "دخول الأجانب",
+      "query": "ما شروط دخول الأجانب إلى الجزائر وإقامتهم؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-094-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-094-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-094-law",
+          "article_label": "المادة 1"
+        },
+        {
+          "document_id": "orac-094-law",
+          "article_label": "المادة 23"
+        },
+        {
+          "document_id": "orac-094-law",
+          "article_label": "المادة 25"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.85,
+      "approved_by": null
+    },
+    {
+      "case_id": "c091",
+      "domain": "التربية الوطنية",
+      "query": "ما هو القانون التوجيهي للتربية الوطنية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-096-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-096-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-096-law",
+          "article_label": "المادة 89"
+        },
+        {
+          "document_id": "orac-096-law",
+          "article_label": "المادة 83"
+        },
+        {
+          "document_id": "orac-096-law",
+          "article_label": "المادة 81"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.84,
+      "approved_by": null
+    },
+    {
+      "case_id": "c092",
+      "domain": "الصفقات العمومية",
+      "query": "ما أحكام تنظيم الصفقات العمومية وتفويضات المرفق العام؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-099-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-099-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-099-law",
+          "article_label": "المادة 212"
+        },
+        {
+          "document_id": "orac-099-law",
+          "article_label": "المادة 213"
+        },
+        {
+          "document_id": "orac-099-law",
+          "article_label": "المادة 211"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.8,
+      "approved_by": null
+    },
+    {
+      "case_id": "c093",
+      "domain": "قانون التسجيل",
+      "query": "ما أحكام قانون التسجيل؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-100-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-005-law",
+        "orac-051-law",
+        "orac-053-law",
+        "orac-081-law",
+        "orac-100-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-100-law",
+          "article_label": "المادة 78"
+        },
+        {
+          "document_id": "orac-100-law",
+          "article_label": "المادة 3"
+        },
+        {
+          "document_id": "orac-100-law",
+          "article_label": "المادة 295"
+        },
+        {
+          "document_id": "orac-051-law",
+          "article_label": "المادة 230"
+        },
+        {
+          "document_id": "orac-081-law",
+          "article_label": "المادة 47"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.79,
+      "approved_by": null
+    },
+    {
+      "case_id": "c094",
+      "domain": "الشعائر الدينية في المغرب",
+      "query": "ما شروط ممارسة الشعائر الدينية لغير المسلمين في المغرب؟",
+      "expected_decision": "abstain",
+      "expected_document_ids": [],
+      "actual_decision": "abstain",
+      "actual_mode": "policy",
+      "retrieved_document_ids": [],
+      "retrieved_articles": [],
+      "ok": true,
+      "problems": [],
+      "seconds": 0.0,
+      "approved_by": null
+    },
+    {
+      "case_id": "c095",
+      "domain": "القانون التوجيهي للكوارث",
+      "query": "ما هو القانون التوجيهي للوقاية من الأخطار الكبرى وتسيير الكوارث؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-102-law",
+        "orac-103-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-066-law",
+        "orac-096-law",
+        "orac-102-law",
+        "orac-103-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-102-law",
+          "article_label": "المادة 68"
+        },
+        {
+          "document_id": "orac-102-law",
+          "article_label": "المادة 14"
+        },
+        {
+          "document_id": "orac-102-law",
+          "article_label": "المادة 6"
+        },
+        {
+          "document_id": "orac-096-law",
+          "article_label": "المادة 76"
+        },
+        {
+          "document_id": "orac-066-law",
+          "article_label": "المادة 18"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.74,
+      "approved_by": null
+    },
+    {
+      "case_id": "c096",
+      "domain": "الوثائق الإدارية",
+      "query": "كيف تحمي القواعد المعلومات والوثائق الإدارية؟",
+      "expected_decision": "answer",
+      "expected_document_ids": [
+        "orac-104-law"
+      ],
+      "actual_decision": "answer",
+      "actual_mode": "extractive-grounded",
+      "retrieved_document_ids": [
+        "orac-067-law",
+        "orac-104-law"
+      ],
+      "retrieved_articles": [
+        {
+          "document_id": "orac-067-law",
+          "article_label": "المادة 71"
+        },
+        {
+          "document_id": "orac-104-law",
+          "article_label": "المادة 21"
+        },
+        {
+          "document_id": "orac-104-law",
+          "article_label": "المادة 5"
+        },
+        {
+          "document_id": "orac-104-law",
+          "article_label": "المادة 17"
+        }
+      ],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.53,
+      "approved_by": null
+    },
+    {
+      "case_id": "c097",
+      "domain": "نفاذ المساكن العمومية",
+      "query": "هل شروط شراء المساكن المنجزة بأموال عمومية نافذة حالياً؟",
+      "expected_decision": "abstain",
+      "expected_document_ids": [],
+      "actual_decision": "abstain",
+      "actual_mode": "status-unverified",
+      "retrieved_document_ids": [],
+      "retrieved_articles": [],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.62,
+      "approved_by": null
+    },
+    {
+      "case_id": "c098",
+      "domain": "نظام الانتخابات في تونس",
+      "query": "كيف نظام الانتخابات في تونس؟",
+      "expected_decision": "abstain",
+      "expected_document_ids": [],
+      "actual_decision": "abstain",
+      "actual_mode": "policy",
+      "retrieved_document_ids": [],
+      "retrieved_articles": [],
+      "ok": true,
+      "problems": [],
+      "seconds": 0.0,
+      "approved_by": null
+    },
+    {
+      "case_id": "c099",
+      "domain": "نفاذ قانون الحالة المدنية",
+      "query": "هل قانون الحالة المدنية نافذ حالياً في الجزائر؟",
+      "expected_decision": "abstain",
+      "expected_document_ids": [],
+      "actual_decision": "abstain",
+      "actual_mode": "status-unverified",
+      "retrieved_document_ids": [],
+      "retrieved_articles": [],
+      "ok": true,
+      "problems": [],
+      "seconds": 3.99,
+      "approved_by": null
+    },
+    {
+      "case_id": "c100",
+      "domain": "النفقة في القانون المصري",
+      "query": "ما حكم النفقة في القانون المصري؟",
+      "expected_decision": "abstain",
+      "expected_document_ids": [],
+      "actual_decision": "abstain",
+      "actual_mode": "policy",
+      "retrieved_document_ids": [],
+      "retrieved_articles": [],
+      "ok": true,
+      "problems": [],
+      "seconds": 0.0,
+      "approved_by": null
+    }
+  ]
+}

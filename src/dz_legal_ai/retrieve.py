@@ -110,6 +110,10 @@ _STOPWORDS = {
     "و",
     "أو",
     "او",
+    "ب",
+    "د",
+    "منا",
+    "ونحن",
 }
 _ARABIC_NORMALIZATION = str.maketrans(
     {
@@ -117,6 +121,10 @@ _ARABIC_NORMALIZATION = str.maketrans(
         "\u0623": "\u0627",
         "\u0625": "\u0627",
         "\u0649": "\u064A",
+        # Persian-style yeh used in some OCR'd corpus documents (تسجیل).
+        "\u06cc": "\u064A",
+        # Tatweel is a presentation character, not a letter (بـ).
+        "\u0640": "",
     }
 )
 
@@ -131,6 +139,9 @@ def tokenize(text: str) -> list[str]:
         # legal concepts: "والإرث" must become "ارث" like "الإرث".
         if token.startswith("و") and len(token) > 5 and token[1:].startswith("ال"):
             token = token[1:]
+        # A prefixed lam must not hide the concept: "للالتزامات" -> "تزامات".
+        if token.startswith("لل") and len(token) > 5:
+            token = token[2:]
         if token.startswith("ال") and len(token) > 4:
             token = token[2:]
         if token not in _STOPWORDS:

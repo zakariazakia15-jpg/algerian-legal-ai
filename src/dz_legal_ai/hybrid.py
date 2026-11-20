@@ -72,6 +72,11 @@ LEGAL_SYNONYMS: dict[str, tuple[str, ...]] = {
     "succession": ("ميراث", "إرث", "ورثة"),
     "حصة": ("أنصبة", "نصيب", "part", "partage"),
     "نصيب": ("حصة", "أنصبة", "part"),
+    "وترك": ("ترك", "تركة", "ميراث", "إرث", "succession"),
+    "ترك": ("تركة", "ميراث", "إرث", "succession"),
+    "وحقوق": ("حقوق",),
+    "وبنتان": ("بنتان", "ابنة", "بنات", "fille"),
+    "ابناء": ("ابن", "أولاد", "fils"),
     "أخوة": ("أخ", "أخوان", "إخوة", "frère", "freres"),
     "أخ": ("أخوة", "أخوان", "frère"),
     "نساء": ("امرأة", "نساء", "femme", "femmes"),
@@ -158,8 +163,20 @@ GENERIC_TERMS = frozenset(
     tokenize(
         "عقوبة عقوبات peine peines sanction sanctions قانون loi droit "
         "حكم jugement arret جزائي جزائري الجزائر حالة حكام "
-        "مليار مليون دينار دج اربع خمس وخمس واحد"
+        "مليار مليون دينار دج اربع خمس وخمس واحد "
+        "احكام اهم وثيقة متعلقة تنص"
     )
+)
+
+
+# Natural questions often omit the legal topic: "توفي والدنا وترك مالاً" is an
+# inheritance question without ever saying "ميراث". A small explicit hint table
+# adds the topic concept in that case; it never adds a legal conclusion.
+_TOPIC_HINTS: tuple[tuple[frozenset[str], tuple[str, ...]], ...] = (
+    (
+        frozenset(tokenize("توفي توفى توفيت وفاة مات موت وترك ترك")),
+        tuple(tokenize("ميراث إرث succession ورثة وارث")),
+    ),
 )
 
 
@@ -184,6 +201,14 @@ def query_concept_groups(query: str) -> list[frozenset[str]]:
         if group and group not in seen:
             seen.add(group)
             groups.append(group)
+    tokens = set(tokenize(query))
+    for markers, topics in _TOPIC_HINTS:
+        if tokens & markers:
+            for topic in topics:
+                group = frozenset(expand_query_tokens(topic))
+                if group and group not in seen:
+                    seen.add(group)
+                    groups.append(group)
     return groups
 
 
@@ -285,13 +310,30 @@ def retrieve_articles(
                 continue
             candidates.append(chunk)
 
+    # The domain is often written only in the title ("قانون التوجيه العقاري")
+    # and not repeated in every article. Include the structural metadata in the
+    # searchable text so the title can identify the right instrument.
+    def search_text(chunk: dict[str, Any]) -> str:
+        # Only the instrument title/domain is added here. Book and chapter
+        # headings often contain generic words such as "أحكام" that would
+        # otherwise overwhelm the article text; they feed the structural bonus
+        # below instead.
+        metadata = " ".join(
+            str(chunk.get(key) or "") for key in ("title", "legal_domain")
+        )
+        return f"{chunk['text']} {metadata}"
+
     # A passage qualifies only if it covers enough *concepts* and at least one
     # of them is specific. This stops generic words such as "عقوبة" from
     # pulling unrelated articles about any kind of sentence.
-    has_specific_query = any(not (group <= GENERIC_TERMS) for group in query_groups)
+    specific_groups = [group for group in query_groups if not (group <= GENERIC_TERMS)]
+    has_specific_query = bool(specific_groups)
+    # Generic words such as "أحكام" appear in almost every code and drown out the
+    # rare concept that actually identifies the instrument ("بحري", "تسجيل").
+    scoring_terms = set().union(*specific_groups) if specific_groups else query_terms
     ranked = []
     for index, chunk in enumerate(candidates):
-        chunk_tokens = set(tokenize(chunk["text"]))
+        chunk_tokens = set(tokenize(search_text(chunk)))
         matched = [group for group in query_groups if group & chunk_tokens]
         if not matched:
             continue
@@ -310,8 +352,8 @@ def retrieve_articles(
         ranked.append((index, chunk))
     if not ranked:
         return []
-    bm25 = BM25Index([tokenize(chunk["text"]) for _, chunk in ranked])
-    bm25_scores = [bm25.score(query_terms, local_index) for local_index, _ in enumerate(ranked)]
+    bm25 = BM25Index([tokenize(search_text(chunk)) for _, chunk in ranked])
+    bm25_scores = [bm25.score(scoring_terms, local_index) for local_index, _ in enumerate(ranked)]
     max_bm25 = max(bm25_scores) or 1.0
 
     results: list[ArticleEvidence] = []
@@ -328,20 +370,29 @@ def retrieve_articles(
                 vector = encoder.encode(chunk_text, normalize_embeddings=True).tolist()
                 dense = _cosine(query_vector, vector)
         label = chunk.get("article_label") or ""
-        label_bonus = 0.08 if any(term in label for term in query_terms) else 0.0
+        label_bonus = 0.08 if any(term in label for term in scoring_terms) else 0.0
         structural_text = " ".join(
             str(chunk.get(key) or "") for key in ("book", "chapter", "section")
         )
         structural_bonus = (
             settings["structural_weight"]
-            if any(term in structural_text for term in query_terms)
+            if any(term in structural_text for term in scoring_terms)
             else 0.0
         )
+        # An instrument whose title names the topic is a stronger signal than a
+        # passing mention inside an unrelated law. Cap the bonus so it cannot
+        # outweigh the textual evidence.
+        title_tokens = set(
+            tokenize(" ".join(str(chunk.get(key) or "") for key in ("title", "legal_domain")))
+        )
+        title_matches = sum(1 for group in query_groups if group & title_tokens)
+        title_bonus = min(0.36, 0.12 * title_matches)
         score = (
             settings["lexical_weight"] * lexical
             + settings["dense_weight"] * dense
             + label_bonus
             + structural_bonus
+            + title_bonus
         )
         results.append(
             ArticleEvidence(

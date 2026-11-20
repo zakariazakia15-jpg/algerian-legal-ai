@@ -84,3 +84,23 @@ def test_arabic_definite_article_and_hamza_variants_expand_together():
     assert "سارق" in tokens
     assert "ميراث" in tokens
     assert "succession" in tokens
+
+
+def test_death_and_kinship_without_the_word_inheritance_finds_family_law():
+    """A natural question never says "ميراث" but still is an inheritance one."""
+    family = record(
+        "family-succession",
+        "المادة 176: للذكر مثل حظ الأنثيين في الإرث، ويكون نصيب الأخوة من التركة معلوما.",
+    )
+    evidence = retrieve_articles(
+        "توفي والدنا وترك مالا ونحن أبناء وبنات كم نصيب كل واحد", [family]
+    )
+    assert evidence
+    assert evidence[0].document_id == "family-succession"
+
+
+def test_persian_yeh_and_tatweel_do_not_hide_a_legal_term():
+    from dz_legal_ai.retrieve import tokenize
+
+    assert tokenize("قانون التسجیل") == ["قانون", "تسجيل"]
+    assert "بـ" not in tokenize("متعلق بـ قانون")
